@@ -1,11 +1,11 @@
 package Cards;
 
+// enum che rappresenta valori delle carte
 public enum Ranks{
 	
-	/*Attribuisco valore minimo e massimo ad ogni carta
-	 * in modo da poter attribuire all'asso sia valore 1 
-	 * che 11.
-	 */
+	/* Attribuisco valore minimo e massimo ad ogni carta  *
+	 * in modo da poter attribuire all'asso sia valore 1  *
+	 * che 11.                                            */
 	
 	TWO   (2, 2),
 	THREE (3, 3),
@@ -21,36 +21,37 @@ public enum Ranks{
 	KING  (10, 10),
 	ACE   (1, 11);
 	
-	private final int minValue; //valore minimo della carta
-	private final int maxValue; //valore massimo della carta
+	private final int minValue; // valore minimo della carta
+	private final int maxValue; // valore massimo della carta
 	
 	Ranks (int minValue, int maxValue){
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 	}
 	
-	//Restituisce il valore minimo
-	public int getMinValue() {
+	// Restituisce il valore minimo
+	public int getMinValue() 
+	{
 		return minValue;
 	}
 	
-	//Restituisce il valore massimo
-	public int getMaxValue() {
+	// Restituisce il valore massimo
+	public int getMaxValue() 
+	{
 		return maxValue;
 	}
 	
-	//Indica se la carta è un asso
-	public boolean isAce(){
+	// Indica se la carta è un asso
+	public boolean isAce()
+	{
 		return this == ACE;
 	}
 	
-	//Rappresentazione più leggibile 
+	// toString di Ranks
 	@Override
-	public String toString() {
-	
+	public String toString() 
+	{
 		String prettyName = name().charAt(0) + name().substring(1).toLowerCase();
-		return prettyName;
-		
-		
+		return prettyName;	
 	}
 }
