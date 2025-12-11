@@ -1,52 +1,49 @@
-package Cards;
+package cards;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Stack;
+import java.util.Collections;
+import java.util.List;
 
+// Classe del mazzo
 public class Deck {
-    private Stack<Cards> deck;
-    private static final int n_decks = 4;
+    private static final int n_decks = 4;   // 4 * 52 carte
+    private List<Card> deck;
 
-    public Deck() {
-        this.deck = new Stack<>();
-        restore();
-        shuffle();
+    public Deck() 
+    {
+        this.deck = new ArrayList<>();
+        resetDeck();
     }
 
-    private void restore() {
-        for (int i = 0; i < n_decks; i++) {
-            for (Suits s : Suits.values()) {
-                for (Ranks r : Ranks.values()) {
-                    this.deck.push(new Cards(s, r));
+    // Ripristina il mazzo come nuovo
+    private void restore() 
+    {
+        this.deck.clear();
+        for (int i = 0; i < n_decks; i++) 
+        {
+            for (Suits s : Suits.values()) 
+            {
+                for (Ranks r : Ranks.values()) 
+                {
+                    this.deck.add(new Card(s, r));
                 }
             }
         }
     }
 
-    private void shuffle() {
-        ArrayList<Cards> a = new ArrayList<>();
-        int i;
-        while (!deck.isEmpty()) {
-            a.add(deck.pop());
-        }
-        while (!a.isEmpty()) {
-            i = new Random().nextInt(a.size());
-            deck.push(a.remove(i));
-        }
-    }
-
-    // utilizzo una classe publica che richiama i metodi
-    // precedenti per evitare chiamate singole inutili da sole alle 2 fun precedenti
+    /* Utilizziamo una classe publica che         *
+     * richiama i 2 metodi precedenti per evitare *
+     * chiamate singole inutili e/o dannose       */
     public void resetDeck()
     {
         this.restore();
-        this.shuffle();
+        Collections.shuffle(deck); 
     }
 
-    public Cards draw(){
+    // Funzione per il pescaggio della carta
+    public Card draw()
+    {
         if (deck.isEmpty()) return null;
-        return deck.pop();
+        return deck.remove(deck.size() -1);
     }
-
 }

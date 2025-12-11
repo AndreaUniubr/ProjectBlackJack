@@ -1,4 +1,4 @@
-package Cards;
+package cards;
 
 // enum che rappresenta i Semi delle carte
 public enum Suits {

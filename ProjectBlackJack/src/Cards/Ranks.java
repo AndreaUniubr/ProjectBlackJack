@@ -1,4 +1,4 @@
-package Cards;
+package cards;
 
 // enum che rappresenta valori delle carte
 public enum Ranks{
