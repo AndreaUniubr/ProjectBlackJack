@@ -1,4 +1,4 @@
-package Cards;
+package cards;
 
 // Classe che rappresenta l'effettiva carta
 public class Card{
