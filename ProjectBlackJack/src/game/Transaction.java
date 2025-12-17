@@ -15,6 +15,7 @@ public class Transaction {
     // amount
 
 
+
     // Costruttore
     public Transaction(LocalDateTime timeStamp, double amount, TransactionType type, int idHand) {
         this.timeStamp = timeStamp;
