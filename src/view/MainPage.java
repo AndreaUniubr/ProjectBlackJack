@@ -21,6 +21,7 @@ public class MainPage extends JFrame implements StateObserver {
     public MainPage(Controller c)
     {
         this.controller = c;
+        controller.addObserver(this);
         setTitle("Project Black Jack");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -58,9 +59,7 @@ public class MainPage extends JFrame implements StateObserver {
     private void createNewPlayPage() {
 
         // 1️⃣ rimuovo eventuale PlayPage precedente
-        for (Component comp : cards.getComponents()) {
-            cards.remove(comp);
-        }
+        cards.removeAll();
 
         // 2️⃣ riaggiungo pagine fisse
         cards.add(homePage,State.HOME.name());

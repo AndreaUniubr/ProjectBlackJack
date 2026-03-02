@@ -1,16 +1,29 @@
 package view;
 
+import fancygraphic.FancyNames;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class DetailsPage extends JPanel {
 
-    public DetailsPage()
-    {
+    public DetailsPage() {
+
         setLayout(new BorderLayout());
+
         Color tavolo = new Color(0, 81, 44);
-        JLabel label = new JLabel("HOME PAGE", SwingConstants.CENTER);
-        add(label, BorderLayout.CENTER);
-        this.setBackground(tavolo);
+        setBackground(tavolo);
+
+        String[] names = {
+                "Ideated and Implementated By",
+                "Andrea Spadoni",
+                "Aurora Mazzone",
+                "Francesco Venturi",
+                "Jonas Vitali"
+        };
+
+        FancyNames fancyNames = new FancyNames(names);
+
+        add(fancyNames, BorderLayout.CENTER);
     }
 }
