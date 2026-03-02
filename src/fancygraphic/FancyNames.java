@@ -16,7 +16,7 @@ public class FancyNames extends JPanel {
         for (String name : names) {
             JLabel label = new JLabel(name);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
-            label.setForeground(Color.BLACK);
+            label.setForeground(Color.WHITE);
             label.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 36));
 
             add(label);
