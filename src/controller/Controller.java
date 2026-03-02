@@ -16,14 +16,6 @@ public class Controller {
 
 
 
-    // todo pulsante
-    // todo funzione che cambia da coso con pulsante a schermata gioco
-    // todo pulsante bello
-    // todo pulsante saldo
-    // todo view saldo
-    // todo deatils con nostri nomi
-
-
     public void addObserver(StateObserver observer) {
         observers.add(observer);
     }

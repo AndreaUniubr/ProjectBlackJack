@@ -29,9 +29,9 @@ public class MainPage extends JFrame implements StateObserver {
 
         // pannelli delle varie schermate HOME, PLAYING, DETAILS, BALANCE
         homePage = new HomePage(controller);
-        playpage = new PlayPage();
+        playpage = new PlayPage(controller);
         detailsPage = new DetailsPage(controller);
-        balancePage = new BalancePage();
+        balancePage = new BalancePage(controller);
         cards.add(homePage,State.HOME.name());
         cards.add(playpage,State.PLAY.name());
         cards.add(detailsPage,State.DETAILS.name());
@@ -67,7 +67,7 @@ public class MainPage extends JFrame implements StateObserver {
         cards.add(balancePage,"BALANCE");
 
         // 3️⃣ creo nuova PlayPage
-        PlayPage playPage = new PlayPage();
+        PlayPage playPage = new PlayPage(controller);
         cards.add(playPage, State.PLAY.name());
 
         // 4️⃣ aggiorno grafica
