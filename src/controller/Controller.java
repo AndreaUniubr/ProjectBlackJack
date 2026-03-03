@@ -20,7 +20,7 @@ public class Controller {
         this.turno = 0;
         this.giveCards = true;
     }
-
+// todo risolvi problema importantissimo, se riduci schermo non vedi niente
 // todo carta puo essere a faccia in giu
 
 
