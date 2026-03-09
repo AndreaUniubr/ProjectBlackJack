@@ -4,14 +4,14 @@ import model.game.Hand;
 
 import java.util.ArrayList;
 
-public abstract class participant {
+public abstract class Participant {
     private final String name;
     private ArrayList<Hand> hands;
 
 
-    public participant(String name)
+    public Participant(String name)
     {
-        this.hands = new ArrayList<>();
+        resetHands();
         this.name = name;
     }
 

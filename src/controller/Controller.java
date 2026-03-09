@@ -22,10 +22,7 @@ public class Controller {
     }
 
     /* todo prossimo:
-        -creazione gerarchia player e dealer,
-        - implementare player e dealer
-        -passaggio numero player
-        -istanza player e dealer in grafica
+        -passaggio numero playerinizializzazione del game
 
     todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
     * */
@@ -33,6 +30,8 @@ public class Controller {
 // todo risolvi problema importantissimo, se riduci schermo non vedi niente
 
     /*todo (macroargomenti):
+        - implementare logica tavolino (ovvero mosse e azioni del giocatore)
+        - logica inizio gioco e gioco in azione
         -implementazione entities
         -implementare gestore balance player
         -gestore mazzo e grafica
@@ -45,6 +44,8 @@ public class Controller {
         - impl passaggio giocatori
         -? impl giocatore bot
         - imp schermata e logica balance?? o modificare struttura
+        -
+        - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
     * */
 
 
