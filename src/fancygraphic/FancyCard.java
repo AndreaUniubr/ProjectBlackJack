@@ -16,6 +16,9 @@ public class FancyCard extends JPanel{
 
     private Card card;
 
+    private final int widthCorrector = 15;
+    private final int heightCorrector = 14;
+
     // Caricamento statico della sprite (una sola volta)
     static {
         try {
@@ -62,8 +65,10 @@ public class FancyCard extends JPanel{
         int sx = col * cardWidth;
         int sy = row * cardHeight;
 
+        // todo aggiustare dimensioni carte
+
         g.drawImage(sprite,
-                0, 0, getWidth(), getHeight(),
+                0, 0, getWidth() / widthCorrector, getHeight() / heightCorrector,
                 sx, sy, sx + cardWidth, sy + cardHeight,
                 this);
     }
@@ -77,7 +82,7 @@ public class FancyCard extends JPanel{
         int sy = backRow * cardHeight;
 
         g.drawImage(sprite,
-                0, 0, getWidth(), getHeight(),
+                0, 0, getWidth() / widthCorrector, getHeight() / heightCorrector,
                 sx, sy, sx + cardWidth, sy + cardHeight,
                 this);
     }

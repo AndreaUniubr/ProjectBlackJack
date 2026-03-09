@@ -20,8 +20,32 @@ public class Controller {
         this.turno = 0;
         this.giveCards = true;
     }
+
+    /* todo prossimo:
+        -creazione gerarchia player e dealer,
+        - implementare player e dealer
+        -passaggio numero player
+        -istanza player e dealer in grafica
+
+    todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
+    * */
+
 // todo risolvi problema importantissimo, se riduci schermo non vedi niente
-// todo carta puo essere a faccia in giu
+
+    /*todo (macroargomenti):
+        -implementazione entities
+        -implementare gestore balance player
+        -gestore mazzo e grafica
+        -grafica carte in tavola e somma carte
+        -implementare gestione mano giocatore
+        -grafica area player
+        -classi regole di gioco
+        -imp match in corso
+        -risolvere problemi grafica
+        - impl passaggio giocatori
+        -? impl giocatore bot
+        - imp schermata e logica balance?? o modificare struttura
+    * */
 
 
     public int getnPartecipanti()

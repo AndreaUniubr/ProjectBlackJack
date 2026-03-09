@@ -7,19 +7,19 @@ public enum Ranks{
      * in modo da poter attribuire all'asso sia valore 1  *
      * che 11.                                            */
 
-    TWO   (2, 2, 0),
-    THREE (3, 3, 1),
-    FOUR  (4, 4, 2),
-    FIVE  (5, 5, 3),
-    SIX   (6, 6, 4),
-    SEVEN (7, 7, 5),
-    EIGHT (8, 8, 6),
-    NINE  (9, 9, 7),
-    TEN   (10, 10, 8),
-    JACK  (10, 10, 9),
-    QUEEN (10, 10, 10),
-    KING  (10, 10, 11),
-    ACE   (1, 11, 12);
+    TWO   (2, 2, 1),
+    THREE (3, 3, 2),
+    FOUR  (4, 4, 3),
+    FIVE  (5, 5, 4),
+    SIX   (6, 6, 5),
+    SEVEN (7, 7, 6),
+    EIGHT (8, 8, 7),
+    NINE  (9, 9, 8),
+    TEN   (10, 10, 9),
+    JACK  (10, 10, 10),
+    QUEEN (10, 10, 11),
+    KING  (10, 10, 12),
+    ACE   (1, 11, 0);
 
     private final int minValue; // valore minimo della carta
     private final int maxValue; // valore massimo della carta
