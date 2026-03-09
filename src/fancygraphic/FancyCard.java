@@ -23,7 +23,7 @@ public class FancyCard extends JPanel{
     static {
         try {
             sprite = new ImageIcon(
-                    FancyCard.class.getResource("/cards/assets/deck_classic_dark_1color_0.png")
+                    FancyCard.class.getResource("/cards/assets/deck_classic_dark_2color_0.png")
             ).getImage();
 
             int spriteWidth = sprite.getWidth(null);

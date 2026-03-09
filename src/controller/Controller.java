@@ -21,20 +21,33 @@ public class Controller {
         this.giveCards = true;
     }
 
-    /* todo prossimo:
+    /* todo jonas progress:
         -passaggio numero playerinizializzazione del game
 
-    todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
+
     * */
+    /* todo andrea progress
+    *
+    * */
+    /* todo francy progress
+     *
+     * */
+    /* todo aurora progress
+     *
+     * */
+
+   // todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
 
 // todo risolvi problema importantissimo, se riduci schermo non vedi niente
 
-    /*todo (macroargomenti):
+    /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
         - logica inizio gioco e gioco in azione
         -implementazione entities
         -implementare gestore balance player
+        -colore carte
         -gestore mazzo e grafica
+        -?? implem classe regole
         -grafica carte in tavola e somma carte
         -implementare gestione mano giocatore
         -grafica area player

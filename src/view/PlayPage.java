@@ -19,13 +19,10 @@ public class PlayPage extends JPanel {
         add(label, BorderLayout.CENTER);
         this.setBackground(tavolo);
 
-        Card card = new Card(Suits.CLUBS, Ranks.ACE);
-        Card card2 = new Card(Suits.DIAMONDS, Ranks.TEN);
+        Card card = new Card(Suits.HEARTS, Ranks.ACE);
         card.setFaceUp(true);
         FancyCard fc = new FancyCard(card);
-        FancyCard fc2 = new FancyCard(card2);
 
         add(fc);
-        add(fc2);
     }
 }
