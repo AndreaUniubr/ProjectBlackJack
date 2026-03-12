@@ -1,10 +1,12 @@
 package view;
 
 import controller.Controller;
+import fancygraphic.CardDisplayer;
 import fancygraphic.FancyCard;
 import model.cards.Card;
 import model.cards.Ranks;
 import model.cards.Suits;
+import model.game.Hand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,13 +18,19 @@ public class PlayPage extends JPanel {
         setLayout(new BorderLayout());
         Color tavolo = new Color(0, 81, 44);
         JLabel label = new JLabel("HOME PAGE", SwingConstants.CENTER);
-        add(label, BorderLayout.CENTER);
+        add(label, BorderLayout.SOUTH);
         this.setBackground(tavolo);
 
-        Card card = new Card(Suits.HEARTS, Ranks.ACE);
-        card.setFaceUp(true);
-        FancyCard fc = new FancyCard(card);
+        Hand h = new Hand();
+        Card c = new Card(Suits.CLUBS,Ranks.TEN);
+        Card ca = new Card(Suits.HEARTS, Ranks.ACE);
+        c.setFaceUp(true);
+        ca.setFaceUp(true);
+        h.addCard(c);
+        h.addCard(ca);
 
-        add(fc);
+        CardDisplayer cd = new CardDisplayer(h);
+
+        add(cd);
     }
 }
