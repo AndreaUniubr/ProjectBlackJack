@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import fancygraphic.CardDisplayer;
 import fancygraphic.FancyCard;
+import fancygraphic.FancyGenButton;
 import model.cards.Card;
 import model.cards.Ranks;
 import model.cards.Suits;
@@ -17,9 +18,16 @@ public class PlayPage extends JPanel {
     {
         setLayout(new BorderLayout());
         Color tavolo = new Color(0, 81, 44);
-        JLabel label = new JLabel("HOME PAGE", SwingConstants.CENTER);
+        JLabel label = new JLabel("BLACKJACK", SwingConstants.CENTER);
         add(label, BorderLayout.SOUTH);
         this.setBackground(tavolo);
+
+        FancyGenButton fancyButton = new FancyGenButton("Back");
+
+        fancyButton.addActionListener( e ->
+                controller.setState(State.HOME)
+        );
+        add(fancyButton);
 
         Hand h = new Hand();
         Card c = new Card(Suits.CLUBS,Ranks.TEN);
@@ -32,5 +40,8 @@ public class PlayPage extends JPanel {
         CardDisplayer cd = new CardDisplayer(h);
 
         add(cd);
+
+
+
     }
 }
