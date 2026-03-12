@@ -22,18 +22,23 @@ public class Controller {
     }
 
     /* todo jonas progress:
-        -passaggio numero playerinizializzazione del game
 
 
     * */
     /* todo andrea progress
-    *
+
+
+
     * */
     /* todo francy progress
-     *
+
+
+
      * */
-    /* todo aurora progress
-     *
+    /* todo auri progress
+
+
+
      * */
 
    // todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
@@ -41,6 +46,7 @@ public class Controller {
 // todo risolvi problema importantissimo, se riduci schermo non vedi niente
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
+        -passaggio numero playerinizializzazione del game
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
         - logica inizio gioco e gioco in azione
         -implementazione entities
