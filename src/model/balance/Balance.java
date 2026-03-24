@@ -45,7 +45,7 @@ public class Balance {
     }
 
     // Getter saldo
-    public double getSaldo() {
+    public int getSaldo() {
         return saldo;
     }
 

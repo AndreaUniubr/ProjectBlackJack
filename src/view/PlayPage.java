@@ -30,16 +30,23 @@ public class PlayPage extends JPanel {
         add(fancyButton);
 
         Hand h = new Hand();
+        Hand h1 = new Hand();
         Card c = new Card(Suits.CLUBS,Ranks.TEN);
         Card ca = new Card(Suits.HEARTS, Ranks.ACE);
         c.setFaceUp(true);
         ca.setFaceUp(true);
         h.addCard(c);
         h.addCard(ca);
+        h1.addCard(c);
+        h1.addCard(c);
 
         CardDisplayer cd = new CardDisplayer(h);
 
+        //centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        CardDisplayer cd1 = new CardDisplayer(h1);
+
         add(cd);
+        add(cd1);
 
 
 

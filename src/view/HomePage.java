@@ -24,6 +24,7 @@ public class HomePage extends JPanel {
 
         FancyPlayButton playButton = new FancyPlayButton("PLAY", 120);
         FancyPlayButton detailsButton = new FancyPlayButton("DETAILS", 120);
+        FancyPlayButton balanceButton = new FancyPlayButton("BALANCE", 120);
 
         playButton.addActionListener(e ->
                 controller.setState(State.PLAY)
@@ -33,6 +34,10 @@ public class HomePage extends JPanel {
                 controller.setState(State.DETAILS)
         );
 
+        balanceButton.addActionListener( e ->
+                controller.setState(State.BALANCE)
+        );
+
         // 🔥 pannello centrale per i bottoni
         JPanel centerPanel = new JPanel();
         centerPanel.setOpaque(false);
@@ -40,11 +45,14 @@ public class HomePage extends JPanel {
 
         playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         detailsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        balanceButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         centerPanel.add(Box.createVerticalGlue());
         centerPanel.add(playButton);
         centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         centerPanel.add(detailsButton);
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        centerPanel.add(balanceButton);
         centerPanel.add(Box.createVerticalGlue());
 
         add(centerPanel, BorderLayout.CENTER);

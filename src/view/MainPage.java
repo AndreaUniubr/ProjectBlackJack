@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import controller.StateObserver;
+import model.balance.Balance;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,8 @@ public class MainPage extends JFrame implements StateObserver {
 
     public MainPage(Controller c)
     {
+        Balance balance = new Balance(1000);
+
         this.controller = c;
         controller.addObserver(this);
         setTitle("Project Black Jack");
@@ -31,7 +34,7 @@ public class MainPage extends JFrame implements StateObserver {
         homePage = new HomePage(controller);
         playpage = new PlayPage(controller);
         detailsPage = new DetailsPage(controller);
-        balancePage = new BalancePage(controller);
+        balancePage = new BalancePage(controller, balance);
         cards.add(homePage,State.HOME.name());
         cards.add(playpage,State.PLAY.name());
         cards.add(detailsPage,State.DETAILS.name());
