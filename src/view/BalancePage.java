@@ -2,20 +2,20 @@ package view;
 
 import controller.Controller;
 import fancygraphic.FancyGenButton;
-import fancygraphic.FancyNames;
 import model.balance.Balance;
 
 import javax.swing.*;
 import java.awt.*;
 
+import static view.Colours.getTableColor;
+
 public class BalancePage extends JPanel {
 
     public BalancePage(Controller controller, Balance playerBalance)
     {
-        setLayout(new BorderLayout());
+        setBackground(getTableColor());
 
-        Color tavolo = new Color(0, 81, 44);
-        setBackground(tavolo);
+
 
         JLabel label = new JLabel(String.valueOf(playerBalance.getSaldo()));
 
@@ -61,11 +61,11 @@ public class BalancePage extends JPanel {
         centerPanel.add(Box.createVerticalGlue());
         centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         centerPanel.add(label);
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 90)));
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         centerPanel.add(add);
         centerPanel.add(text);
         centerPanel.add(input);
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 90)));
+        centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
         centerPanel.add(fancyButton);
         centerPanel.add(Box.createVerticalGlue());
 

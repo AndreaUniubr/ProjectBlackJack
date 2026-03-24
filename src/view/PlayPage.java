@@ -12,15 +12,16 @@ import model.game.Hand;
 import javax.swing.*;
 import java.awt.*;
 
+import static view.Colours.getTableColor;
+
 public class PlayPage extends JPanel {
 
     public PlayPage(Controller controller)
     {
-        setLayout(new BorderLayout());
-        Color tavolo = new Color(0, 81, 44);
+        //setLayout(new BorderLayout());
         JLabel label = new JLabel("BLACKJACK", SwingConstants.CENTER);
         add(label, BorderLayout.SOUTH);
-        this.setBackground(tavolo);
+        this.setBackground(getTableColor());
 
         FancyGenButton fancyButton = new FancyGenButton("Back");
 

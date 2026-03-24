@@ -7,14 +7,15 @@ import fancygraphic.FancyNames;
 import javax.swing.*;
 import java.awt.*;
 
+import static view.Colours.getTableColor;
+
 public class DetailsPage extends JPanel {
 
     public DetailsPage(Controller controller) {
 
         setLayout(new BorderLayout());
 
-        Color tavolo = new Color(0, 81, 44);
-        setBackground(tavolo);
+        setBackground(getTableColor());
 
         String[] names = {
                 "Ideated and Implementated By",

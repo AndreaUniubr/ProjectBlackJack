@@ -6,14 +6,15 @@ import fancygraphic.FancyPlayButton;
 import javax.swing.*;
 import java.awt.*;
 
+import static view.Colours.getTableColor;
+
 public class HomePage extends JPanel {
 
     public HomePage(Controller controller) {
 
         setLayout(new BorderLayout());
 
-        Color tavolo = new Color(0, 81, 44);
-        setBackground(tavolo);
+        setBackground(getTableColor());
 
         JLabel label = new JLabel("HOME PAGE");
         label.setForeground(Color.WHITE);
