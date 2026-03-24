@@ -40,7 +40,7 @@ public class BalancePage extends JPanel {
                     int ammount = Integer.parseInt(input.getText());
                     if (ammount > 0) {
                         input.setText("");
-                        playerBalance.setSaldo(playerBalance.getSaldo() + ammount);
+                        playerBalance.aggiungiSoldi(ammount);
                         // e aggiorna
                     }
                 }
