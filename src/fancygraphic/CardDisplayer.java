@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class CardDisplayer extends JPanel {
 
-    private Hand hand;
+    private final Hand hand;
     private JLabel valuePanel;
     private JPanel contentPanel;
 
@@ -19,8 +19,8 @@ public class CardDisplayer extends JPanel {
 
         setOpaque(false);
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(220,130));
-        setMaximumSize(new Dimension(220,130));
+        setPreferredSize(new Dimension(220,150)); // todo sistemare questi valori
+        setMaximumSize(new Dimension(220,150));
 
         // bordo oro
         setBorder(BorderFactory.createCompoundBorder(
@@ -73,6 +73,7 @@ public class CardDisplayer extends JPanel {
             FancyCard fc = new FancyCard(c);
             fc.setBounds(x, 10, 1200, 1200);
             contentPanel.add(fc);
+            contentPanel.setComponentZOrder(fc, 0);
 
             x += overlap;
         }

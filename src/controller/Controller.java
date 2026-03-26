@@ -48,13 +48,13 @@ public class Controller {
     // todo seconda carta sopra non sotto
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
+        -risolvere il tod o nelle carddisplayer
         -passaggio numero playerinizializzazione del game
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
         - logica inizio gioco e gioco in azione
         -colore carte
         -gestore mazzo e grafica
         -?? implem classe regole
-        -grafica carte in tavola
         -implementare gestione mano giocatore
         -grafica area player
         -classi regole di gioco
@@ -62,7 +62,6 @@ public class Controller {
         -risolvere problemi grafica
         - impl passaggio giocatori
         -? impl giocatore bot
-        - imp schermata e logica balance?? o modificare struttura
         -
         - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
     * */
