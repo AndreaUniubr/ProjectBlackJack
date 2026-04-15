@@ -21,10 +21,7 @@ public class FancyPlayButton extends JButton {
         setBorderPainted(false);
         setFocusPainted(false);
         setOpaque(false);
-
-        setFont(getFont().deriveFont(Font.BOLD, diameter / 5f));
-        setHorizontalAlignment(SwingConstants.CENTER);
-        setVerticalAlignment(SwingConstants.CENTER);
+        setFont(getFont().deriveFont(60f));
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -86,9 +83,10 @@ public class FancyPlayButton extends JButton {
 
         int w = getWidth();
         int h = getHeight();
+        int padding = 10;
 
         // Prendiamo il lato minore per mantenere il cerchio perfetto
-        int size = Math.min(w, h);
+        int size = Math.min(w, h) - (padding * 2);
 
         // Centriamo il cerchio
         int x = (w - size) / 2;
@@ -124,17 +122,8 @@ public class FancyPlayButton extends JButton {
         g2.setColor(Color.WHITE);
         g2.drawOval(x, y, size, size);
 
-        /* ===== Cerchio interno decorativo ===== */
-        g2.setStroke(new BasicStroke(size / 20f));
-        int innerCircle = size / 3;
-        g2.drawOval(
-                w / 2 - innerCircle / 2,
-                h / 2 - innerCircle / 2,
-                innerCircle,
-                innerCircle
-        );
-
         /* ===== Testo ===== */
+
         FontMetrics fm = g2.getFontMetrics(getFont());
         String text = getText();
 
@@ -142,7 +131,7 @@ public class FancyPlayButton extends JButton {
         int textHeight = fm.getAscent();
 
         int textX = w / 2 - textWidth / 2;
-        int textY = h / 2 + textHeight / 4;
+        int textY = 20 + textHeight;
 
         // Ombra testo
         g2.setColor(new Color(0, 0, 0, 120));

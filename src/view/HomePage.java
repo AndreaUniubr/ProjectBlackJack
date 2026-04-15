@@ -23,9 +23,9 @@ public class HomePage extends JPanel {
 
         add(label, BorderLayout.NORTH);
 
-        FancyPlayButton playButton = new FancyPlayButton("PLAY", 120);
-        FancyPlayButton detailsButton = new FancyPlayButton("DETAILS", 120);
-        FancyPlayButton balanceButton = new FancyPlayButton("BALANCE", 120);
+        FancyPlayButton playButton = new FancyPlayButton("▶", 120);
+        FancyPlayButton detailsButton = new FancyPlayButton("≡", 120);
+        FancyPlayButton balanceButton = new FancyPlayButton("$", 120);
 
         playButton.addActionListener(e ->
                 controller.setState(State.PLAY)

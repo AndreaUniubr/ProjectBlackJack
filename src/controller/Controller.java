@@ -31,6 +31,7 @@ public class Controller {
 
      * */
     /* todo francy progress
+    // todo risolvi problema importantissimo, se riduci schermo non vedi niente
 
 
 
@@ -43,7 +44,6 @@ public class Controller {
 
     // todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
 
-// todo risolvi problema importantissimo, se riduci schermo non vedi niente
 
     // todo seconda carta sopra non sotto
 

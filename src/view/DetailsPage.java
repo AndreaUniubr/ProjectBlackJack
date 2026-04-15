@@ -21,7 +21,7 @@ public class DetailsPage extends JPanel {
                 "Ideated and Implementated By",
                 "Andrea Spadoni",
                 "Aurora Mazzone",
-                "Francesco Venturi",
+                "Francesco Pio Venturi",
                 "Jonas Vitali"
         };
 

@@ -8,3 +8,8 @@ public class Main {
         MainPage m = new MainPage(new Controller());
     }
 }
+/*
+setFont(getFont().deriveFont(Font.BOLD, diameter / 2f));
+        setHorizontalAlignment(SwingConstants.CENTER);
+        setVerticalAlignment(SwingConstants.);
+ */

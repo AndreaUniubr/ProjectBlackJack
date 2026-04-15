@@ -27,6 +27,8 @@ public class MainPage extends JFrame implements StateObserver {
         controller.addObserver(this);
         setTitle("Project Black Jack");
 
+        setSize(1000, 700);
+        setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
