@@ -1,5 +1,6 @@
 package model.entities;
 
+import model.cards.Card;
 import model.game.Hand;
 import model.cards.Deck;
 
@@ -22,9 +23,23 @@ public class Dealer extends Participant{
     }
     // false continua a giocare
     // true ha finito
-    public boolean play() {
+    public boolean play()
+    {
         if (super.getHands().getFirst().getValue() <= 16)
-            super.getHands().getFirst().addCard(deck.getCard());
+        {
+            Card c = deck.getCard();
+            c.setFaceUp(true);
+            super.getHands().getFirst().addCard(c);
+        }
+
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
         return super.getHands().getFirst().getValue() > 16;
 
     }

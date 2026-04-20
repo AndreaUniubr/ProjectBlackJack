@@ -13,6 +13,11 @@ public class Player extends Participant{
         isStand = false;
     }
 
+    /*
+    * ogni player ha un balance e una sezione con le azioni, quando esegue azioni modifica la mano, ad ogni
+    * puntata corrisponde un falore true o false in base a se vincente o meno,
+    * */
+
     public Balance getBalance()
     {
         return balance;

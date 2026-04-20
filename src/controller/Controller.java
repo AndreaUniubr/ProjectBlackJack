@@ -21,6 +21,8 @@ public class Controller {
         this.giveCards = true;
     }
 
+
+
     /* todo jonas progress:
 
 
@@ -48,11 +50,11 @@ public class Controller {
     // todo seconda carta sopra non sotto
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
+        - implememntare logica dealer carta coperta e carte iniziali
         -risolvere il tod o nelle carddisplayer e fancycard
         -passaggio numero playerinizializzazione del game
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
         - logica inizio gioco e gioco in azione
-        -?? implem classe regole
         -implementare gestione mano giocatore
         -grafica area player
         -classi regole di gioco

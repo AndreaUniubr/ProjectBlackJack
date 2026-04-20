@@ -2,22 +2,40 @@ package view;
 
 import controller.Controller;
 import fancygraphic.CardDisplayer;
-import fancygraphic.FancyCard;
 import fancygraphic.FancyGenButton;
 import model.cards.Card;
+import model.cards.Deck;
 import model.cards.Ranks;
 import model.cards.Suits;
+import model.entities.Player;
+import model.game.DealerBox;
 import model.game.Hand;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static view.Colours.getTableColor;
 
 public class PlayPage extends JPanel {
+    private final Deck deck = new Deck();
+    private final DealerBox dealerBox = new DealerBox(deck);
 
-    public PlayPage(Controller controller)
+
+
+
+    private final int nPartecipanti;
+
+    private ArrayList<Player> partecipanti = new ArrayList<>();
+
+    //todo mazzo e elenco partecipanti in un array
+
+    public PlayPage(Controller controller, int nPartecipanti)
     {
+
+
+
+        this.nPartecipanti = nPartecipanti;
         //setLayout(new BorderLayout());
         JLabel label = new JLabel("BLACKJACK", SwingConstants.CENTER);
         add(label, BorderLayout.SOUTH);
@@ -51,7 +69,23 @@ public class PlayPage extends JPanel {
         add(cd);
         add(cd1);
 
+        add(dealerBox);
+        dealerBox.newHand();
+        dealerBox.play();
 
 
+
+    }
+
+    // player contiene ogni mano e per ognuna se vincenre o meno
+
+
+    public void checkWin()
+    {
+        /*int d = dealer.getValue();
+        for (Player p : partecipanti)
+        {
+            //(partecipanti)
+        }*/
     }
 }
