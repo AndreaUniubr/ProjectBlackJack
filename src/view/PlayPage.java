@@ -34,12 +34,14 @@ public class PlayPage extends JPanel {
         Hand h1 = new Hand();
         Card c = new Card(Suits.CLUBS,Ranks.TEN);
         Card ca = new Card(Suits.SPADES, Ranks.FIVE);
+        Card ca1 = new Card(Suits.SPADES, Ranks.FIVE);
         c.setFaceUp(true);
         ca.setFaceUp(true);
         h.addCard(c);
         h.addCard(ca);
         h1.addCard(c);
         h1.addCard(c);
+        h1.addCard(ca1);
 
         CardDisplayer cd = new CardDisplayer(h);
 

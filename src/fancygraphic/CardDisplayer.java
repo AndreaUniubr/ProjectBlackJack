@@ -29,7 +29,7 @@ public class CardDisplayer extends JPanel {
         ));
 
         // valore mano
-        valuePanel = new JLabel(""+hand.getValue());
+        valuePanel = new JLabel( (hand.getValue() <= 21) ? ""+hand.getValue() : "BUST");
         valuePanel.setFont(new Font("Serif", Font.BOLD, 28));
         valuePanel.setForeground(Color.WHITE);
         valuePanel.setHorizontalAlignment(SwingConstants.CENTER);
