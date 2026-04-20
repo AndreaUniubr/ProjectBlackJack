@@ -33,7 +33,7 @@ public class PlayPage extends JPanel {
         Hand h = new Hand();
         Hand h1 = new Hand();
         Card c = new Card(Suits.CLUBS,Ranks.TEN);
-        Card ca = new Card(Suits.HEARTS, Ranks.ACE);
+        Card ca = new Card(Suits.SPADES, Ranks.FIVE);
         c.setFaceUp(true);
         ca.setFaceUp(true);
         h.addCard(c);

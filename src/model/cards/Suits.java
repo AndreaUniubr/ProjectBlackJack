@@ -3,10 +3,10 @@ package model.cards;
 // enum che rappresenta i Semi delle carte
 public enum Suits {
     // Dichiaro le costanti enum ognuna con un simbolo e un colore.
-    HEARTS("♥", true, 0),     // Seme di cuori, rosso
-    DIAMONDS("♦", true, 1),   // Seme di quadri, rosso
-    CLUBS("♣", false, 2),     // Seme di fiori, nero
-    SPADES("♠", false, 3);    // Seme di picche, nero
+    SPADES("♠", false, 0),      // Seme di picche, nero
+    HEARTS("♥", true, 1),       // Seme di cuori, rosso
+    CLUBS("♣", false, 2),       // Seme di fiori, nero
+    DIAMONDS("♦", true, 3);     // Seme di quadri, rosso
 
     private final String symbol; 	// Simbolo del seme
     private final boolean red;		// Indica se il seme è rosso
