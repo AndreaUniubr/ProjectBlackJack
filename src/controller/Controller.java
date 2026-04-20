@@ -48,6 +48,7 @@ public class Controller {
     // todo seconda carta sopra non sotto
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
+        - > 21 scrive out
         -risolvere il tod o nelle carddisplayer e fancycard
         -passaggio numero playerinizializzazione del game
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
