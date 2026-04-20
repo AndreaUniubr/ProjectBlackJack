@@ -53,7 +53,6 @@ public class Controller {
         -passaggio numero playerinizializzazione del game
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
         - logica inizio gioco e gioco in azione
-        -gestore mazzo e grafica
         -?? implem classe regole
         -implementare gestione mano giocatore
         -grafica area player
