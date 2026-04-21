@@ -4,6 +4,7 @@ import controller.Controller;
 import fancygraphic.FancyPlayButton;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 import static view.Colours.getTableColor;
@@ -16,10 +17,11 @@ public class HomePage extends JPanel {
 
         setBackground(getTableColor());
 
-        JLabel label = new JLabel("HOME PAGE");
-        label.setForeground(Color.WHITE);
+        JLabel label = new JLabel("BLACKJACK");
+        label.setForeground(new Color(218, 165, 32));
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setFont(new Font("Serif", Font.BOLD, 28));
+        label.setBorder(new EmptyBorder(60, 0, 0, 0));
+        label.setFont(new Font("Playfair Display", Font.BOLD, 48));
 
         add(label, BorderLayout.NORTH);
 

@@ -19,8 +19,8 @@ public class CardDisplayer extends JPanel {
 
         setOpaque(false);
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(220,150)); // todo sistemare questi valori
-        setMaximumSize(new Dimension(220,150));
+        setPreferredSize(new Dimension(250,180));
+        setMaximumSize(new Dimension(250,180));
 
         // bordo oro
         setBorder(BorderFactory.createCompoundBorder(
