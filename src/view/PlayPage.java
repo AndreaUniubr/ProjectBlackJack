@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import fancygraphic.CardDisplayer;
 import fancygraphic.FancyGenButton;
+import fancygraphic.GameBox;
 import model.cards.Card;
 import model.cards.Deck;
 import model.cards.Ranks;
@@ -20,6 +21,7 @@ import static view.Colours.getTableColor;
 public class PlayPage extends JPanel {
     private final Deck deck = new Deck();
     private final DealerBox dealerBox = new DealerBox(deck);
+    private final GameBox gameBox = new GameBox();
 
 
 
@@ -41,44 +43,24 @@ public class PlayPage extends JPanel {
         add(label, BorderLayout.SOUTH);
         this.setBackground(getTableColor());
 
-        FancyGenButton fancyButton = new FancyGenButton("Back");
+        FancyGenButton backButton = new FancyGenButton("Back");
 
-        fancyButton.addActionListener( e ->
+        backButton.addActionListener( e ->
                 controller.setState(State.HOME)
         );
-        add(fancyButton);
-
-        Hand h = new Hand();
-        Hand h1 = new Hand();
-        Card c = new Card(Suits.CLUBS,Ranks.TEN);
-        Card ca = new Card(Suits.SPADES, Ranks.FIVE);
-        Card ca1 = new Card(Suits.SPADES, Ranks.FIVE);
-        c.setFaceUp(true);
-        ca.setFaceUp(true);
-        h.addCard(c);
-        h.addCard(ca);
-        h1.addCard(c);
-        h1.addCard(c);
-        h1.addCard(ca1);
-
-        CardDisplayer cd = new CardDisplayer(h);
-
+        add(backButton);
         //centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        CardDisplayer cd1 = new CardDisplayer(h1);
-
-        add(cd);
-        add(cd1);
-
         add(dealerBox);
         dealerBox.newHand();
         //dealerBox.iniCard();
-
+        add(gameBox);
+        /*
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+        */
         //dealerBox.play();
 
 
