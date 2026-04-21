@@ -11,16 +11,6 @@ public class Hand {
     private int value;
     private final PropertyChangeSupport support;
 
-
-
-
-
-
-
-
-
-
-
     public Hand()
     {
         this.cards = new ArrayList<>();
@@ -61,6 +51,11 @@ public class Hand {
         support.firePropertyChange("valore", vecchioValore, nuovoValore);
     }
 
+    public void addPropertyChangeListener(PropertyChangeListener listener)
+    {
+        support.addPropertyChangeListener(listener);
+    }
+
     public void revealCards()
     {
         for (Card c : this.getCards())
@@ -68,11 +63,6 @@ public class Hand {
             c.setFaceUp(true);
         }
         calcola();
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener)
-    {
-        support.addPropertyChangeListener(listener);
     }
 
     public int getValue()
@@ -85,13 +75,4 @@ public class Hand {
     {
         return this.cards;
     }
-
-
-
-
-
-
-
-
-
 }
