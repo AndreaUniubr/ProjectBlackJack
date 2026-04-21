@@ -20,14 +20,18 @@ public class GameBox extends JPanel {
                 new EmptyBorder(8,8,8,8)
         ));
         Hand h = new Hand();
-        Card c = new Card(Suits.CLUBS, Ranks.TEN);
-        Card ca = new Card(Suits.SPADES, Ranks.FIVE);
+        Card c = new Card(Suits.HEARTS, Ranks.SIX);
+        Card ca = new Card(Suits.SPADES, Ranks.QUEEN);
         c.setFaceUp(true);
         ca.setFaceUp(true);
         h.addCard(c);
         h.addCard(ca);
         CardDisplayer cd = new CardDisplayer(h);
         add(cd);
+        FancyGenButton hitButton = new FancyGenButton("Hit");
+        FancyGenButton standButton = new FancyGenButton("Stand");
+        add(hitButton);
+        add(standButton);
     }
 
 }
