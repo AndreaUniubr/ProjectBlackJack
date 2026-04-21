@@ -1,17 +1,52 @@
 package model.entities;
 
 import model.balance.Balance;
+import model.cards.Card;
+import model.cards.Deck;
+import model.game.Hand;
 
 public class Player {
     private Balance balance;
+    private final Deck deck;
+    private Hand hand;
     private boolean isStand;
+    private static int id = 0;
 
-    public Player(String name, int initial_balance)
+    public Player(String name, int initial_balance, Deck deck)
     {
         this.balance = new Balance(initial_balance);
+        this.deck = deck;
+        name = name + id;
+        id++;
         //super(name);
         isStand = false;
     }
+
+    public void setHand(Hand hand)
+    {
+        this.hand = hand;
+    }
+
+    public boolean play()
+    {
+        if (this.hand.getValue() <= 16)
+        {
+            Card c = deck.getCard();
+            c.setFaceUp(true);
+            this.hand.addCard(c);
+        }
+
+        return this.hand.getValue() > 16;
+    }
+
+    private void dealCard(boolean faceUp)
+    {
+        Card c = deck.getCard();
+        c.setFaceUp(faceUp);
+        hand.addCard(c);
+    }
+
+    public void card() { dealCard(true); }
 /*package model.entities;
 
 import model.game.Hand;
