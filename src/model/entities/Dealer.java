@@ -31,8 +31,7 @@ public class Dealer{
 
     public void prePlay()
     {
-        for (Card c : this.hand.getCards())
-            c.setFaceUp(true);
+        this.hand.revealCards();
     }
 
     // false continua a giocare

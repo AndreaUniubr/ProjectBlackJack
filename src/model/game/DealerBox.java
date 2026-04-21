@@ -42,11 +42,9 @@ public class DealerBox extends JPanel {
     {
         dealer.card1();
         cd.updateCards();
-        //dealer.getHand().calcola();
         miaWait();
         dealer.card2();
         cd.updateCards();
-        //dealer.getHand().calcola();
         miaWait();
     }
 
@@ -55,17 +53,14 @@ public class DealerBox extends JPanel {
         dealer.prePlay();
         cd.updateCards();
 
-        //dealer.getHand().calcola();
         miaWait();
 
         System.out.println(dealer.getValue());
 
         while(!dealer.play())
         {
-            //dealer.getHand().calcola();
             cd.updateCards();
 
-            //dealer.getHand().calcola();
             miaWait();
 
             System.out.println(dealer.getValue());
