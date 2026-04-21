@@ -50,7 +50,6 @@ public class Controller {
     // todo seconda carta sopra non sotto
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
-        - asso e asso da valore sbagliato
         - logica dealer asso e jack impl per assicur e poi metti flag bj
         -timer nel dare carte al dealer
         -risolvere il tod o nelle carddisplayer e fancycard
