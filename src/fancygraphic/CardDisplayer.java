@@ -45,7 +45,7 @@ public class CardDisplayer extends JPanel {
             if(evt.getPropertyName().equals("value"))
             {
                 int nuovoValore = (int) evt.getNewValue();
-                valuePanel.setText("" + nuovoValore);
+                valuePanel.setText("" + ((nuovoValore <= 21)?nuovoValore:"BUST"));
             }
 
             if(evt.getPropertyName().equals("cards"))

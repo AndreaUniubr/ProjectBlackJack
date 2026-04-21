@@ -48,7 +48,7 @@ public class Hand {
     {
         int vecchioValore = this.value;
         this.value = nuovoValore;
-        support.firePropertyChange("valore", vecchioValore, nuovoValore);
+        support.firePropertyChange("value", vecchioValore, nuovoValore);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener)

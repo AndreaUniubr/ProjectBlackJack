@@ -80,7 +80,7 @@ public class PlayPage extends JPanel {
             throw new RuntimeException(e);
         }*/
 
-        //dealerBox.play();
+        dealerBox.play();
 
 
 

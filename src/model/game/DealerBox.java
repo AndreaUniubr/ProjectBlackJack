@@ -41,7 +41,7 @@ public class DealerBox extends JPanel {
 
     public void iniCard()
     {
-        dealer.card1();
+        dealer.card2();
         cd.updateCards();
         //miaWait();
         dealer.card2();
@@ -54,10 +54,8 @@ public class DealerBox extends JPanel {
     {
         dealer.prePlay();
         cd.updateCards();
-/*
         //miaWait();
 
-        System.out.println(dealer.getValue());
 
         while(!dealer.play())
         {
@@ -66,7 +64,7 @@ public class DealerBox extends JPanel {
             //miaWait();
 
         }
-        System.out.println(dealer.getValue());*/
+        cd.updateCards();
     }
 
     public void miaWait()
