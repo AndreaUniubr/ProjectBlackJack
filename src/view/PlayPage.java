@@ -73,9 +73,9 @@ public class PlayPage extends JPanel {
         dealerBox.newHand();
         dealerBox.iniCard();
 
-        /*
-        try {
-            Thread.sleep(5000);
+
+        /*try {
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }*/

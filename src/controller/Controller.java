@@ -51,12 +51,12 @@ public class Controller {
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
         - asso e asso da valore sbagliato
-        - logica dealer asso e jack impl per assicur e poi metti flag bj + distribuzione carte
+        - logica dealer asso e jack impl per assicur e poi metti flag bj
+        -timer nel dare carte al dealer
         -risolvere il tod o nelle carddisplayer e fancycard
         -passaggio numero playerinizializzazione del game
-        - implementare logica tavolino (ovvero mosse e azioni del giocatore)
+        - implementare logica tavolino giocatore (ovvero mosse e azioni del giocatore)
         - logica inizio gioco e gioco in azione
-        -implementare gestione mano giocatore
         -grafica area player
         -classi regole di gioco
         -imp match in corso

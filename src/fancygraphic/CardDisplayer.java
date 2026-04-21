@@ -63,6 +63,7 @@ public class CardDisplayer extends JPanel {
 
     public void updateCards()
     {
+
         contentPanel.removeAll();
 
         int x = 10;
