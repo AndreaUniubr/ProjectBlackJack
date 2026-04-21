@@ -36,24 +36,26 @@ public class DealerBox extends JPanel {
         dealer.setHand(h);
         cd = new CardDisplayer(h);
         add(cd);
+        cd.updateCards();
     }
 
     public void iniCard()
     {
         dealer.card1();
         cd.updateCards();
-        miaWait();
+        //miaWait();
         dealer.card2();
         cd.updateCards();
-        miaWait();
+        //miaWait();
+
     }
 
     public void play()
     {
         dealer.prePlay();
         cd.updateCards();
-
-        miaWait();
+/*
+        //miaWait();
 
         System.out.println(dealer.getValue());
 
@@ -61,10 +63,10 @@ public class DealerBox extends JPanel {
         {
             cd.updateCards();
 
-            miaWait();
+            //miaWait();
 
-            System.out.println(dealer.getValue());
         }
+        System.out.println(dealer.getValue());*/
     }
 
     public void miaWait()

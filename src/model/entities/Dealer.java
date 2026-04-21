@@ -13,22 +13,18 @@ public class Dealer{
         this.deck = deck;
     }
 
-    // restore a new hand
-    public void setHand(Hand hand)
-    {
-        this.hand = hand;
-    }
+    // distribuzione prime due carte fisse
+    public void card1() { dealCard(false); }
+    public void card2() { dealCard(true); }
 
-    private void dealCard(boolean faceUp) {
+    private void dealCard(boolean faceUp)
+    {
         Card c = deck.getCard();
         c.setFaceUp(faceUp);
         hand.addCard(c);
     }
 
-    public void card1() { dealCard(false); }
-    public void card2() { dealCard(true); }
-
-
+    // mostra tutte le carte prima di iniziare a giocare
     public void prePlay()
     {
         this.hand.revealCards();
@@ -48,6 +44,12 @@ public class Dealer{
         return this.hand.getValue() > 16;
     }
 
+    // restore a new hand
+    public void setHand(Hand hand)
+    {
+        this.hand = hand;
+    }
+
     public Hand getHand()
     {
         return this.hand;
@@ -55,6 +57,6 @@ public class Dealer{
 
     public int getValue()
     {
-        return this.hand.getValue();
+        return this.getHand().getValue();
     }
 }

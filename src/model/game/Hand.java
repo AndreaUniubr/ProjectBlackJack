@@ -7,9 +7,19 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class Hand {
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
     private int value;
-    private PropertyChangeSupport support;
+    private final PropertyChangeSupport support;
+
+
+
+
+
+
+
+
+
+
 
     public Hand()
     {
@@ -75,4 +85,13 @@ public class Hand {
     {
         return this.cards;
     }
+
+
+
+
+
+
+
+
+
 }
