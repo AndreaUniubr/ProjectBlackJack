@@ -4,7 +4,6 @@ import controller.Controller;
 import fancygraphic.CardDisplayer;
 import fancygraphic.FancyCard;
 import fancygraphic.FancyGenButton;
-import fancygraphic.GameBox;
 import model.cards.Card;
 import model.cards.Ranks;
 import model.cards.Suits;
@@ -19,24 +18,38 @@ public class PlayPage extends JPanel {
 
     public PlayPage(Controller controller)
     {
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        //setLayout(new BorderLayout());
+        JLabel label = new JLabel("BLACKJACK", SwingConstants.CENTER);
+        add(label, BorderLayout.SOUTH);
         this.setBackground(getTableColor());
-        FancyGenButton backButton = new FancyGenButton("Back");
-        backButton.addActionListener( e ->
+
+        FancyGenButton fancyButton = new FancyGenButton("Back");
+
+        fancyButton.addActionListener( e ->
                 controller.setState(State.HOME)
         );
-        add(backButton);
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        gbc.insets = new Insets(100, 0, 0, 0);
-        add(new GameBox(), gbc);
+        add(fancyButton);
+
+        Hand h = new Hand();
+        Hand h1 = new Hand();
+        Card c = new Card(Suits.CLUBS,Ranks.TEN);
+        Card ca = new Card(Suits.SPADES, Ranks.FIVE);
+        Card ca1 = new Card(Suits.SPADES, Ranks.FIVE);
+        c.setFaceUp(true);
+        ca.setFaceUp(true);
+        h.addCard(c);
+        h.addCard(ca);
+        h1.addCard(c);
+        h1.addCard(c);
+        h1.addCard(ca1);
+
+        CardDisplayer cd = new CardDisplayer(h);
 
         //centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+        CardDisplayer cd1 = new CardDisplayer(h1);
 
-
-
-
+        add(cd);
+        add(cd1);
 
 
 

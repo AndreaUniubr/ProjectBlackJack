@@ -28,14 +28,16 @@ public class Hand {
         int ap = 0;
         for (Card c: cards)
         {
-            ap += c.getRank().getMaxValue();
+            if (c.isFaceUp())
+                ap += c.getRank().getMaxValue();
         }
         if (ap > 21)
         {
             ap = 0;
             for (Card c: cards)
             {
-                ap += c.getRank().getMinValue();
+                if (c.isFaceUp())
+                    ap += c.getRank().getMinValue();
             }
         }
 
@@ -49,6 +51,15 @@ public class Hand {
         support.firePropertyChange("valore", vecchioValore, nuovoValore);
     }
 
+    public void revealCards()
+    {
+        for (Card c : this.getCards())
+        {
+            c.setFaceUp(true);
+        }
+        calcola();
+    }
+
     public void addPropertyChangeListener(PropertyChangeListener listener)
     {
         support.addPropertyChangeListener(listener);
@@ -56,6 +67,7 @@ public class Hand {
 
     public int getValue()
     {
+        this.calcola();
         return this.value;
     }
 
