@@ -18,29 +18,41 @@ public class DealerBox extends JPanel {
 
         setOpaque(false);
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(220,150)); // todo modificare le dimensioni qui
-        setMaximumSize(new Dimension(220,150));
+        setPreferredSize(new Dimension(250,170)); // todo modificare le dimensioni qui
+        setMaximumSize(new Dimension(250,170));
 
         // bordo oro
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(212,175,55), 3),
                 new EmptyBorder(8,8,8,8)
         ));
+
+        //todo metti scritta dealer
     }
 
     public void newHand ()
     {
         Hand h = new Hand();
-        dealer.addHand(h);
+        dealer.setHand(h);
         cd = new CardDisplayer(h);
         add(cd);
     }
 
     public void play()
     {
-        while(!dealer.play())
-        {
-            cd.updateCards();
+        dealer.prePlay();
+        cd.updateCards();
+
+        //while(!dealer.play())
+        //{
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+            //preplay
+            //dealer.getHands().getFirst().calcola();
+            //cd.updateCards();
+        //}
     }
 }

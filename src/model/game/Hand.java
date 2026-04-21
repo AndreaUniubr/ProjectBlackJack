@@ -23,19 +23,21 @@ public class Hand {
         this.calcola();
     }
 
-    private void calcola()
+    public void calcola()
     {
         int ap = 0;
         for (Card c: cards)
         {
-            ap += c.getRank().getMaxValue();
+            if (c.isFaceUp())
+                ap += c.getRank().getMaxValue();
         }
         if (ap > 21)
         {
             ap = 0;
             for (Card c: cards)
             {
-                ap += c.getRank().getMinValue();
+                if (c.isFaceUp())
+                    ap += c.getRank().getMinValue();
             }
         }
 
@@ -56,6 +58,7 @@ public class Hand {
 
     public int getValue()
     {
+        this.calcola();
         return this.value;
     }
 

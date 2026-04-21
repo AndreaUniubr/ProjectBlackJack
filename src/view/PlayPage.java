@@ -71,7 +71,7 @@ public class PlayPage extends JPanel {
 
         add(dealerBox);
         dealerBox.newHand();
-        dealerBox.play();
+        //dealerBox.play();
 
 
 

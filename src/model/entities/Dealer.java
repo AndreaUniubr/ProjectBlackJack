@@ -4,49 +4,53 @@ import model.cards.Card;
 import model.game.Hand;
 import model.cards.Deck;
 
-public class Dealer extends Participant{
-
+public class Dealer{
     private final Deck deck;
+    private Hand hand;
 
-    public Dealer(Deck deck) {
-        super("Dealer");
-        this.deck = deck;
-
-    }
-
-    // override
-    // il dealer puo avere solo una mano
-    public void addHand(Hand hand)
+    public Dealer(Deck deck)
     {
-        if (super.getHands().isEmpty())
-            super.addHand(hand);
+        this.deck = deck;
     }
+
+    // restore a new hand
+    public void setHand(Hand hand)
+    {
+        this.hand = hand;
+    }
+
+    private void dealCard(boolean faceUp) {
+        Card c = deck.getCard();
+        c.setFaceUp(faceUp);
+        hand.addCard(c);
+    }
+
+    public void card1() { dealCard(false); }
+    public void card2() { dealCard(true); }
+
+
+    public void prePlay()
+    {
+        for (Card c : this.hand.getCards())
+            c.setFaceUp(true);
+    }
+
     // false continua a giocare
     // true ha finito
     public boolean play()
     {
-        if (super.getHands().getFirst().getValue() <= 16)
+        if (this.hand.getValue() <= 16)
         {
             Card c = deck.getCard();
             c.setFaceUp(true);
-            super.getHands().getFirst().addCard(c);
+            this.hand.addCard(c);
         }
 
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return super.getHands().getFirst().getValue() > 16;
-
+        return this.hand.getValue() > 16;
     }
 
-    public int getValue() {
-
-        return getHands().getFirst().getValue();
-
+    public int getValue()
+    {
+        return this.hand.getValue();
     }
 }

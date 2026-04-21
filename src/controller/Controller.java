@@ -50,7 +50,7 @@ public class Controller {
     // todo seconda carta sopra non sotto
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
-        - implememntare logica dealer carta coperta e carte iniziali
+        - logica dealer asso e jack impl per assicur e poi metti flag bj + distribuzione carte
         -risolvere il tod o nelle carddisplayer e fancycard
         -passaggio numero playerinizializzazione del game
         - implementare logica tavolino (ovvero mosse e azioni del giocatore)
