@@ -23,7 +23,7 @@ public class Hand {
         this.calcola();
     }
 
-    public void calcola()
+    private void calcola()
     {
         int ap = 0;
         for (Card c: cards)
@@ -49,6 +49,15 @@ public class Hand {
         int vecchioValore = this.value;
         this.value = nuovoValore;
         support.firePropertyChange("valore", vecchioValore, nuovoValore);
+    }
+
+    public void revealCards()
+    {
+        for (Card c : this.getCards())
+        {
+            c.setFaceUp(true);
+        }
+        calcola();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener)

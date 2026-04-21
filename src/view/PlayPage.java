@@ -70,7 +70,15 @@ public class PlayPage extends JPanel {
         add(cd1);
 
         add(dealerBox);
-        dealerBox.newHand();
+        //dealerBox.newHand();
+        //dealerBox.iniCard();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         //dealerBox.play();
 
 

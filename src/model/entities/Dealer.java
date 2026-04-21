@@ -49,6 +49,11 @@ public class Dealer{
         return this.hand.getValue() > 16;
     }
 
+    public Hand getHand()
+    {
+        return this.hand;
+    }
+
     public int getValue()
     {
         return this.hand.getValue();

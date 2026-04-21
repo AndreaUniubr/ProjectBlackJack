@@ -38,21 +38,46 @@ public class DealerBox extends JPanel {
         add(cd);
     }
 
+    public void iniCard()
+    {
+        dealer.card1();
+        cd.updateCards();
+        //dealer.getHand().calcola();
+        miaWait();
+        dealer.card2();
+        cd.updateCards();
+        //dealer.getHand().calcola();
+        miaWait();
+    }
+
     public void play()
     {
         dealer.prePlay();
         cd.updateCards();
 
-        //while(!dealer.play())
-        //{
+        //dealer.getHand().calcola();
+        miaWait();
+
+        System.out.println(dealer.getValue());
+
+        while(!dealer.play())
+        {
+            //dealer.getHand().calcola();
+            cd.updateCards();
+
+            //dealer.getHand().calcola();
+            miaWait();
+
+            System.out.println(dealer.getValue());
+        }
+    }
+
+    public void miaWait()
+    {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(0);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-            //preplay
-            //dealer.getHands().getFirst().calcola();
-            //cd.updateCards();
-        //}
     }
 }
