@@ -65,6 +65,7 @@ public class Controller {
         -? impl giocatore bot
         -
         - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
+        -usare stream e lambda
     * */
 
 

@@ -74,11 +74,11 @@ public class PlayPage extends JPanel {
         dealerBox.iniCard();
 
 
-        /*try {
+        try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }*/
+        }
 
         dealerBox.play();
 

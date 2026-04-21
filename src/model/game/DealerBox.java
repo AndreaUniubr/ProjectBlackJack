@@ -43,18 +43,14 @@ public class DealerBox extends JPanel {
     {
         dealer.card1();
         cd.updateCards();
-        miaWait();
         dealer.card2();
         cd.updateCards();
-        miaWait();
-
     }
 
     public void play()
     {
         dealer.prePlay();
         cd.updateCards();
-        miaWait();
 
 
         while(!dealer.play())
