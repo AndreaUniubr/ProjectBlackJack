@@ -16,8 +16,8 @@ public class FancyCard extends JPanel{
 
     private Card card;
 
-    private final int widthCorrector = 15;
-    private final int heightCorrector = 14;
+    private final int widthCorrector = 13;
+    private final int heightCorrector = 12;
 
     // Caricamento statico della sprite (una sola volta)
     static {
