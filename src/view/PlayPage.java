@@ -37,7 +37,7 @@ public class PlayPage extends JPanel {
 
 
 
-        this.nPartecipanti = nPartecipanti;
+        this.nPartecipanti = nPartecipanti; // fare ciclo
         //setLayout(new BorderLayout());
         JLabel label = new JLabel("BLACKJACK", SwingConstants.CENTER);
         add(label, BorderLayout.SOUTH);
@@ -51,28 +51,32 @@ public class PlayPage extends JPanel {
         add(fancyButton);
 
         add(gameBox);
-        gameBox.newHand();
-        gameBox.iniCard();
-
         add(dealerBox);
-        dealerBox.newHand();
-        dealerBox.iniCard();
 
-        dealerBox.play();
-
-
-
+        iniGame();
+        firstRounf();
+        game();
     }
 
-    // player contiene ogni mano e per ognuna se vincenre o meno
-
-
-    public void checkWin()
+    // migliora 1 carta alla volta
+    public void iniGame ()
     {
-        /*int d = dealer.getValue();
-        for (Player p : partecipanti)
-        {
-            //(partecipanti)
-        }*/
+        gameBox.setPlaying(false);
+        dealerBox.newHand();
+        gameBox.newHand();
     }
+
+    public void firstRounf()
+    {
+        dealerBox.iniCard();
+        gameBox.iniCard();
+    }
+
+    public void game()
+    {
+        gameBox.setPlaying(true);
+        //while(gameBox.getIsPlaying());
+        dealerBox.play();
+    }
+
 }

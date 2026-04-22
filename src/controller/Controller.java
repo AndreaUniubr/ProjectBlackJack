@@ -24,6 +24,7 @@ public class Controller {
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
         -se bust dovrebbe fermarsi
+        - fare meglio gestioine turni in modo sertio
         - logica dealer asso e jack impl per assicur e poi metti flag bj
         -risolvere il tod o nelle carddisplayer e fancycard
         -passaggio numero playerinizializzazione del game

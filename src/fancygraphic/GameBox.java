@@ -54,6 +54,11 @@ public class GameBox extends JPanel {
         add(standButton);
     }
 
+    public boolean getIsPlaying()
+    {
+        return this.isPlaying;
+    }
+
     public void newHand() {
 
         Hand h = new Hand();
@@ -78,11 +83,6 @@ public class GameBox extends JPanel {
         cd.updateCards();
     }
 
-    public void stand(){
-        standButton.setVisible(false);
-        hitButton.setVisible(false);
-    }
-
     public void setPlaying(boolean value) {
         boolean old = this.isPlaying;
         this.isPlaying = value;
@@ -93,7 +93,4 @@ public class GameBox extends JPanel {
         standButton.setVisible(isPlaying);
         hitButton.setVisible(isPlaying);
     }
-
-
-
 }
