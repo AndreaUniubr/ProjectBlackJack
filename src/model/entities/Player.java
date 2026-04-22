@@ -38,7 +38,14 @@ public class Player {
 
         return this.hand.getValue() > 16;
     }
-
+    
+    public void addCard(){
+        if(this.hand.getValue() <= 21){
+            Card c = deck.getCard();
+            c.setFaceUp(true);
+            this.hand.addCard(c);
+        }
+    }
     private void dealCard(boolean faceUp)
     {
         Card c = deck.getCard();
