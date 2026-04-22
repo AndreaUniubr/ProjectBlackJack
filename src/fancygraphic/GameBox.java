@@ -7,10 +7,13 @@ import model.cards.Ranks;
 import model.cards.Suits;
 import model.entities.Player;
 import model.game.Hand;
+import view.State;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameBox extends JPanel {
 
@@ -27,11 +30,13 @@ public class GameBox extends JPanel {
                 new EmptyBorder(8,8,8,8)
         ));
 
-        Card c = new Card(Suits.HEARTS, Ranks.SIX);
-        Card ca = new Card(Suits.SPADES, Ranks.QUEEN);
-        c.setFaceUp(true);
-        ca.setFaceUp(true);
         FancyGenButton hitButton = new FancyGenButton("Hit");
+        hitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                play();
+            }
+        });
         FancyGenButton standButton = new FancyGenButton("Stand");
         add(hitButton);
         add(standButton);
@@ -53,6 +58,15 @@ public class GameBox extends JPanel {
         cd.updateCards();
         player.card();
         cd.updateCards();
+    }
+
+    public void play()
+    {
+        while(!player.play())
+        {
+            cd.updateCards();
+
+        }
     }
 
 }
