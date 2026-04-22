@@ -41,8 +41,12 @@ public class DealerBox extends JPanel {
 
     public void iniCard()
     {
-        dealer.card1();
-        cd.updateCards();
+        Timer timer = new Timer(500, null); // 0.5 secondi
+
+        timer.addActionListener(e -> {
+            dealer.card1();
+            cd.updateCards();
+        });
         dealer.card2();
         cd.updateCards();
     }
@@ -52,23 +56,17 @@ public class DealerBox extends JPanel {
         dealer.prePlay();
         cd.updateCards();
 
+        Timer timer = new Timer(500, null); // 0.5 secondi
 
-        while(!dealer.play())
-        {
-            cd.updateCards();
+        timer.addActionListener(e -> {
+            if (!dealer.play()) {
+                cd.updateCards();
+            } else {
+                cd.updateCards();
+                timer.stop();
+            }
+        });
 
-            miaWait();
-
-        }
-        cd.updateCards();
-    }
-
-    public void miaWait()
-    {
-        try {
-            Thread.sleep(0);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        timer.start();
     }
 }
