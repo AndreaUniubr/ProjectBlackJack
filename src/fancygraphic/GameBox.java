@@ -19,6 +19,9 @@ public class GameBox extends JPanel {
 
     private CardDisplayer cd;
     private Player player;
+    private FancyGenButton hitButton;
+    private FancyGenButton standButton;
+    private boolean isPlaying;
 
     public GameBox(Deck deck) {
         player = new Player("Player", 1000, deck);
@@ -30,14 +33,21 @@ public class GameBox extends JPanel {
                 new EmptyBorder(8,8,8,8)
         ));
 
-        FancyGenButton hitButton = new FancyGenButton("Hit");
+        hitButton = new FancyGenButton("Hit");
         hitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                play();
+                addCard();
             }
         });
-        FancyGenButton standButton = new FancyGenButton("Stand");
+        standButton = new FancyGenButton("Stand");
+        standButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isPlaying = false;
+                stand();
+            }
+        });
         add(hitButton);
         add(standButton);
     }
@@ -60,13 +70,16 @@ public class GameBox extends JPanel {
         cd.updateCards();
     }
 
-    public void play()
+    public void addCard()
     {
-        while(!player.play())
-        {
-            cd.updateCards();
-
-        }
+        player.addCard();
+        cd.updateCards();
     }
+
+    public void stand(){
+        standButton.setVisible(false);
+        hitButton.setVisible(false);
+    }
+
 
 }
