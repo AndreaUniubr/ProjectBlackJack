@@ -1,6 +1,7 @@
 package model.game;
 
 import model.cards.Card;
+import model.cards.Ranks;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -10,6 +11,8 @@ public class Hand {
     private final ArrayList<Card> cards;
     private int value;
     private final PropertyChangeSupport support;
+
+    private int app = 0;
 
     public Hand()
     {
@@ -25,23 +28,25 @@ public class Hand {
 
     private void calcola()
     {
-        int ap = 0;
-        for (Card c: cards)
+        int totale = 0;
+        int assi = 0;
+
+        for (Card c : cards)
         {
             if (c.isFaceUp())
-                ap += c.getRank().getMaxValue();
-        }
-        if (ap > 21)
-        {
-            ap = 0;
-            for (Card c: cards)
             {
-                if (c.isFaceUp())
-                    ap += c.getRank().getMinValue();
+                totale += c.getRank().getMinValue();
+                if (c.getRank() == Ranks.ACE)
+                    assi++;
             }
         }
 
-        this.setValore(ap);
+        while (assi > 0 && totale + 10 <= 21)
+        {
+            totale += 10;
+            assi--;
+        }
+        this.setValore(totale);
     }
 
     public void setValore(int nuovoValore)

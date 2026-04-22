@@ -83,6 +83,7 @@ public class CardDisplayer extends JPanel {
 
         contentPanel.revalidate();
         contentPanel.repaint();
+        
     }
 
     public JPanel getContentPanel()
@@ -93,6 +94,8 @@ public class CardDisplayer extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+
 
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
