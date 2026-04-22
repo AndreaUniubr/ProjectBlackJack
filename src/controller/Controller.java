@@ -22,34 +22,8 @@ public class Controller {
     }
 
 
-
-    /* todo jonas progress:
-
-
-     * */
-    /* todo andrea progress
-
-
-
-     * */
-    /* todo francy progress
-    // todo risolvi problema importantissimo, se riduci schermo non vedi niente
-
-
-
-     * */
-    /* todo auri progress
-
-
-
-     * */
-
-    // todo creare zone tavolo / pannelli specializzati nel mostrare cose/ carte utente/bot
-
-
-    // todo seconda carta sopra non sotto
-
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
+        -se bsuta dovrebbe fermarsi
         - logica dealer asso e jack impl per assicur e poi metti flag bj
         -timer nel dare carte al dealer
         -risolvere il tod o nelle carddisplayer e fancycard
