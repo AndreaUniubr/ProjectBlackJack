@@ -15,18 +15,23 @@ public class GameBox extends JPanel {
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     private CardDisplayer cd;
-    private Player player;
-    private FancyGenButton hitButton;
-    private FancyGenButton standButton;
+    private final Player player;
+    private final FancyGenButton hitButton;
+    private final FancyGenButton standButton;
+    private final FancyGenButton backButton;
     private boolean isPlaying;
 
     public GameBox(Deck deck) {
+
+        setLayout(new BorderLayout());
+
         pcs.addPropertyChangeListener("isPlaying", evt -> updateButtons());
 
         player = new Player("Player", 1000, deck);
         setOpaque(false);
-        setPreferredSize(new Dimension(600,280));
-        setMaximumSize(new Dimension(600,280));
+        setPreferredSize(new Dimension(600, 250));
+        setMaximumSize(new Dimension(600, 250));
+        setMinimumSize(new Dimension(600, 250));
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(212,175,55), 3),
                 new EmptyBorder(8,8,8,8)
@@ -46,12 +51,17 @@ public class GameBox extends JPanel {
                 setPlaying(false);
             }
         });
-
+        backButton = new FancyGenButton("Back");
 
        setPlaying(true);
 
-        add(hitButton);
-        add(standButton);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setOpaque(false);
+
+        buttonPanel.add(hitButton);
+        buttonPanel.add(standButton);
+
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public boolean getIsPlaying()
@@ -59,16 +69,25 @@ public class GameBox extends JPanel {
         return this.isPlaying;
     }
 
+    //getter bottone back
+    public FancyGenButton getBackButton() {
+        return backButton;
+    }
     public void newHand() {
 
         Hand h = new Hand();
         player.setHand(h);
         cd = new CardDisplayer(h);
+        cd.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cd.setAlignmentY(Component.CENTER_ALIGNMENT);
         add(cd);
         cd.updateCards();
 
     }
 
+    public Player getPlayer(){
+        return this.player;
+    }
     public void iniCard()
     {
         player.card();
@@ -84,9 +103,8 @@ public class GameBox extends JPanel {
     }
 
     public void setPlaying(boolean value) {
-        boolean old = this.isPlaying;
         this.isPlaying = value;
-        pcs.firePropertyChange("isPlaying", old, value);
+        updateButtons();
     }
 
     private void updateButtons() {

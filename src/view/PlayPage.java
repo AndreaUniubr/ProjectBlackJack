@@ -1,16 +1,11 @@
 package view;
 
 import controller.Controller;
-import fancygraphic.CardDisplayer;
 import fancygraphic.FancyGenButton;
 import fancygraphic.GameBox;
-import model.cards.Card;
 import model.cards.Deck;
-import model.cards.Ranks;
-import model.cards.Suits;
 import model.entities.Player;
 import model.game.DealerBox;
-import model.game.Hand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,64 +14,108 @@ import java.util.ArrayList;
 import static view.Colours.getTableColor;
 
 public class PlayPage extends JPanel {
+
     private final Deck deck = new Deck();
     private final DealerBox dealerBox = new DealerBox(deck);
     private final GameBox gameBox = new GameBox(deck);
 
-
-
-
     private final int nPartecipanti;
-
     private ArrayList<Player> partecipanti = new ArrayList<>();
 
-    //todo mazzo e elenco partecipanti in un array
+    public PlayPage(Controller controller, int nPartecipanti) {
 
-    public PlayPage(Controller controller, int nPartecipanti)
-    {
+        this.nPartecipanti = nPartecipanti;
 
+        setLayout(new BorderLayout());
+        setBackground(getTableColor());
 
-
-        this.nPartecipanti = nPartecipanti; // fare ciclo
-        //setLayout(new BorderLayout());
-        JLabel label = new JLabel("BLACKJACK", SwingConstants.CENTER);
-        add(label, BorderLayout.SOUTH);
-        this.setBackground(getTableColor());
-
-        FancyGenButton fancyButton = new FancyGenButton("Back");
-
-        fancyButton.addActionListener( e ->
-                controller.setState(State.HOME)
-        );
-        add(fancyButton);
-
-        add(gameBox);
-        add(dealerBox);
+        add(createTop(), BorderLayout.NORTH);
+        add(createCenter(), BorderLayout.CENTER);
+        add(createBottom(), BorderLayout.SOUTH);
 
         iniGame();
-        firstRounf();
+        firstRound();
         game();
     }
 
-    // migliora 1 carta alla volta
-    public void iniGame ()
-    {
+
+    // TOP (DEALER)
+    private JPanel createTop() {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panel.setOpaque(false);
+        panel.add(dealerBox);
+        return panel;
+    }
+
+    //  CENTRO (SPAZIO)
+    private JPanel createCenter() {
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+        return panel;
+    }
+
+    // BOTTOM (PLAYER + BAR)
+    private JPanel createBottom() {
+
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.setOpaque(false);
+
+        // PLAYER
+        JPanel playerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        playerPanel.setOpaque(false);
+        playerPanel.add(gameBox);
+
+        wrapper.add(playerPanel, BorderLayout.CENTER);
+
+        // STATUS BAR
+        JPanel statusBar = new JPanel(new BorderLayout());
+        statusBar.setBackground(Color.BLACK);
+        statusBar.setPreferredSize(new Dimension(0, 40));
+        JPanel leftBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        leftBar.setOpaque(false);
+
+        // PRENDI IL BACK DA GAMEBOX
+        FancyGenButton backButton = gameBox.getBackButton();
+
+        // AZIONE (qui hai il controller)
+        backButton.addActionListener(e ->
+                System.out.println("Back pressed") // oppure controller.setState(...)
+        );
+
+        leftBar.add(backButton);
+
+        statusBar.add(leftBar, BorderLayout.WEST);
+
+        JLabel amountLabel = new JLabel(
+                "Amount: " + gameBox.getPlayer().getBalance().getSaldo()
+        );
+        amountLabel.setForeground(Color.WHITE);
+
+        JPanel centerBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerBar.setOpaque(false);
+        centerBar.add(amountLabel);
+
+        statusBar.add(centerBar, BorderLayout.CENTER);
+
+        wrapper.add(statusBar, BorderLayout.SOUTH);
+
+        return wrapper;
+    }
+
+    // =========================
+    public void iniGame() {
         gameBox.setPlaying(false);
         dealerBox.newHand();
         gameBox.newHand();
     }
 
-    public void firstRounf()
-    {
+    public void firstRound() {
         dealerBox.iniCard();
         gameBox.iniCard();
     }
 
-    public void game()
-    {
+    public void game() {
         gameBox.setPlaying(true);
-        //while(gameBox.getIsPlaying());
         dealerBox.play();
     }
-
 }
