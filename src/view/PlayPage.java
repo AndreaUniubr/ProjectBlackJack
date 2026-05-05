@@ -147,6 +147,10 @@ public class PlayPage extends JPanel {
         int p1 = gameBox.getCD();
         int d = dealerBox.getCd();
 
+
+// todo: fare costanti
+
+
         if (p1 < 22)
         {
             if (p1 > d)
@@ -155,11 +159,27 @@ public class PlayPage extends JPanel {
             }
             else
             {
-                gameBox.setIsWin(2);
+                if (d < 22)
+                    gameBox.setIsWin(2);
+                else
+                    gameBox.setIsWin(1);
             }
         }
+        else
+        {
+            gameBox.setIsWin(2);
+        }
 
-
-        System.out.println(gameBox.getIsWin());
+        switch (gameBox.getIsWin()) {
+            case 1:
+                System.out.println("WIN");
+                break;
+            case 2:
+                System.out.println("LOSE");
+                break;
+            default:
+                System.out.println("Problema riscontrato");
+                break;
+        }
     }
 }
