@@ -37,9 +37,27 @@ public class PlayPage extends JPanel {
         add(createCenter(), BorderLayout.CENTER);
         add(createBottom(), BorderLayout.SOUTH);
 
+        // todo: questo solo test, va fatto a round e meglio
+
+
+
+
         iniGame();
         firstRound();
         game();
+
+        gameBox.addIsPlayingListener(evt -> {
+            boolean newValue = (boolean) evt.getNewValue();
+            if (!newValue) {
+                onPlayerFinished();
+            }
+        });
+
+    }
+
+    private void onPlayerFinished()
+    {
+        checkWin();
     }
 
 
@@ -107,6 +125,7 @@ public class PlayPage extends JPanel {
     }
 
     // =========================
+    // todo: sviluppare questa parte, ovvero mettere timer e altre fasi nel gioco
     public void iniGame() {
         gameBox.setPlaying(false);
         dealerBox.newHand();
@@ -121,5 +140,26 @@ public class PlayPage extends JPanel {
     public void game() {
         gameBox.setPlaying(true);
         dealerBox.play();
+    }
+
+    public void checkWin()
+    {
+        int p1 = gameBox.getCD();
+        int d = dealerBox.getCd();
+
+        if (p1 < 22)
+        {
+            if (p1 > d)
+            {
+                gameBox.setIsWin(1);
+            }
+            else
+            {
+                gameBox.setIsWin(2);
+            }
+        }
+
+
+        System.out.println(gameBox.getIsWin());
     }
 }

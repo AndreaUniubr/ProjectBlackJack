@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class GameBox extends JPanel {
@@ -20,6 +21,26 @@ public class GameBox extends JPanel {
     private final FancyGenButton standButton;
     private final FancyGenButton backButton;
     private boolean isPlaying;
+
+    private final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
+
+    public void setPlaying(boolean value) {
+        updateButtons();
+        boolean old = this.isPlaying;
+        this.isPlaying = value;
+        pcs.firePropertyChange("isPlaying", old, value);
+        pcs2.firePropertyChange("isPlaying", old, value);
+    }
+
+    public boolean getIsPlaying() {
+        return isPlaying;
+    }
+
+    public void addIsPlayingListener(PropertyChangeListener l) {
+        pcs2.addPropertyChangeListener("isPlaying", l);
+    }
+
+    private int isWin = 0; // 0 = in game, 1 = win, 2 = lose, 3 = BJ
 
     public GameBox(Deck deck) {
 
@@ -64,11 +85,6 @@ public class GameBox extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public boolean getIsPlaying()
-    {
-        return this.isPlaying;
-    }
-
     //getter bottone back
     public FancyGenButton getBackButton() {
         return backButton;
@@ -102,13 +118,21 @@ public class GameBox extends JPanel {
         cd.updateCards();
     }
 
-    public void setPlaying(boolean value) {
-        this.isPlaying = value;
-        updateButtons();
-    }
-
     private void updateButtons() {
         standButton.setVisible(isPlaying);
         hitButton.setVisible(isPlaying);
+    }
+
+    public int getIsWin() {
+        return isWin;
+    }
+
+    public void setIsWin(int isWin) {
+        this.isWin = isWin;
+    }
+
+    public int getCD()
+    {
+        return this.cd.getValue();
     }
 }

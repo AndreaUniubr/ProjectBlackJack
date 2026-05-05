@@ -106,4 +106,9 @@ public class CardDisplayer extends JPanel {
 
         g2.dispose();
     }
+
+    public int getValue ()
+    {
+        return this.hand.getValue();
+    }
 }

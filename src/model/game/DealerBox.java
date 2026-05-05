@@ -69,4 +69,9 @@ public class DealerBox extends JPanel {
 
         timer.start();
     }
+
+    public int getCd()
+    {
+        return this.cd.getValue();
+    }
 }
