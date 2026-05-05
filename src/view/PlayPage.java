@@ -81,13 +81,9 @@ public class PlayPage extends JPanel {
         // PRENDI IL BACK DA GAMEBOX
         FancyGenButton backButton = new FancyGenButton("Back");
 
-        backButton.addActionListener( e ->
-                controller.setState(State.HOME)
-        );
-
         // AZIONE (qui hai il controller)
         backButton.addActionListener(e ->
-                System.out.println("Back pressed") // oppure controller.setState(...)
+                 controller.setState(State.HOME)
         );
 
         leftBar.add(backButton);
