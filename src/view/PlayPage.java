@@ -19,10 +19,14 @@ public class PlayPage extends JPanel {
     private final DealerBox dealerBox = new DealerBox(deck);
     private final GameBox gameBox = new GameBox(deck);
 
+    private final Controller controller;
+
     private final int nPartecipanti;
     private ArrayList<Player> partecipanti = new ArrayList<>();
 
     public PlayPage(Controller controller, int nPartecipanti) {
+
+        this.controller = controller;
 
         this.nPartecipanti = nPartecipanti;
 
@@ -75,7 +79,11 @@ public class PlayPage extends JPanel {
         leftBar.setOpaque(false);
 
         // PRENDI IL BACK DA GAMEBOX
-        FancyGenButton backButton = gameBox.getBackButton();
+        FancyGenButton backButton = new FancyGenButton("Back");
+
+        backButton.addActionListener( e ->
+                controller.setState(State.HOME)
+        );
 
         // AZIONE (qui hai il controller)
         backButton.addActionListener(e ->
