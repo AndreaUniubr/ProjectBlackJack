@@ -18,8 +18,8 @@ public class DealerBox extends JPanel {
 
         setOpaque(false);
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(250,170)); // todo modificare le dimensioni qui
-        setMaximumSize(new Dimension(250,170));
+        setPreferredSize(new Dimension(250,200));
+        setMaximumSize(new Dimension(250,200));
 
         // bordo oro
         setBorder(BorderFactory.createCompoundBorder(
@@ -27,7 +27,6 @@ public class DealerBox extends JPanel {
                 new EmptyBorder(8,8,8,8)
         ));
 
-        //todo metti scritta dealer
     }
 
     public void newHand ()

@@ -65,8 +65,6 @@ public class FancyCard extends JPanel{
         int sx = col * cardWidth;
         int sy = row * cardHeight;
 
-        // todo aggiustare dimensioni carte
-
         g.drawImage(sprite,
                 0, 0, getWidth() / widthCorrector, getHeight() / heightCorrector,
                 sx, sy, sx + cardWidth, sy + cardHeight,
