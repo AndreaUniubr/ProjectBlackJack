@@ -150,7 +150,7 @@ public class PlayPage extends JPanel {
 
 // todo: fare costanti
 
-
+// todo: fare in modo di considerare BJ e cose cosi
         if (p1 < 22)
         {
             if (p1 > d)
