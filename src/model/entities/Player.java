@@ -101,6 +101,22 @@ public abstract class Participant {
         return balance;
     }
 
+    // 1 = ok 0 = not ok
+    public boolean playsBet(int bet)
+    {
+        if (this.getBalance().getSaldo() >= bet)
+        {
+            this.getBalance().togliSoldi(bet);
+            return true;
+        }
+        return false;
+    }
+
+    public void pagaWin (double typeWin, int bet)
+    {
+        this.getBalance().aggiungiSoldi((int) (bet * typeWin));
+    }
+
     // gestione controllo validità valori effettuata esternamente
     public void setBalance(Balance balance)
     {
