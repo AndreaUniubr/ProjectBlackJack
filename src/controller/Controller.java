@@ -26,18 +26,22 @@ public class Controller {
         -se bust automaticamente terminare
         - fare meglio gestioine turni in modo serio
         - logica dealer asso e jack impl per assicur e poi metti flag bj
-        -risolvere il tod o nelle carddisplayer e fancycard
         -passaggio numero playerinizializzazione del game
         - logica inizio gioco e gioco in azione
         -classi regole di gioco
         -imp match in corso
-        -risolvere problemi grafica
+        -risolvere problemi grafica e rendere flessibile
         -implementare logica balance in game
         - impl logica avanzata player
         -? impl giocatore bot
         -
         - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
         -usare stream e lambda
+    * */
+
+    /*todo:
+    * fare si che accesso vincita sconfitta e tutto del player va tramite la game box
+    * (poi vedi se fare mega entità per piu mazzi)
     * */
 
 
