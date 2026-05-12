@@ -48,18 +48,9 @@ public class Player {
             return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank() == this.getHand().getCards().get(1).getRank());
     }
 
-    // todo chech by pio
+    // todo check by pio
     public void split ()
     {
-        Hand h = new Hand();
-        h.addCard(this.getHand().getCards().remove(1));
-        Card c = this.deck.getCard();
-        c.setFaceUp(true);
-        h.addCard(c);
-        this.hands.add(h);
-        c = this.deck.getCard();
-        c.setFaceUp(true);
-        this.getHand().getCards().add(c);
     }
 
     public int getDim()
