@@ -30,6 +30,8 @@ public class GameBox extends JPanel {
         this.isPlaying = value;
         pcs.firePropertyChange("isPlaying", old, value);
         pcs2.firePropertyChange("isPlaying", old, value);
+
+        // todo controlla stand
     }
 
     public boolean getIsPlaying() {

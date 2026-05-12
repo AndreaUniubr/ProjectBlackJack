@@ -5,70 +5,76 @@ import model.cards.Card;
 import model.cards.Deck;
 import model.game.Hand;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Player {
+    private final String name;
     private Balance balance;
-    private final Deck deck;
-    private Hand hand;
+    private Deck deck;
     private boolean isStand;
     private static int id = 0;
+    private Queue<Hand> hands = new LinkedList<>();
 
-    public Player(String name, int initial_balance, Deck deck)
+    public Player(String name, Balance balance, Deck deck)
     {
-        this.balance = new Balance(initial_balance);
+        this.balance = balance;
         this.deck = deck;
-        name = name + id;
+        this.name = name + id;
         id++;
-        //super(name);
         isStand = false;
     }
 
-    public void setHand(Hand hand)
+    public void addCard()
     {
-        this.hand = hand;
-    }
-
-    public boolean play()
-    {
-        if (this.hand.getValue() <= 16)
+        if (this.getHand().getValue() <= 21)
         {
-            Card c = deck.getCard();
+            Card c = this.deck.getCard();
             c.setFaceUp(true);
-            this.hand.addCard(c);
-        }
-
-        return this.hand.getValue() > 16;
-    }
-    
-    public void addCard(){
-        if(this.hand.getValue() <= 21){
-            Card c = deck.getCard();
-            c.setFaceUp(true);
-            this.hand.addCard(c);
+            this.getHand().addCard(c);
         }
     }
-    private void dealCard(boolean faceUp)
+
+    // give obligatory card
+    public void card()
     {
-        Card c = deck.getCard();
-        c.setFaceUp(faceUp);
-        hand.addCard(c);
+        Card c = this.deck.getCard();
+        c.setFaceUp(true);
+        this.getHand().addCard(c);
     }
 
-    public void card() { dealCard(true); }
-/*package model.entities;
-
-import model.game.Hand;
-
-import java.util.ArrayList;
-
-public abstract class Participant {
-    private final String name;
-    private ArrayList<Hand> hands;
-
-
-    public Participant(String name)
+    public boolean isSplittable()
     {
-        resetHands();
-        this.name = name;
+            return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank() == this.getHand().getCards().get(1).getRank());
+    }
+
+    // todo chech by pio
+    public void split ()
+    {
+        Hand h = new Hand();
+        h.addCard(this.getHand().getCards().remove(1));
+        Card c = this.deck.getCard();
+        c.setFaceUp(true);
+        h.addCard(c);
+        this.hands.add(h);
+        c = this.deck.getCard();
+        c.setFaceUp(true);
+        this.getHand().getCards().add(c);
+    }
+
+    public int getDim()
+    {
+        return this.hands.size();
+    }
+
+    public Hand getHand()
+    {
+        return this.hands.peek();
+    }
+
+    public void removeHand()
+    {
+        this.hands.poll();
     }
 
     public void addHand(Hand hand)
@@ -76,29 +82,9 @@ public abstract class Participant {
         this.hands.add(hand);
     }
 
-    public ArrayList<Hand> getHands()
-    {
-        return this.hands;
-    }
-
     public void resetHands()
     {
-        this.hands = new ArrayList<>();
-    }
-
-    public String getName()
-    {
-        return this.name;
-    }
-}*/
-    /*
-    * ogni player ha un balance e una sezione con le azioni, quando esegue azioni modifica la mano, ad ogni
-    * puntata corrisponde un falore true o false in base a se vincente o meno,
-    * */
-
-    public Balance getBalance()
-    {
-        return balance;
+        this.hands = new LinkedList<>();
     }
 
     // 1 = ok 0 = not ok
@@ -117,20 +103,29 @@ public abstract class Participant {
         this.getBalance().aggiungiSoldi((int) (bet * typeWin));
     }
 
-    // gestione controllo validità valori effettuata esternamente
-    public void setBalance(Balance balance)
-    {
-        this.balance = balance;
-    }
-
     public void setStand(boolean stand)
     {
         this.isStand = stand;
     }
 
-    // se è impiedi o gioca
+    // se è in piedi o meno
     public boolean isBust()
     {
         return isStand;
+    }
+
+    public Balance getBalance()
+    {
+        return balance;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setDeck(Deck deck)
+    {
+        this.deck = deck;
     }
 }
