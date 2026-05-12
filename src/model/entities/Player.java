@@ -50,7 +50,6 @@ public class Player {
             return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank() == this.getHand().getCards().get(1).getRank());
     }
 
-    // todo check by pio
     public void split()
     {
         Hand h = new Hand();
