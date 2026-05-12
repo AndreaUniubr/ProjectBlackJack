@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 import static view.Colours.getTableColor;
 
+// todo: gestire fine deck
+
 public class PlayPage extends JPanel {
 
     private final Deck deck = new Deck();

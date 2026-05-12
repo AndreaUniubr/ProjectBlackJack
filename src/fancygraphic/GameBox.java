@@ -1,6 +1,7 @@
 package fancygraphic;
 
 import model.cards.Deck;
+import model.balance.Balance;
 import model.entities.Player;
 import model.game.Hand;
 
@@ -19,6 +20,7 @@ public class GameBox extends JPanel {
     private final Player player;
     private final FancyGenButton hitButton;
     private final FancyGenButton standButton;
+    private final FancyGenButton splitButton;
     private final FancyGenButton backButton;
     private boolean isPlaying;
 
@@ -56,7 +58,7 @@ public class GameBox extends JPanel {
 
         pcs.addPropertyChangeListener("isPlaying", evt -> updateButtons());
 
-        player = new Player("Player", 1000, deck);
+        player = new Player("Player", new Balance(1000), deck);
         setOpaque(false);
         setPreferredSize(new Dimension(600, 250));
         setMaximumSize(new Dimension(600, 250));
@@ -80,6 +82,18 @@ public class GameBox extends JPanel {
                 setPlaying(false);
             }
         });
+        splitButton = new FancyGenButton("Split");
+        splitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (player.isSplittable())
+                {
+                    player.split();
+                    addCard();
+                }
+            }
+        });
+
         backButton = new FancyGenButton("Back");
 
        setPlaying(true);
@@ -89,6 +103,7 @@ public class GameBox extends JPanel {
 
         buttonPanel.add(hitButton);
         buttonPanel.add(standButton);
+        buttonPanel.add(splitButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -100,7 +115,7 @@ public class GameBox extends JPanel {
     public void newHand() {
 
         Hand h = new Hand();
-        player.setHand(h);
+        player.addHand(h);
         cd = new CardDisplayer(h);
         cd.setAlignmentX(Component.CENTER_ALIGNMENT);
         cd.setAlignmentY(Component.CENTER_ALIGNMENT);
