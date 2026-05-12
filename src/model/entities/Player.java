@@ -5,8 +5,9 @@ import model.cards.Card;
 import model.cards.Deck;
 import model.game.Hand;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 
 public class Player {
     private final String name;
@@ -14,7 +15,8 @@ public class Player {
     private Deck deck;
     private boolean isStand;
     private static int id = 0;
-    private Queue<Hand> hands = new LinkedList<>();
+    private ArrayList<Hand> hands = new ArrayList<>();
+    private int position = 0;
 
     public Player(String name, Balance balance, Deck deck)
     {
@@ -53,6 +55,11 @@ public class Player {
     {
     }
 
+    public void incPosition()
+    {
+        this.position++;
+    }
+
     public int getDim()
     {
         return this.hands.size();
@@ -60,22 +67,23 @@ public class Player {
 
     public Hand getHand()
     {
-        return this.hands.peek();
-    }
-
-    public void removeHand()
-    {
-        this.hands.poll();
+        return this.hands.get(position);
     }
 
     public void addHand(Hand hand)
     {
-        this.hands.add(hand);
+        this.hands.addLast(hand);
     }
 
     public void resetHands()
     {
-        this.hands = new LinkedList<>();
+        this.hands = new ArrayList<>();
+        position = 0;
+    }
+
+    public ArrayList<Hand> getHands()
+    {
+        return this.hands;
     }
 
     // 1 = ok 0 = not ok
