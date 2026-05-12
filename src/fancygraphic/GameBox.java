@@ -22,6 +22,12 @@ public class GameBox extends JPanel {
     private final FancyGenButton backButton;
     private boolean isPlaying;
 
+    /*todo
+    * il game box, deve aggiungere i nuovi pulsanti, ognuno con i suoi listener, controlli col player ecc
+    * implementare lo split, con la funzione di igiv1card
+    * il game box deve inoltre poter ciclare quando si passa tra eventuali altri Hand e giocare in tutti
+    * */
+
     private final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 
     public void setPlaying(boolean value) {
