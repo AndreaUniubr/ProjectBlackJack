@@ -51,8 +51,11 @@ public class Player {
     }
 
     // todo check by pio
-    public void split ()
+    public void split()
     {
+        Hand h = new Hand();
+        h.addCard(this.getHand().getCards().remove(1));
+        addHand(h);
     }
 
     public void incPosition()
