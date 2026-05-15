@@ -26,6 +26,8 @@ public class PlayPage extends JPanel {
     private final int nPartecipanti;
     private ArrayList<Player> partecipanti = new ArrayList<>();
 
+    // todo importante fare il back button
+
     public PlayPage(Controller controller, int nPartecipanti) {
 
         this.controller = controller;
@@ -136,6 +138,7 @@ public class PlayPage extends JPanel {
 
     public void firstRound() {
         dealerBox.iniCard();
+        gameBox.iniCard();
         gameBox.iniCard();
     }
 

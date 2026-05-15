@@ -17,9 +17,12 @@ public class GameBox extends JPanel {
     private CardDisplayer cd;
     private final Player player;
 
-    private final JPanel buttonPanel;
+    private JPanel buttonPanel;
     private FancyGenButton hitButton;
+    private FancyGenButton standButton;
     private FancyGenButton splitButton;
+
+
 
 
 
@@ -34,15 +37,22 @@ public class GameBox extends JPanel {
     * */
 
 
-
+/*
+* i turni devono essere:
+*  giocatori carta 1
+*  dealer carta 1
+* giocatori carta 2
+ *  dealer carta 2 coperta
+ * player gioca
+ * dealer gioca
+* */
 
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 
 
-    private final FancyGenButton standButton;
-    private final FancyGenButton backButton;
+
     private boolean isPlaying;
 
     /*todo
@@ -93,60 +103,15 @@ public class GameBox extends JPanel {
         ));
 
 
+        iniButtons();
 
-        standButton = new FancyGenButton("Stand");
-        standButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setPlaying(false);
-            }
-        });
-
-
-
-        backButton = new FancyGenButton("Back");
 
        setPlaying(true);
 
-        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.setOpaque(false);
-
-
-        buttonPanel.add(standButton);
-
-        iniButtons();
-
-        add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    //getter bottone back
-    public FancyGenButton getBackButton() {
-        return backButton;
-    }
-    public void newHand() {
-
-        Hand h = new Hand();
-        player.addHand(h);
-        cd = new CardDisplayer(h);
-        cd.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cd.setAlignmentY(Component.CENTER_ALIGNMENT);
-        add(cd);
-        cd.updateCards();
-
     }
 
 
 
-
-
-
-    public void iniCard()
-    {
-        player.card();
-        cd.updateCards();
-        player.card();
-        cd.updateCards();
-    }
 
 
     public int getIsWin() {
@@ -156,8 +121,6 @@ public class GameBox extends JPanel {
     public void setIsWin(int isWin) {
         this.isWin = isWin;
     }
-    // todo un ini dei bottoni a visibile
-
 
 
 
@@ -165,7 +128,9 @@ public class GameBox extends JPanel {
 
     private void actionOnStand()
     {
+        setPlaying(false);
         // todo tutte le azioni da fare con lo stand
+         // ci deve essere un if, se no tutti fatti no set ma solo visible del split
     }
 
 
@@ -176,6 +141,30 @@ public class GameBox extends JPanel {
 
 
 
+
+
+
+
+
+
+    // da fare 2 volte
+    public void iniCard()
+    {
+        player.card();
+        cd.updateCards();
+    }
+
+    // inizializzazione nuova mano
+    public void newHand() {
+        Hand h = new Hand();
+        player.resetHands();
+        player.addHand(h);
+        cd = new CardDisplayer(h);
+        cd.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cd.setAlignmentY(Component.CENTER_ALIGNMENT);
+        add(cd);
+        cd.updateCards();
+    }
 
     public Player getPlayer()
     {
@@ -185,6 +174,7 @@ public class GameBox extends JPanel {
     private void updateButtons() {
         standButton.setVisible(isPlaying);
         hitButton.setVisible(isPlaying);
+        splitButton.setVisible(player.isSplittable());
     }
 
     public int getCD()
@@ -206,10 +196,13 @@ public class GameBox extends JPanel {
         if (player.getHand().getValue() > 21) actionOnStand();
     }
 
+    // initialization of all the buttons needed
     public void iniButtons ()
     {
         // initialization
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         hitButton = new FancyGenButton("Hit");
+        standButton = new FancyGenButton("Stand");
         splitButton = new FancyGenButton("Split");
 
         // Action listeners
@@ -218,6 +211,12 @@ public class GameBox extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 addCard();
                 splitButton.setVisible(false);
+            }
+        });
+        standButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actionOnStand();
             }
         });
         splitButton.addActionListener(new ActionListener() {
@@ -232,10 +231,13 @@ public class GameBox extends JPanel {
         });
 
         splitButton.setVisible(player.isSplittable());
+        buttonPanel.setOpaque(false);
 
         // adding to panel
         buttonPanel.add(hitButton);
+        buttonPanel.add(standButton);
         buttonPanel.add(splitButton);
 
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 }
