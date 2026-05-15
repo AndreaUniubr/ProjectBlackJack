@@ -62,11 +62,6 @@ public class Player {
         this.position++;
     }
 
-    public void setPosition(int i)
-    {
-        this.position = i;
-    }
-
     public int getDim()
     {
         return this.hands.size();

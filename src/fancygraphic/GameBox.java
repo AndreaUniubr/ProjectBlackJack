@@ -52,42 +52,10 @@ public class GameBox extends JPanel {
         ));
     }
 
-
-
-
-
-
-    /*
-    * scorrere tra eventuali mani aggiuntive, avere listener per ogni fase di gioco
-    * (pre, giocando, passando, fine ecc)
-    * in piu funzioni di scorrimento e pagamento/riscatto crediti
-    * inoltre deve gestire eventuali compari/scompari dei bottoni
-    *
-    * nella fase di vincita/check vincite, dovrebbe scorrerli tutti e mettere risultato....
-    * */
-
-
-/*
-* i turni devono essere:
-*  giocatori carta 1
-*  dealer carta 1
-* giocatori carta 2
- *  dealer carta 2 coperta
- * player gioca
- * dealer gioca
-* */
-
-
-
-
-
-
-
-
-
-    // todo quando arriva ad una mano nuova, check2
-
-
+    public void addIsPlayingListener(PropertyChangeListener l)
+    {
+        pcs2.addPropertyChangeListener("isPlaying", l);
+    }
 
     public void setPlaying(boolean value) {
         updateButtons();
@@ -95,16 +63,23 @@ public class GameBox extends JPanel {
         this.isPlaying = value;
         pcs.firePropertyChange("isPlaying", old, value);
         pcs2.firePropertyChange("isPlaying", old, value);
-
-        // todo controlla stand
     }
 
 
 
 
-    public void addIsPlayingListener(PropertyChangeListener l) {
-        pcs2.addPropertyChangeListener("isPlaying", l);
-    }
+
+
+
+
+
+
+
+    /*
+    * todo: la fase di controllo vincite è da rifare:
+    *  - deve scorrere tra tutte le mani
+    *  - deve uscire la scritta vinto oppure no, almeno per un tot secondi
+    * */
 
     private int isWin = 0; // 0 = in game, 1 = win, 2 = lose, 3 = BJ
 
@@ -118,6 +93,11 @@ public class GameBox extends JPanel {
     public void setIsWin(int isWin) {
         this.isWin = isWin;
     }
+
+    // todo, show nome player???
+
+    // end todo
+
 
 
 

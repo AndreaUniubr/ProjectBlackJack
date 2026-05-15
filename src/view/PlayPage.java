@@ -17,6 +17,24 @@ import static view.Colours.getTableColor;
 
 public class PlayPage extends JPanel {
 
+    /*
+     * i turni devono essere:
+     *  giocatori carta 1
+     *  dealer carta 1
+     * giocatori carta 2
+     *  dealer carta 2 coperta
+     * player gioca
+     * dealer gioca
+     * */
+
+    /*
+    * todo:
+    *  - cambiare parametri passati a game box
+    *  - implementare logica turni e cicli piu partite
+    *  - logica carte finite
+    *  - implementare funzione true/false BJ
+    * */
+
     private final Deck deck = new Deck();
     private final DealerBox dealerBox = new DealerBox(deck);
     private final GameBox gameBox = new GameBox(deck);
@@ -133,6 +151,7 @@ public class PlayPage extends JPanel {
 
     // =========================
     // todo: sviluppare questa parte, ovvero mettere timer e altre fasi nel gioco
+    // seguire le fasi vere come scritto sopra
     public void iniGame() {
         gameBox.setPlaying(false);
         dealerBox.newHand();
@@ -140,8 +159,9 @@ public class PlayPage extends JPanel {
     }
 
     public void firstRound() {
-        dealerBox.iniCard();
+        dealerBox.card1();
         gameBox.iniCard();
+        dealerBox.card2();
         gameBox.iniCard();
     }
 

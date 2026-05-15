@@ -11,6 +11,7 @@ import java.awt.*;
 public class DealerBox extends JPanel {
     private CardDisplayer cd;
     private final Dealer dealer;
+    private Hand h;
 
     public DealerBox(Deck deck)
     {
@@ -31,23 +32,21 @@ public class DealerBox extends JPanel {
 
     public void newHand ()
     {
-        Hand h = new Hand();
+        h = new Hand();
         dealer.setHand(h);
         cd = new CardDisplayer(h);
         add(cd);
         cd.updateCards();
     }
 
-    public void iniCard()
+    public void card1()
     {
-        Timer timer = new Timer(500, null); // 0.5 secondi
+        dealer.card1();
+    }
 
-        timer.addActionListener(e -> {
-            dealer.card1();
-            cd.updateCards();
-        });
+    public void card2()
+    {
         dealer.card2();
-        cd.updateCards();
     }
 
     public void play()
@@ -67,6 +66,11 @@ public class DealerBox extends JPanel {
         });
 
         timer.start();
+    }
+
+    public boolean isBlackJack()
+    {
+        return getCd() == 21 && h.getCards().size() == 2;
     }
 
     public int getCd()
