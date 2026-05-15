@@ -14,13 +14,34 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class GameBox extends JPanel {
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
     private CardDisplayer cd;
     private final Player player;
-    private final FancyGenButton hitButton;
+
+    private final JPanel buttonPanel;
+    private FancyGenButton hitButton;
+    private FancyGenButton splitButton;
+
+
+
+    /*
+    * questa box, deve mostrare le carte attuali, le opzioni di gioco
+    * scorrere tra eventuali mani aggiuntive, avere listener per ogni fase di gioco
+    * (pre, giocando, passando, fine ecc)
+    * in piu funzioni di scorrimento e pagamento/riscatto crediti
+    * inoltre deve gestire eventuali compari/scompari dei bottoni
+    *
+    * nella fase di vincita/check vincite, dovrebbe scorrerli tutti e mettere risultato....
+    * */
+
+
+
+
+
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+
+
     private final FancyGenButton standButton;
-    private final FancyGenButton splitButton;
     private final FancyGenButton backButton;
     private boolean isPlaying;
 
@@ -29,6 +50,8 @@ public class GameBox extends JPanel {
     * implementare lo split, con la funzione di igiv1card
     * il game box deve inoltre poter ciclare quando si passa tra eventuali altri Hand e giocare in tutti
     * */
+
+    // todo quando arriva ad una mano nuova, check2
 
     private final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 
@@ -41,6 +64,7 @@ public class GameBox extends JPanel {
 
         // todo controlla stand
     }
+
 
     public boolean getIsPlaying() {
         return isPlaying;
@@ -68,13 +92,8 @@ public class GameBox extends JPanel {
                 new EmptyBorder(8,8,8,8)
         ));
 
-        hitButton = new FancyGenButton("Hit");
-        hitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addCard();
-            }
-        });
+
+
         standButton = new FancyGenButton("Stand");
         standButton.addActionListener(new ActionListener() {
             @Override
@@ -82,28 +101,20 @@ public class GameBox extends JPanel {
                 setPlaying(false);
             }
         });
-        splitButton = new FancyGenButton("Split");
-        splitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (player.isSplittable())
-                {
-                    player.split();
-                    addCard();
-                }
-            }
-        });
+
+
 
         backButton = new FancyGenButton("Back");
 
        setPlaying(true);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setOpaque(false);
 
-        buttonPanel.add(hitButton);
+
         buttonPanel.add(standButton);
-        buttonPanel.add(splitButton);
+
+        iniButtons();
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -124,9 +135,11 @@ public class GameBox extends JPanel {
 
     }
 
-    public Player getPlayer(){
-        return this.player;
-    }
+
+
+
+
+
     public void iniCard()
     {
         player.card();
@@ -135,16 +148,6 @@ public class GameBox extends JPanel {
         cd.updateCards();
     }
 
-    public void addCard()
-    {
-        player.addCard();
-        cd.updateCards();
-    }
-
-    private void updateButtons() {
-        standButton.setVisible(isPlaying);
-        hitButton.setVisible(isPlaying);
-    }
 
     public int getIsWin() {
         return isWin;
@@ -153,9 +156,86 @@ public class GameBox extends JPanel {
     public void setIsWin(int isWin) {
         this.isWin = isWin;
     }
+    // todo un ini dei bottoni a visibile
+
+
+
+
+
+
+    private void actionOnStand()
+    {
+        // todo tutte le azioni da fare con lo stand
+    }
+
+
+
+
+
+
+
+
+
+
+    public Player getPlayer()
+    {
+        return this.player;
+    }
+
+    private void updateButtons() {
+        standButton.setVisible(isPlaying);
+        hitButton.setVisible(isPlaying);
+    }
 
     public int getCD()
     {
         return this.cd.getValue();
+    }
+
+    // if less than 2 cards, give some, used for first card in splits
+    private void check2 ()
+    {
+        while (this.player.getHand().getCards().size() < 2)
+            this.player.card();
+    }
+
+    private void addCard()
+    {
+        player.addCard();
+        cd.updateCards();
+        if (player.getHand().getValue() > 21) actionOnStand();
+    }
+
+    public void iniButtons ()
+    {
+        // initialization
+        hitButton = new FancyGenButton("Hit");
+        splitButton = new FancyGenButton("Split");
+
+        // Action listeners
+        hitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addCard();
+                splitButton.setVisible(false);
+            }
+        });
+        splitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (player.isSplittable())
+                {
+                    player.split();
+                    addCard();
+                }
+            }
+        });
+
+        splitButton.setVisible(player.isSplittable());
+
+        // adding to panel
+        buttonPanel.add(hitButton);
+        buttonPanel.add(splitButton);
+
     }
 }
