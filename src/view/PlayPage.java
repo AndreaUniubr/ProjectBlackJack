@@ -43,9 +43,12 @@ public class PlayPage extends JPanel {
 
         // todo: questo solo test, va fatto a round e meglio
 
+        // todo carteeeee deve rifare deck.....
 
 // todo: usare questa logica del listener per il dealer, al posto di verificare vittoria fa turno dealer, a qui mettere altro listener e fare questo sotto
 
+
+        // todo è qui che deve settare start game, prima non visibile
         iniGame();
         firstRound();
         game();

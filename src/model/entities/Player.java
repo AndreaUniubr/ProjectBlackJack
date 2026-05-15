@@ -134,4 +134,9 @@ public class Player {
     {
         this.deck = deck;
     }
+
+    public int getPosition()
+    {
+        return this.position;
+    }
 }

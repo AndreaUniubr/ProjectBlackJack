@@ -17,17 +17,47 @@ public class GameBox extends JPanel {
     private CardDisplayer cd;
     private final Player player;
 
-    private JPanel buttonPanel;
     private FancyGenButton hitButton;
     private FancyGenButton standButton;
     private FancyGenButton splitButton;
+
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
+
+    private boolean isPlaying;
+
+
+    public GameBox(Deck deck, Balance balance)
+    {
+        setLayout(new BorderLayout());
+
+        pcs.addPropertyChangeListener("isPlaying", evt -> updateButtons());
+
+        player = new Player("Player", balance, deck);
+
+        graphicInit();
+        iniButtons();
+    }
+
+    private void graphicInit ()
+    {
+        setOpaque(false);
+        setPreferredSize(new Dimension(600, 250));
+        setMaximumSize(new Dimension(600, 250));
+        setMinimumSize(new Dimension(600, 250));
+
+        setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(212,175,55), 3),
+                new EmptyBorder(8,8,8,8)
+        ));
+    }
+
 
 
 
 
 
     /*
-    * questa box, deve mostrare le carte attuali, le opzioni di gioco
     * scorrere tra eventuali mani aggiuntive, avere listener per ogni fase di gioco
     * (pre, giocando, passando, fine ecc)
     * in piu funzioni di scorrimento e pagamento/riscatto crediti
@@ -48,22 +78,16 @@ public class GameBox extends JPanel {
 * */
 
 
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 
 
 
-    private boolean isPlaying;
 
-    /*todo
-    * il game box, deve aggiungere i nuovi pulsanti, ognuno con i suoi listener, controlli col player ecc
-    * implementare lo split, con la funzione di igiv1card
-    * il game box deve inoltre poter ciclare quando si passa tra eventuali altri Hand e giocare in tutti
-    * */
+
 
     // todo quando arriva ad una mano nuova, check2
 
-    private final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
+
 
     public void setPlaying(boolean value) {
         updateButtons();
@@ -76,40 +100,13 @@ public class GameBox extends JPanel {
     }
 
 
-    public boolean getIsPlaying() {
-        return isPlaying;
-    }
+
 
     public void addIsPlayingListener(PropertyChangeListener l) {
         pcs2.addPropertyChangeListener("isPlaying", l);
     }
 
     private int isWin = 0; // 0 = in game, 1 = win, 2 = lose, 3 = BJ
-
-    public GameBox(Deck deck) {
-
-        setLayout(new BorderLayout());
-
-        pcs.addPropertyChangeListener("isPlaying", evt -> updateButtons());
-
-        player = new Player("Player", new Balance(1000), deck);
-        setOpaque(false);
-        setPreferredSize(new Dimension(600, 250));
-        setMaximumSize(new Dimension(600, 250));
-        setMinimumSize(new Dimension(600, 250));
-        setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(212,175,55), 3),
-                new EmptyBorder(8,8,8,8)
-        ));
-
-
-        iniButtons();
-
-
-       setPlaying(true);
-
-    }
-
 
 
 
@@ -126,26 +123,37 @@ public class GameBox extends JPanel {
 
 
 
-    private void actionOnStand()
+
+
+
+
+
+    private void nextHand()
     {
-        setPlaying(false);
-        // todo tutte le azioni da fare con lo stand
-         // ci deve essere un if, se no tutti fatti no set ma solo visible del split
+        this.cd.setHand(player.getHand());
+        cd.updateCards();
+        this.check2();
+        cd.updateCards();
+        setPlaying(true);
     }
 
+    private void actionOnStand()
+    {
+        if (player.getPosition() != player.getDim())
+        {
+            player.incPosition();
+            nextHand();
+        }
+        else
+        {
+            setPlaying(false);
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    public boolean getIsPlaying()
+    {
+        return isPlaying;
+    }
 
     // da fare 2 volte
     public void iniCard()
@@ -200,7 +208,7 @@ public class GameBox extends JPanel {
     public void iniButtons ()
     {
         // initialization
-        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         hitButton = new FancyGenButton("Hit");
         standButton = new FancyGenButton("Stand");
         splitButton = new FancyGenButton("Split");

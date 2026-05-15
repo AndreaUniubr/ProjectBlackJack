@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class CardDisplayer extends JPanel {
 
-    private final Hand hand;
+    private Hand hand;
     private JLabel valuePanel;
     private JPanel contentPanel;
 
@@ -59,6 +59,10 @@ public class CardDisplayer extends JPanel {
         add(valuePanel, BorderLayout.SOUTH);
 
         updateCards();
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
     }
 
     public void updateCards()
