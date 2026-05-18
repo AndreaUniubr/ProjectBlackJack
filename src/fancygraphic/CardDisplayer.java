@@ -65,6 +65,11 @@ public class CardDisplayer extends JPanel {
         this.hand = hand;
     }
 
+    public void terminate()
+    {
+        contentPanel.removeAll();
+    }
+
     public void updateCards()
     {
 

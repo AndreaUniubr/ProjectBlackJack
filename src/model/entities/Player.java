@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Player {
     private final String name;
-    private Balance balance;
+    private final Balance balance;
     private Deck deck;
     private boolean isStand;
     private static int id = 0;
@@ -47,6 +47,7 @@ public class Player {
 
     public boolean isSplittable()
     {
+            if (this.hands.isEmpty()) return false;
             return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank() == this.getHand().getCards().get(1).getRank());
     }
 

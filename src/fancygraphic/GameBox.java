@@ -119,7 +119,7 @@ public class GameBox extends JPanel {
 
     private void actionOnStand()
     {
-        if (player.getPosition() != player.getDim())
+        if (player.getPosition() != player.getDim() - 1)
         {
             player.incPosition();
             nextHand();
@@ -152,6 +152,11 @@ public class GameBox extends JPanel {
         cd.setAlignmentY(Component.CENTER_ALIGNMENT);
         add(cd);
         cd.updateCards();
+    }
+
+    public void res()
+    {
+        cd.terminate();
     }
 
     public Player getPlayer()

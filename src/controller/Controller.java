@@ -43,6 +43,7 @@ public class Controller {
     * (poi vedi se fare mega entità per piu mazzi)
     * */
 
+    // deve salvare i dati tipo balance?
 
     public int getnPartecipanti()
     {

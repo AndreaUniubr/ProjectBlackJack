@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import fancygraphic.FancyGenButton;
 import fancygraphic.GameBox;
+import model.balance.Balance;
 import model.cards.Deck;
 import model.entities.Player;
 import model.game.DealerBox;
@@ -13,44 +14,21 @@ import java.util.ArrayList;
 
 import static view.Colours.getTableColor;
 
-// todo: gestire fine deck
-
 public class PlayPage extends JPanel {
-
-    /*
-     * i turni devono essere:
-     *  giocatori carta 1
-     *  dealer carta 1
-     * giocatori carta 2
-     *  dealer carta 2 coperta
-     * player gioca
-     * dealer gioca
-     * */
-
-    /*
-    * todo:
-    *  - cambiare parametri passati a game box
-    *  - implementare logica turni e cicli piu partite
-    *  - logica carte finite
-    *  - implementare funzione true/false BJ
-    * */
-
-    private final Deck deck = new Deck();
-    private final DealerBox dealerBox = new DealerBox(deck);
-    private final GameBox gameBox = new GameBox(deck);
-
     private final Controller controller;
+    private final Deck deck = new Deck();
+    private final DealerBox dealerBox;
+    private final GameBox gameBox;
 
-    private final int nPartecipanti;
-    private ArrayList<Player> partecipanti = new ArrayList<>();
 
-    // todo importante fare il back button
 
-    public PlayPage(Controller controller, int nPartecipanti) {
-
+    public PlayPage(Controller controller, int nPartecipanti, Balance balance)
+    {
+        dealerBox = new DealerBox(deck);
+        gameBox = new GameBox(deck, balance);
         this.controller = controller;
 
-        this.nPartecipanti = nPartecipanti;
+        // per ora nPartecipanti inutilizzato
 
         setLayout(new BorderLayout());
         setBackground(getTableColor());
@@ -59,32 +37,145 @@ public class PlayPage extends JPanel {
         add(createCenter(), BorderLayout.CENTER);
         add(createBottom(), BorderLayout.SOUTH);
 
-        // todo: questo solo test, va fatto a round e meglio
+        gameStart();
+    }
 
-        // todo carteeeee deve rifare deck.....
-
-// todo: usare questa logica del listener per il dealer, al posto di verificare vittoria fa turno dealer, a qui mettere altro listener e fare questo sotto
-
-
-        // todo è qui che deve settare start game, prima non visibile
+    /*
+    * Function that handle rounds:
+    * Card 1 all players
+    * Card 1 dealer
+    * giocatori carta 2
+    * dealer carta 2 coperta
+    * player plays
+    * dealer plays
+    * check win
+    * */
+    private void gameStart()
+    {
         iniGame();
-        firstRound();
-        game();
+        card1();
+        card2();
+        gameBox.setPlaying(true);
 
-        gameBox.addIsPlayingListener(evt -> {
+        /*gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
-                onPlayerFinished();
+
+                dealerBox.play();
+                dealerBox.addIsPlayingListener(evt1 -> {
+                    boolean nValue = (boolean) evt1.getNewValue();
+                    if (!nValue)
+                        checkWin();
+                });
+
             }
-        });
+        });*/
 
+
+        // todo:questa parte non cambia gioco bene, mettere pulsante ok a vincita e pulizia totale
+        /*gameBox.addIsPlayingListener(evt -> {
+            gameBox.res();
+            dealerBox.res();
+            gameStart();
+        });*/
     }
 
-    private void onPlayerFinished()
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    * todo:
+    *  - implementare funzione true/false BJ
+    * */
+
+
+
+    // =========================
+    // todo: sviluppare questa parte, ovvero mettere timer e altre fasi nel gioco
+    // seguire le fasi vere come scritto sopra
+
+
+    // todo da rifareeee
+
+    public void checkWin()
     {
-        checkWin();
+        int p1 = gameBox.getCD();
+        int d = dealerBox.getCd();
+
+
+// todo: fare costanti
+
+// todo: fare in modo di considerare BJ e cose cosi
+        if (p1 < 22)
+        {
+            if (p1 > d)
+            {
+                gameBox.setIsWin(1);
+            }
+            else
+            {
+                if (d < 22)
+                    gameBox.setIsWin(2);
+                else
+                    gameBox.setIsWin(1);
+            }
+        }
+        else
+        {
+            gameBox.setIsWin(2);
+        }
+
+        switch (gameBox.getIsWin()) {
+            case 1:
+                System.out.println("WIN");
+                break;
+            case 2:
+                System.out.println("LOSE");
+                break;
+            default:
+                System.out.println("Problema riscontrato");
+                break;
+        }
     }
 
+
+
+
+
+
+
+
+
+
+
+    public void card2()
+    {
+        dealerBox.card2();
+        gameBox.iniCard();
+    }
+
+    public void card1()
+    {
+        dealerBox.card1();
+        gameBox.iniCard();
+    }
+
+    public void iniGame()
+    {
+        if (deck.getDim() < 35) deck.restore();
+        gameBox.setPlaying(false);
+        dealerBox.newHand();
+        gameBox.newHand();
+    }
 
     // TOP (DEALER)
     private JPanel createTop() {
@@ -147,67 +238,5 @@ public class PlayPage extends JPanel {
         wrapper.add(statusBar, BorderLayout.SOUTH);
 
         return wrapper;
-    }
-
-    // =========================
-    // todo: sviluppare questa parte, ovvero mettere timer e altre fasi nel gioco
-    // seguire le fasi vere come scritto sopra
-    public void iniGame() {
-        gameBox.setPlaying(false);
-        dealerBox.newHand();
-        gameBox.newHand();
-    }
-
-    public void firstRound() {
-        dealerBox.card1();
-        gameBox.iniCard();
-        dealerBox.card2();
-        gameBox.iniCard();
-    }
-
-    public void game() {
-        gameBox.setPlaying(true);
-        dealerBox.play();
-    }
-
-    public void checkWin()
-    {
-        int p1 = gameBox.getCD();
-        int d = dealerBox.getCd();
-
-
-// todo: fare costanti
-
-// todo: fare in modo di considerare BJ e cose cosi
-        if (p1 < 22)
-        {
-            if (p1 > d)
-            {
-                gameBox.setIsWin(1);
-            }
-            else
-            {
-                if (d < 22)
-                    gameBox.setIsWin(2);
-                else
-                    gameBox.setIsWin(1);
-            }
-        }
-        else
-        {
-            gameBox.setIsWin(2);
-        }
-
-        switch (gameBox.getIsWin()) {
-            case 1:
-                System.out.println("WIN");
-                break;
-            case 2:
-                System.out.println("LOSE");
-                break;
-            default:
-                System.out.println("Problema riscontrato");
-                break;
-        }
     }
 }

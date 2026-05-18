@@ -7,11 +7,15 @@ import model.entities.Dealer;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class DealerBox extends JPanel {
     private CardDisplayer cd;
     private final Dealer dealer;
     private Hand h;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private boolean isPlaying;
 
     public DealerBox(Deck deck)
     {
@@ -28,6 +32,13 @@ public class DealerBox extends JPanel {
                 new EmptyBorder(8,8,8,8)
         ));
 
+        isPlaying = false;
+
+    }
+
+    public void addIsPlayingListener(PropertyChangeListener l)
+    {
+        pcs.addPropertyChangeListener("isPlaying", l);
     }
 
     public void newHand ()
@@ -39,18 +50,26 @@ public class DealerBox extends JPanel {
         cd.updateCards();
     }
 
+    public void res()
+    {
+        cd.terminate();
+    }
+
     public void card1()
     {
         dealer.card1();
+        cd.updateCards();
     }
 
     public void card2()
     {
         dealer.card2();
+        cd.updateCards();
     }
 
     public void play()
     {
+        isPlaying = true;
         dealer.prePlay();
         cd.updateCards();
 

@@ -13,8 +13,14 @@ public class Deck {
         restore();
     }
 
+    public int getDim()
+    {
+        return this.cards.size();
+    }
+
     public Card getCard()
     {
+        if (getDim() < 1) this.restore();
         return this.cards.removeFirst();
     }
 
