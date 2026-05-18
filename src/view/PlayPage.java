@@ -61,9 +61,6 @@ public class PlayPage extends JPanel {
         card2();
         gameBox.setPlaying(true);
 
-
-
-        // todo qui un errore da gestire
         gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
