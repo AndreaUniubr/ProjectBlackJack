@@ -48,7 +48,7 @@ public class Player {
     public boolean isSplittable()
     {
             if (this.hands.isEmpty()) return false;
-            return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank() == this.getHand().getCards().get(1).getRank());
+            return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank().getMaxValue() == this.getHand().getCards().get(1).getRank().getMaxValue());
     }
 
     public void split()
