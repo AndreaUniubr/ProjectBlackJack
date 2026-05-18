@@ -52,24 +52,31 @@ public class PlayPage extends JPanel {
     * */
     private void gameStart()
     {
+
+        // todo qui vannno implementate le puntate
+        // todo aggiungi var puntata nelle mani
+
         iniGame();
         card1();
         card2();
         gameBox.setPlaying(true);
 
-        /*gameBox.addIsPlayingListener(evt -> {
+
+
+        // todo qui un errore da gestire
+        gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
 
                 dealerBox.play();
                 dealerBox.addIsPlayingListener(evt1 -> {
-                    boolean nValue = (boolean) evt1.getNewValue();
-                    if (!nValue)
-                        checkWin();
+                    // todo non ha accesso alla win perchè? liste3ner problema
+                    // non vede listener
+                    checkWin();
                 });
 
             }
-        });*/
+        });
 
 
         // todo:questa parte non cambia gioco bene, mettere pulsante ok a vincita e pulizia totale

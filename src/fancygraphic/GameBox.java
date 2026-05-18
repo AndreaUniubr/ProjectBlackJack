@@ -107,15 +107,25 @@ public class GameBox extends JPanel {
 
 
 
-
+// todo non cancella split
+    // e non mette valore corretto
     private void nextHand()
     {
+        updateButtons();
         this.cd.setHand(player.getHand());
         cd.updateCards();
         this.check2();
         cd.updateCards();
         setPlaying(true);
     }
+
+
+
+
+
+
+
+
 
     private void actionOnStand()
     {

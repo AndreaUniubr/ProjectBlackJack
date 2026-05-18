@@ -1,6 +1,5 @@
 package controller;
 
-
 import view.State;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +26,8 @@ public class Controller {
         - logica dealer asso e jack impl per assicur e poi metti flag bj
         -passaggio numero playerinizializzazione del game
         - logica inizio gioco e gioco in azione
-        -classi regole di gioco
         -imp match in corso
         -risolvere problemi grafica e rendere flessibile
-        -implementare logica balance in game
         - impl logica avanzata player
         -? impl giocatore bot
         -
@@ -38,12 +35,7 @@ public class Controller {
         -usare stream e lambda
     * */
 
-    /*todo:
-    * fare si che accesso vincita sconfitta e tutto del player va tramite la game box
-    * (poi vedi se fare mega entità per piu mazzi)
-    * */
-
-    // deve salvare i dati tipo balance?
+    // todo deve salvare i dati tipo balance?
 
     public int getnPartecipanti()
     {
