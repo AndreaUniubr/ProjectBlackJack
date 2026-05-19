@@ -18,12 +18,14 @@ public class GameBox extends Box {
     private FancyGenButton hitButton;
     private FancyGenButton standButton;
     private FancyGenButton splitButton;
+    private Player player;
 
     protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 
     public GameBox(Deck deck, Balance balance)
     {
-        super(new Player("Player", balance, deck));
+        super();
+        player = new Player("Player", balance, deck);
 
         pcs2.addPropertyChangeListener("isPlaying", evt -> updateButtons());
         graphicInit();

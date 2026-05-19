@@ -11,11 +11,12 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class DealerBox extends Box {
-
+    private Dealer dealer;
 
     public DealerBox(Deck deck)
     {
-        super(new Dealer(deck));
+        super();
+        dealer = new Dealer(deck);
     }
 
     protected void graphicInit()

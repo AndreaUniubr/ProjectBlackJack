@@ -8,15 +8,13 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public abstract class Box extends JPanel {
-    protected final Entities entities;
     protected CardDisplayer cd;
 
     protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     protected boolean isPlaying;
 
-    public Box (Entities entities)
+    public Box ()
     {
-        this.entities = entities;
         this.isPlaying = false;
     }
 
