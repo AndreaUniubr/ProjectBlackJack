@@ -22,13 +22,8 @@ public class Controller {
 
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
-        - fare meglio gestioine turni in modo serio
-        - logica dealer asso e jack impl per assicur e poi metti flag bj
         -passaggio numero playerinizializzazione del game
-        - logica inizio gioco e gioco in azione
-        -imp match in corso
         -risolvere problemi grafica e rendere flessibile
-        - impl logica avanzata player
         -? impl giocatore bot
         -
         - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
