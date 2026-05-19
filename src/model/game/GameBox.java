@@ -130,7 +130,7 @@ public class GameBox extends Box {
         Hand h = new Hand();
         player.resetHands();
         player.addHand(h);
-        cd.setHand(h);
+        cd = new CardDisplayer(h);
         cd.updateCards();
     }
 

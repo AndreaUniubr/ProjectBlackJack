@@ -15,7 +15,6 @@ public abstract class Box extends JPanel {
 
     public Box ()
     {
-        cd = new CardDisplayer(null);
         this.isPlaying = false;
     }
 
