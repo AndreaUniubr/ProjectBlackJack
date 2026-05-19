@@ -9,21 +9,17 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Player {
-    private final String name;
+public class Player extends Entities{
     private final Balance balance;
-    private Deck deck;
     private boolean isStand;
-    private static int id = 0;
+
     private ArrayList<Hand> hands = new ArrayList<>();
     private int position = 0;
 
     public Player(String name, Balance balance, Deck deck)
     {
         this.balance = balance;
-        this.deck = deck;
-        this.name = name + id;
-        id++;
+        super(name, deck);
         isStand = false;
     }
 
@@ -31,18 +27,14 @@ public class Player {
     {
         if (this.getHand().getValue() <= 21)
         {
-            Card c = this.deck.getCard();
-            c.setFaceUp(true);
-            this.getHand().addCard(c);
+            card();
         }
     }
 
     // give obligatory card
     public void card()
     {
-        Card c = this.deck.getCard();
-        c.setFaceUp(true);
-        this.getHand().addCard(c);
+        dealCard(true);
     }
 
     public boolean isSplittable()
@@ -66,11 +58,6 @@ public class Player {
     public int getDim()
     {
         return this.hands.size();
-    }
-
-    public Hand getHand()
-    {
-        return this.hands.get(position);
     }
 
     public void addHand(Hand hand)
@@ -121,18 +108,13 @@ public class Player {
         return balance;
     }
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setDeck(Deck deck)
-    {
-        this.deck = deck;
-    }
-
     public int getPosition()
     {
         return this.position;
+    }
+
+    public Hand getHand()
+    {
+        return this.hands.get(position);
     }
 }

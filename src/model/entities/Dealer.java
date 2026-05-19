@@ -4,25 +4,17 @@ import model.cards.Card;
 import model.game.Hand;
 import model.cards.Deck;
 
-public class Dealer{
-    private final Deck deck;
+public class Dealer extends Entities{
     private Hand hand;
 
     public Dealer(Deck deck)
     {
-        this.deck = deck;
+        super("Dealer",deck);
     }
 
     // distribuzione prime due carte fisse
     public void card1() { dealCard(false); }
     public void card2() { dealCard(true); }
-
-    private void dealCard(boolean faceUp)
-    {
-        Card c = deck.getCard();
-        c.setFaceUp(faceUp);
-        hand.addCard(c);
-    }
 
     // mostra tutte le carte prima di iniziare a giocare
     public void prePlay()
@@ -50,13 +42,13 @@ public class Dealer{
         this.hand = hand;
     }
 
-    public Hand getHand()
-    {
-        return this.hand;
-    }
-
     public int getValue()
     {
         return this.getHand().getValue();
+    }
+
+    public Hand getHand()
+    {
+        return this.hand;
     }
 }
