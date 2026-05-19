@@ -87,9 +87,9 @@ public class Player extends Entities{
         return false;
     }
 
-    public void pagaWin (double typeWin, int bet)
+    public void pagaWin (int win)
     {
-        this.getBalance().aggiungiSoldi((int) (bet * typeWin));
+        this.getBalance().aggiungiSoldi(win);
     }
 
     public void setStand(boolean stand)

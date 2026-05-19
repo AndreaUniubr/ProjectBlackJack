@@ -7,8 +7,6 @@ import model.entities.Dealer;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 public class DealerBox extends Box {
     private final Dealer dealer;

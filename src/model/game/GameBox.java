@@ -13,6 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+
+import static model.game.Constants.BLACKJACK;
+import static model.game.Constants.WIN;
 
 public class GameBox extends Box {
     public JPanel buttonPanel;
@@ -21,6 +25,7 @@ public class GameBox extends Box {
     private FancyGenButton splitButton;
     public FancyGenButton fOk = new FancyGenButton("OK");
     private final Player player;
+    private int bet;
 
     protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 
@@ -28,6 +33,7 @@ public class GameBox extends Box {
     {
         super();
         player = new Player("Player", balance, deck);
+        this.bet = 0;
 
         pcs2.addPropertyChangeListener("isPlaying", evt -> updateButtons());
         graphicInit();
@@ -48,47 +54,9 @@ public class GameBox extends Box {
         ));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    * todo: la fase di controllo vincite è da rifare:
-    *  - deve scorrere tra tutte le mani
-    *  - deve uscire la scritta vinto oppure no, almeno per un tot secondi
-    * */
-
-    private int isWin = 0; // 0 = in game, 1 = win, 2 = lose, 3 = BJ
-
-
-
-
-    public int getIsWin() {
-        return isWin;
-    }
-
-    public void setIsWin(int isWin) {
-        this.isWin = isWin;
-    }
-
-    // todo, show nome player???
-
-    // end todo
-
-
     // todo quando cambia mano non mostra valore corretto
     private void nextHand()
     {
-
         // todo update anche var che mostra il valore
         this.cd.setHand(player.getHand());
         cd.updateCards();
@@ -96,10 +64,49 @@ public class GameBox extends Box {
         setPlaying(true);
     }
 
+    private int calcolaWin (int dealer, boolean bjd)
+    {
+        int sum = 0;
+        for (Hand hand : player.getHands())
+        {
+            if (hand.getValue() > dealer)
+            {
+                if (player.isBJ())
+                    sum += (int) (this.bet + this.bet * BLACKJACK);
+                else
+                    sum += (int) (this.bet + this.bet * WIN);
+            }
+            else if (hand.getValue() == dealer)// uguali
+                if (!bjd || player.isBJ())
+                    sum += bet;
+        }
 
+        player.pagaWin(sum);
+        return sum;
+    }
 
+    private boolean setBet(int amount)
+    {
+        if (player.playsBet(amount))
+        {
+            bet = amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
+    public int getBet()
+    {
+        return bet;
+    }
 
+    public boolean isPagable(int sum)
+    {
+        return sum >= this.getBet();
+    }
 
     // da fare 2 volte
     public void iniCard()
@@ -156,7 +163,7 @@ public class GameBox extends Box {
     private void updateButtons() {
         standButton.setVisible(isPlaying);
         hitButton.setVisible(isPlaying);
-        splitButton.setVisible(player.isSplittable());
+        splitButton.setVisible(player.isSplittable() && isPagable(player.getBalance().getSaldo()));
     }
 
     // if less than 2 cards, give some, used for first card in splits
@@ -200,7 +207,7 @@ public class GameBox extends Box {
         splitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (player.isSplittable())
+                if (player.isSplittable() && setBet(bet))
                 {
                     player.split();
                     addCard();
@@ -221,13 +228,13 @@ public class GameBox extends Box {
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
-   // todo setplaying viene chiamato ad ogni modifica di isplaying
+
     public void setPlaying(boolean value) {
         boolean old = this.isPlaying;
         this.isPlaying = value;
         pcs2.firePropertyChange("isPlaying", old, value);
     }
-    // todo setplaying false viene chiamato se smetto di giocare
+
     public void setPlayingFalse()
     {
         this.isPlaying = false;
