@@ -54,28 +54,29 @@ public class PlayPage extends JPanel {
         // todo qui vannno implementate le puntate
         // todo aggiungi var puntata nelle mani
 
+
+        // todo no timer quiiiiiiii
         iniGame();
         card1();
         card2();
         gameBox.setPlaying(true);
 
 
-        // todo dio porco si è rotto lo split
         // todo la madonna fa il valore sbagliato
         gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
                 dealerBox.addIsPlayingListener(evt1 -> {
                     checkWin();
+                    FancyGenButton f = new FancyGenButton("OK");
+                    f.addActionListener(evt2 -> {
+                        gameBox.remove(f); // todo no fa ma fa e troppo grosso
+                        gameStart();
+                    });
+                    gameBox.add(f);
                 });
                 dealerBox.play();
             }
-        });
-
-
-        // todo:questa parte non cambia gioco bene, mettere pulsante ok a vincita e pulizia totale
-        gameBox.addIsPlayingListener(evt -> {
-            gameStart();
         });
     }
 
