@@ -8,7 +8,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public abstract class Box extends JPanel {
-    protected CardDisplayer cd;
+    protected CardDisplayer cd = null;
 
     protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     protected boolean isPlaying;
