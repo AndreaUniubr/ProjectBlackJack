@@ -64,7 +64,7 @@ public class GameBox extends Box {
         setPlaying(true);
     }
 
-    private int calcolaWin (int dealer, boolean bjd)
+    public int calcolaWin (int dealer, boolean bjd)
     {
         int sum = 0;
         for (Hand hand : player.getHands())
@@ -85,7 +85,7 @@ public class GameBox extends Box {
         return sum;
     }
 
-    private boolean setBet(int amount)
+    public boolean setBet(int amount)
     {
         if (player.playsBet(amount))
         {

@@ -92,62 +92,12 @@ public class PlayPage extends JPanel {
 
 
 
-
-
-
-    /*
-    * todo:
-    *  - implementare funzione true/false BJ
-    * */
-
-
-
-    // =========================
-    // todo: sviluppare questa parte, ovvero mettere timer e altre fasi nel gioco
-    // seguire le fasi vere come scritto sopra
-
-
-    // todo da rifareeee
-
     public void checkWin()
     {
-        int p1 = gameBox.getCd();
         int d = dealerBox.getCd();
+        int win = gameBox.calcolaWin(d,dealerBox.isBJ());
 
-
-// todo: fare costanti
-
-// todo: fare in modo di considerare BJ e cose cosi
-        if (p1 < 22)
-        {
-            if (p1 > d)
-            {
-                gameBox.setIsWin(1);
-            }
-            else
-            {
-                if (d < 22)
-                    gameBox.setIsWin(2);
-                else
-                    gameBox.setIsWin(1);
-            }
-        }
-        else
-        {
-            gameBox.setIsWin(2);
-        }
-
-        switch (gameBox.getIsWin()) {
-            case 1:
-                System.out.println("WIN");
-                break;
-            case 2:
-                System.out.println("LOSE");
-                break;
-            default:
-                System.out.println("Problema riscontrato");
-                break;
-        }
+        // todo mostra questo valore
     }
 
 
