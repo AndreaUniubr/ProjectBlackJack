@@ -33,33 +33,6 @@ public class DealerBox extends Box {
         ));
     }
 
-
-
-
-
-
-
-
-
-    private Hand h;
-
-
-
-    public void newHand ()
-    {
-        isPlaying = false;
-        h = new Hand();
-        dealer.setHand(h);
-        cd = new CardDisplayer(h);
-        add(cd);
-        cd.updateCards();
-    }
-
-    public void res()
-    {
-        //cd.terminate();
-    }
-
     public void card1()
     {
         dealer.card1();
@@ -72,9 +45,18 @@ public class DealerBox extends Box {
         cd.updateCards();
     }
 
+    public void newHand ()
+    {
+        setPlaying(false);
+        Hand h = new Hand();
+        dealer.setHand(h);
+        cd.setHand(h);
+        cd.updateCards();
+    }
+
     public void play()
     {
-        isPlaying = true;
+        setPlaying(true);
         dealer.prePlay();
         cd.updateCards();
 
@@ -92,22 +74,10 @@ public class DealerBox extends Box {
         timer.start();
     }
 
-    public boolean isBlackJack()
+    public boolean isBJ()
     {
-        return getCd() == 21 && h.getCards().size() == 2;
+        return dealer.isBJ();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void setPlaying(boolean value) {
         boolean old = this.isPlaying;

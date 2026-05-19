@@ -83,18 +83,11 @@ public class GameBox extends Box {
     // end todo
 
 
-
-
-
-
-
-
     // todo quando cambia mano non mostra valore corretto
     private void nextHand()
     {
 
         // todo update anche var che mostra il valore
-        //res();
         this.cd.setHand(player.getHand());
         cd.updateCards();
         this.check2();
@@ -106,8 +99,12 @@ public class GameBox extends Box {
 
 
 
-
-
+    // da fare 2 volte
+    public void iniCard()
+    {
+        player.card();
+        cd.updateCards();
+    }
 
     private void actionOnStand()
     {
@@ -127,28 +124,21 @@ public class GameBox extends Box {
         return isPlaying;
     }
 
-    // da fare 2 volte
-    public void iniCard()
-    {
-        player.card();
-        cd.updateCards();
-    }
-
     // inizializzazione nuova mano
     public void newHand() {
+        setPlaying(false);
         Hand h = new Hand();
         player.resetHands();
         player.addHand(h);
-        cd = new CardDisplayer(h);
-        cd.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cd.setAlignmentY(Component.CENTER_ALIGNMENT);
-        add(cd);
+        cd.setHand(h);
         cd.updateCards();
     }
 
-    public void res()
+    private void addCard()
     {
-        //cd.terminate();
+        player.addCard();
+        cd.updateCards();
+        if (player.getHand().getValue() > 21) actionOnStand();
     }
 
     public Player getPlayer()
@@ -172,11 +162,9 @@ public class GameBox extends Box {
         }
     }
 
-    private void addCard()
+    public boolean isBJ()
     {
-        player.addCard();
-        cd.updateCards();
-        if (player.getHand().getValue() > 21) actionOnStand();
+        return player.isBJ();
     }
 
     // initialization of all the buttons needed
@@ -224,11 +212,6 @@ public class GameBox extends Box {
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
-
-
-
-
-
 
     public void setPlaying(boolean value) {
         updateButtons();

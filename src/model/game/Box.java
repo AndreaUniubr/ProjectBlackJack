@@ -28,6 +28,8 @@ public abstract class Box extends JPanel {
         return this.cd.getValue();
     }
 
+    public abstract void newHand();
+    public abstract boolean isBJ();
     protected abstract void graphicInit();
     public abstract void setPlaying(boolean value);
 }
