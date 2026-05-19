@@ -18,7 +18,7 @@ public class GameBox extends Box {
     private FancyGenButton hitButton;
     private FancyGenButton standButton;
     private FancyGenButton splitButton;
-    private Player player;
+    private final Player player;
 
     protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 

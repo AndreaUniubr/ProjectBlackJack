@@ -11,7 +11,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class DealerBox extends Box {
-    private Dealer dealer;
+    private final Dealer dealer;
 
     public DealerBox(Deck deck)
     {
