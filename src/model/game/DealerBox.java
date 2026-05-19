@@ -61,7 +61,7 @@ public class DealerBox extends Box {
 
     public void play()
     {
-        setPlaying(true);
+        isPlaying = (true);
         dealer.prePlay();
         cd.updateCards();
 
@@ -77,6 +77,7 @@ public class DealerBox extends Box {
         });
 
         timer.start();
+        setPlaying(false);
     }
 
     public boolean isBJ()

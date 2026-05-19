@@ -59,28 +59,24 @@ public class PlayPage extends JPanel {
         card2();
         gameBox.setPlaying(true);
 
-        /*
+
         // todo dio porco si è rotto lo split
+        // todo la madonna fa il valore sbagliato
         gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
-
-                dealerBox.play();
                 dealerBox.addIsPlayingListener(evt1 -> {
-                    // todo non ha accesso alla win perchè? liste3ner problema
-                    // non vede listener
                     checkWin();
                 });
+                dealerBox.play();
             }
-        });*/
+        });
 
 
         // todo:questa parte non cambia gioco bene, mettere pulsante ok a vincita e pulizia totale
-        /*gameBox.addIsPlayingListener(evt -> {
-            //gameBox.res();
-            //dealerBox.res();
+        gameBox.addIsPlayingListener(evt -> {
             gameStart();
-        });*/
+        });
     }
 
 
