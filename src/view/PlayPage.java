@@ -54,13 +54,13 @@ public class PlayPage extends JPanel {
         // todo qui vannno implementate le puntate
         // todo aggiungi var puntata nelle mani
 
-        iniGame();
-        card1();
-        card2();
-        gameBox.setPlaying(true);
+        //iniGame();
+        //card1();
+        //card2();
+        //gameBox.setPlaying(true);
 
         // todo dio porco si è rotto lo split
-
+/*
         gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
@@ -71,9 +71,10 @@ public class PlayPage extends JPanel {
                     // non vede listener
                     checkWin();
                 });
-
             }
         });
+
+ */
 
 
         // todo:questa parte non cambia gioco bene, mettere pulsante ok a vincita e pulizia totale
@@ -112,7 +113,7 @@ public class PlayPage extends JPanel {
 
     public void checkWin()
     {
-        int p1 = gameBox.getCD();
+        int p1 = gameBox.getCd();
         int d = dealerBox.getCd();
 
 
