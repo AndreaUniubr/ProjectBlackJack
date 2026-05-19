@@ -17,6 +17,7 @@ public class PlayPage extends JPanel {
     private final Deck deck = new Deck();
     private final DealerBox dealerBox;
     private final GameBox gameBox;
+    private FancyGenButton backButton;
 
 
 
@@ -210,12 +211,12 @@ public class PlayPage extends JPanel {
         // STATUS BAR
         JPanel statusBar = new JPanel(new BorderLayout());
         statusBar.setBackground(Color.BLACK);
-        statusBar.setPreferredSize(new Dimension(0, 40));
+        statusBar.setPreferredSize(new Dimension(0, 60));
         JPanel leftBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftBar.setOpaque(false);
 
-        // PRENDI IL BACK DA GAMEBOX
-        FancyGenButton backButton = new FancyGenButton("Back");
+        // BACK
+        backButton = new FancyGenButton("Back");
 
         // AZIONE (qui hai il controller)
         backButton.addActionListener(e ->
@@ -226,6 +227,8 @@ public class PlayPage extends JPanel {
 
         statusBar.add(leftBar, BorderLayout.WEST);
 
+
+
         JLabel amountLabel = new JLabel(
                 "Amount: " + gameBox.getPlayer().getBalance().getSaldo()
         );
@@ -233,7 +236,8 @@ public class PlayPage extends JPanel {
 
         JPanel centerBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centerBar.setOpaque(false);
-        centerBar.add(amountLabel);
+
+        //centerBar.add(amountLabel);
 
         statusBar.add(centerBar, BorderLayout.CENTER);
 
