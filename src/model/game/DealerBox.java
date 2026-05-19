@@ -52,7 +52,7 @@ public class DealerBox extends JPanel {
 
     public void res()
     {
-        cd.terminate();
+        //cd.terminate();
     }
 
     public void card1()

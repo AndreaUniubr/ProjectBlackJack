@@ -10,8 +10,8 @@ import java.awt.*;
 public class CardDisplayer extends JPanel {
 
     private Hand hand;
-    private JLabel valuePanel;
-    private JPanel contentPanel;
+    private final JLabel valuePanel;
+    private final JPanel contentPanel;
 
     public CardDisplayer(Hand hand)
     {
@@ -61,13 +61,10 @@ public class CardDisplayer extends JPanel {
         updateCards();
     }
 
-    public void setHand(Hand hand) {
-        this.hand = hand;
-    }
-
-    public void terminate()
+    public void setHand(Hand hand)
     {
-        contentPanel.removeAll();
+        this.hand = hand;
+        updateCards();
     }
 
     public void updateCards()

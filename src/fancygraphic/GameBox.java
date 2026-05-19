@@ -105,17 +105,15 @@ public class GameBox extends JPanel {
 
 
 
-
-
-// todo non cancella split
-    // e non mette valore corretto
+    // todo quando cambia mano non mostra valore corretto
     private void nextHand()
     {
-        updateButtons();
+
+        // todo update anche var che mostra il valore
+        //res();
         this.cd.setHand(player.getHand());
         cd.updateCards();
         this.check2();
-        cd.updateCards();
         setPlaying(true);
     }
 
@@ -166,7 +164,7 @@ public class GameBox extends JPanel {
 
     public void res()
     {
-        cd.terminate();
+        //cd.terminate();
     }
 
     public Player getPlayer()
@@ -189,7 +187,10 @@ public class GameBox extends JPanel {
     private void check2 ()
     {
         while (this.player.getHand().getCards().size() < 2)
+        {
             this.player.card();
+            cd.updateCards();
+        }
     }
 
     private void addCard()
@@ -229,6 +230,7 @@ public class GameBox extends JPanel {
                 {
                     player.split();
                     addCard();
+                    updateButtons();
                 }
             }
         });
