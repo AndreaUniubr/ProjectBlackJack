@@ -225,12 +225,13 @@ public class GameBox extends Box {
     public void setPlaying(boolean value) {
         boolean old = this.isPlaying;
         this.isPlaying = value;
-        pcs.firePropertyChange("isPlaying", old, value);
         pcs2.firePropertyChange("isPlaying", old, value);
     }
 
-    public void setPlayingFalse(boolean value)
+    public void setPlayingFalse()
     {
-        // todo troppe chiamate pulsante
+        this.isPlaying = false;
+        pcs.firePropertyChange("isPlaying", true, false);
+        pcs2.firePropertyChange("isPlaying", true, false);
     }
 }
