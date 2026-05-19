@@ -47,7 +47,7 @@ public class DealerBox extends Box {
 
     public void newHand ()
     {
-        setPlaying(false);
+        isPlaying = false;
         Hand h = new Hand();
         dealer.setHand(h);
         cd.setHand(h);
