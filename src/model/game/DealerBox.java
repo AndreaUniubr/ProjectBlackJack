@@ -50,7 +50,11 @@ public class DealerBox extends Box {
         isPlaying = false;
         Hand h = new Hand();
         dealer.setHand(h);
-        if (cd == null)cd = new CardDisplayer(h);
+        if (cd == null)
+        {
+            cd = new CardDisplayer(h);
+            add(cd);
+        }
         else cd.setHand(h);
         cd.updateCards();
     }
