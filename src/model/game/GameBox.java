@@ -117,7 +117,7 @@ public class GameBox extends Box {
         }
         else
         {
-            setPlaying(false);
+            setPlayingFalse();
         }
     }
 
@@ -221,13 +221,13 @@ public class GameBox extends Box {
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
-
+   // todo setplaying viene chiamato ad ogni modifica di isplaying
     public void setPlaying(boolean value) {
         boolean old = this.isPlaying;
         this.isPlaying = value;
         pcs2.firePropertyChange("isPlaying", old, value);
     }
-
+    // todo setplaying false viene chiamato se smetto di giocare
     public void setPlayingFalse()
     {
         this.isPlaying = false;
