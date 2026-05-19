@@ -1,9 +1,10 @@
-package fancygraphic;
+package model.game;
 
+import fancygraphic.CardDisplayer;
+import fancygraphic.FancyGenButton;
 import model.cards.Deck;
 import model.balance.Balance;
 import model.entities.Player;
-import model.game.Hand;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

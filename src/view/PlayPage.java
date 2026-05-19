@@ -2,15 +2,13 @@ package view;
 
 import controller.Controller;
 import fancygraphic.FancyGenButton;
-import fancygraphic.GameBox;
+import model.game.GameBox;
 import model.balance.Balance;
 import model.cards.Deck;
-import model.entities.Player;
 import model.game.DealerBox;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 import static view.Colours.getTableColor;
 
