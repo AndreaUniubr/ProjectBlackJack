@@ -85,7 +85,8 @@ public class DealerBox extends Box {
         return dealer.isBJ();
     }
 
-    public void setPlaying(boolean value) {
+    public void setPlaying(boolean value)
+    {
         boolean old = this.isPlaying;
         this.isPlaying = value;
         pcs.firePropertyChange("isPlaying", old, value);

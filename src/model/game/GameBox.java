@@ -223,7 +223,6 @@ public class GameBox extends Box {
     }
 
     public void setPlaying(boolean value) {
-        updateButtons();
         boolean old = this.isPlaying;
         this.isPlaying = value;
         pcs.firePropertyChange("isPlaying", old, value);
