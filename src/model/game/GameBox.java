@@ -15,9 +15,11 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class GameBox extends Box {
+    public JPanel buttonPanel;
     private FancyGenButton hitButton;
     private FancyGenButton standButton;
     private FancyGenButton splitButton;
+    public FancyGenButton fOk = new FancyGenButton("OK");
     private final Player player;
 
     protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
@@ -176,7 +178,7 @@ public class GameBox extends Box {
     public void iniButtons ()
     {
         // initialization
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         hitButton = new FancyGenButton("Hit");
         standButton = new FancyGenButton("Stand");
         splitButton = new FancyGenButton("Split");
@@ -209,11 +211,13 @@ public class GameBox extends Box {
 
         splitButton.setVisible(player.isSplittable());
         buttonPanel.setOpaque(false);
+        fOk.setVisible(false);
 
         // adding to panel
         buttonPanel.add(hitButton);
         buttonPanel.add(standButton);
         buttonPanel.add(splitButton);
+        buttonPanel.add(fOk);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -224,5 +228,10 @@ public class GameBox extends Box {
         this.isPlaying = value;
         pcs.firePropertyChange("isPlaying", old, value);
         pcs2.firePropertyChange("isPlaying", old, value);
+    }
+
+    public void setPlayingFalse(boolean value)
+    {
+        // todo troppe chiamate pulsante
     }
 }

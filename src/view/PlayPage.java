@@ -53,6 +53,7 @@ public class PlayPage extends JPanel {
 
         // todo qui vannno implementate le puntate
         // todo aggiungi var puntata nelle mani
+        // ricordati split usa cashhhhh
 
 
         // todo no timer quiiiiiiii
@@ -68,12 +69,13 @@ public class PlayPage extends JPanel {
             if (!newValue) {
                 dealerBox.addIsPlayingListener(evt1 -> {
                     checkWin();
-                    FancyGenButton f = new FancyGenButton("OK");
-                    f.addActionListener(evt2 -> {
-                        gameBox.remove(f); // todo no fa ma fa e troppo grosso
+// no va bene ini qui listeber
+                    gameBox.fOk.addActionListener(evt2 -> {
                         gameStart();
+                        gameBox.fOk.setVisible(false);
                     });
-                    gameBox.add(f);
+                    gameBox.fOk.setVisible(true);
+
                 });
                 dealerBox.play();
             }
