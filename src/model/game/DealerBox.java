@@ -10,8 +10,7 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class DealerBox extends JPanel {
-    private CardDisplayer cd;
+public class DealerBox extends Box {
     private final Dealer dealer;
     private Hand h;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);

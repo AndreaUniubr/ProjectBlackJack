@@ -14,8 +14,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class GameBox extends JPanel {
-    private CardDisplayer cd;
+public class GameBox extends Box {
     private final Player player;
 
     private FancyGenButton hitButton;
