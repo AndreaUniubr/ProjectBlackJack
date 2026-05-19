@@ -15,33 +15,25 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class GameBox extends Box {
-    private final Player player;
-
     private FancyGenButton hitButton;
     private FancyGenButton standButton;
     private FancyGenButton splitButton;
 
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    private final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
-
-    private boolean isPlaying;
-
+    protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 
     public GameBox(Deck deck, Balance balance)
     {
-        setLayout(new BorderLayout());
+        super(new Player("Player", balance, deck));
 
-        pcs.addPropertyChangeListener("isPlaying", evt -> updateButtons());
-
-        player = new Player("Player", balance, deck);
-
+        pcs2.addPropertyChangeListener("isPlaying", evt -> updateButtons());
         graphicInit();
         iniButtons();
     }
 
-    private void graphicInit ()
+    protected void graphicInit ()
     {
         setOpaque(false);
+        setLayout(new BorderLayout());
         setPreferredSize(new Dimension(600, 250));
         setMaximumSize(new Dimension(600, 250));
         setMinimumSize(new Dimension(600, 250));
@@ -52,18 +44,8 @@ public class GameBox extends Box {
         ));
     }
 
-    public void addIsPlayingListener(PropertyChangeListener l)
-    {
-        pcs2.addPropertyChangeListener("isPlaying", l);
-    }
 
-    public void setPlaying(boolean value) {
-        updateButtons();
-        boolean old = this.isPlaying;
-        this.isPlaying = value;
-        pcs.firePropertyChange("isPlaying", old, value);
-        pcs2.firePropertyChange("isPlaying", old, value);
-    }
+
 
 
 
@@ -178,11 +160,6 @@ public class GameBox extends Box {
         splitButton.setVisible(player.isSplittable());
     }
 
-    public int getCD()
-    {
-        return this.cd.getValue();
-    }
-
     // if less than 2 cards, give some, used for first card in splits
     private void check2 ()
     {
@@ -244,5 +221,18 @@ public class GameBox extends Box {
         buttonPanel.add(splitButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+
+
+
+
+
+    public void setPlaying(boolean value) {
+        updateButtons();
+        boolean old = this.isPlaying;
+        this.isPlaying = value;
+        pcs.firePropertyChange("isPlaying", old, value);
+        pcs2.firePropertyChange("isPlaying", old, value);
     }
 }

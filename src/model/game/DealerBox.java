@@ -11,15 +11,15 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class DealerBox extends Box {
-    private final Dealer dealer;
-    private Hand h;
-    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    private boolean isPlaying;
+
 
     public DealerBox(Deck deck)
     {
-        dealer = new Dealer(deck);
+        super(new Dealer(deck));
+    }
 
+    protected void graphicInit()
+    {
         setOpaque(false);
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(250,200));
@@ -30,18 +30,23 @@ public class DealerBox extends Box {
                 BorderFactory.createLineBorder(new Color(212,175,55), 3),
                 new EmptyBorder(8,8,8,8)
         ));
-
-        isPlaying = false;
-
     }
 
-    public void addIsPlayingListener(PropertyChangeListener l)
-    {
-        pcs.addPropertyChangeListener("isPlaying", l);
-    }
+
+
+
+
+
+
+
+
+    private Hand h;
+
+
 
     public void newHand ()
     {
+        isPlaying = false;
         h = new Hand();
         dealer.setHand(h);
         cd = new CardDisplayer(h);
@@ -91,8 +96,21 @@ public class DealerBox extends Box {
         return getCd() == 21 && h.getCards().size() == 2;
     }
 
-    public int getCd()
-    {
-        return this.cd.getValue();
+
+
+
+
+
+
+
+
+
+
+
+
+    public void setPlaying(boolean value) {
+        boolean old = this.isPlaying;
+        this.isPlaying = value;
+        pcs.firePropertyChange("isPlaying", old, value);
     }
 }
