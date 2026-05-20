@@ -1,7 +1,7 @@
 package model.game;
 
 import model.cards.Card;
-import model.cards.Ranks;
+import model.cards.Rank;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -36,7 +36,7 @@ public class Hand {
             if (c.isFaceUp())
             {
                 totale += c.getRank().getMinValue();
-                if (c.getRank() == Ranks.ACE)
+                if (c.getRank().isAce())
                     assi++;
             }
         }

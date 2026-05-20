@@ -3,11 +3,11 @@ package model.cards;
 // Classe che rappresenta l'effettiva carta
 public class Card{
     private final Suit suit;
-    private final Ranks rank;
+    private final Rank rank;
     private boolean faceUp;
 
     // Costruttore
-    public Card(Suit suit, Ranks rank)
+    public Card(Suit suit, Rank rank)
     {
         this.suit = suit;
         this.rank = rank;
@@ -41,7 +41,7 @@ public class Card{
         return this.suit;
     }
 
-    public Ranks getRank()
+    public Rank getRank()
     {
         return this.rank;
     }

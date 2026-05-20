@@ -45,7 +45,6 @@ public class Controller {
     *   - cards
     *       - Card
     *       - Deck
-    *       - Ranks
     *   - entities
     *   - game
     * */

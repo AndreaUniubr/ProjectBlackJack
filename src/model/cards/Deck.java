@@ -32,7 +32,7 @@ public class Deck {
 
         for (int i = 0; i < N_MAZZI; i++)
             for (Suit seme : Suit.values())
-                for (Ranks val : Ranks.values())
+                for (Rank val : Rank.values())
                     this.cards.add(new Card(seme, val));
 
         Collections.shuffle(this.cards);
