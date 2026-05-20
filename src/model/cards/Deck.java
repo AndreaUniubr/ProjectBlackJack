@@ -3,8 +3,12 @@ package model.cards;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**Represents a deck composed of multiple standard card sets.   *
+ * Concurrency is not required in this context because PlayPage *
+ * guarantees that the deck is accessed without concurrency.    */
 public class Deck {
-    private ArrayList<Card> cards;
+    // we use a List instead of a queue to allow shuffle by Collections
+    private final ArrayList<Card> cards;
     private static final int N_MAZZI = 4;
 
     public Deck ()
@@ -20,14 +24,12 @@ public class Deck {
 
     public Card getCard()
     {
-        if (getDim() < 1) this.restore();
+        if (getDim() == 0) this.restore();
         return this.cards.removeFirst();
     }
 
     public void restore()
     {
-        if (this.cards == null) this.cards = new ArrayList<>();
-
         this.cards.clear();
 
         for (int i = 0; i < N_MAZZI; i++)
