@@ -64,6 +64,7 @@ public class PlayPage extends JPanel {
         gameBox.setPlaying(true);
 
         // todo importantissimo, ad un certo punto si bugga tutto
+        // todo ad una certa si è buggato e ha dato una carta in piu al dealer
 
         gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();

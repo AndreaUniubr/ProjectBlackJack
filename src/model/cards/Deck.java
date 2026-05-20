@@ -31,7 +31,7 @@ public class Deck {
         this.cards.clear();
 
         for (int i = 0; i < N_MAZZI; i++)
-            for (Suits seme : Suits.values())
+            for (Suit seme : Suit.values())
                 for (Ranks val : Ranks.values())
                     this.cards.add(new Card(seme, val));
 

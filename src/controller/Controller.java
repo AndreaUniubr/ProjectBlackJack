@@ -25,12 +25,30 @@ public class Controller {
         -passaggio numero playerinizializzazione del game
         -risolvere problemi grafica e rendere flessibile
         -? impl giocatore bot
-        -
+        - ca,biare tipo carte?
+        - rendere risorsa condivisa deck??
         - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
         -usare stream e lambda
     * */
 
     // todo deve salvare i dati tipo balance?
+
+
+    /*
+    * todo finale, ellimina ogni cosa inutile, commenta, perfeziona e usa stream e lambda se utili/possibile
+    *  file/cartelle da fare (se non specificato si intende tutto)
+    *   - controller
+    *   - fancygraphic
+    *   - view
+    *   - main
+    *   - balance
+    *   - cards
+    *       - Card
+    *       - Deck
+    *       - Ranks
+    *   - entities
+    *   - game
+    * */
 
     public int getnPartecipanti()
     {
