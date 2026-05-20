@@ -43,7 +43,6 @@ public class Controller {
     *   - main
     *   - balance
     *   - cards
-    *       - Card
     *       - Deck
     *   - entities
     *   - game

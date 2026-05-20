@@ -1,21 +1,26 @@
 package model.cards;
 
-// Classe che rappresenta l'effettiva carta
+// Class to represent the Card
 public class Card{
     private final Suit suit;
     private final Rank rank;
     private boolean faceUp;
 
-    // Costruttore
     public Card(Suit suit, Rank rank)
     {
         this.suit = suit;
         this.rank = rank;
+        reveal();   // default value is revealed card
     }
 
-    public void setFaceUp(boolean faceUp)
+    public void reveal()
     {
-        this.faceUp = faceUp;
+        this.faceUp = true;
+    }
+
+    public void hide()
+    {
+        this.faceUp = false;
     }
 
     public boolean isFaceUp()
@@ -23,19 +28,29 @@ public class Card{
         return faceUp;
     }
 
-    // funzioni per vedere se due carte sono uguali
+    // check if two cards have equal value
     public boolean isEqualValue (Card c2)
     {
         return (this.getRank().getMinValue() == c2.getRank().getMinValue());
     }
 
-    public boolean isEqual (Card c2)
+    // check if two cards have equal suit
+    public boolean isEqualSuit (Card c2)
     {
-        boolean res = this.isEqualValue(c2);
-        return (res && (this.getSuit() == c2.getSuit()));
+        return this.getSuit() == c2.getSuit();
     }
 
-    // getter
+    // check if two cards is equal
+    public boolean isEqual (Card c2)
+    {
+        return isEqualValue(c2) && isEqualSuit(c2);
+    }
+
+    public boolean isRed()
+    {
+        return this.suit.isRed();
+    }
+
     public Suit getSuit()
     {
         return this.suit;
@@ -46,7 +61,7 @@ public class Card{
         return this.rank;
     }
 
-    // toString
+    // Override di toString
     @Override
     public String toString()
     {

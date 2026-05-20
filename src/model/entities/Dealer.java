@@ -29,7 +29,6 @@ public class Dealer extends Entities{
         if (this.hand.getValue() <= 16)
         {
             Card c = deck.getCard();
-            c.setFaceUp(true);
             this.hand.addCard(c);
         }
 

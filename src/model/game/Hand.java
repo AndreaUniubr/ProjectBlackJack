@@ -65,7 +65,7 @@ public class Hand {
     {
         for (Card c : this.getCards())
         {
-            c.setFaceUp(true);
+            c.reveal();
         }
         calcola();
     }

@@ -21,7 +21,7 @@ public abstract class Entities {
     protected void dealCard(boolean faceUp)
     {
         Card c = deck.getCard();
-        c.setFaceUp(faceUp);
+        if (!faceUp) c.hide();
         this.getHand().addCard(c);
     }
 

@@ -40,7 +40,7 @@ public class Player extends Entities{
     public boolean isSplittable()
     {
             if (this.hands.isEmpty()) return false;
-            return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).getRank().getMaxValue() == this.getHand().getCards().get(1).getRank().getMaxValue());
+            return (this.getHand().getCards().size() == 2) && (this.getHand().getCards().get(0).isEqualValue(this.getHand().getCards().get(1)));
     }
 
     public void split()
