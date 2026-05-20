@@ -54,10 +54,8 @@ public class GameBox extends Box {
         ));
     }
 
-    // todo quando cambia mano non mostra valore corretto
     private void nextHand()
     {
-        // todo update anche var che mostra il valore
         this.cd.setHand(player.getHand());
         cd.updateCards();
         this.check2();

@@ -40,6 +40,16 @@ public class CardDisplayer extends JPanel {
         contentPanel.setLayout(null);
 
         // listener aggiornamenti
+        updateListener();
+
+        add(contentPanel, BorderLayout.CENTER);
+        add(valuePanel, BorderLayout.SOUTH);
+
+        updateCards();
+    }
+
+    public void updateListener()
+    {
         hand.addPropertyChangeListener(evt -> {
 
             if(evt.getPropertyName().equals("value"))
@@ -54,16 +64,12 @@ public class CardDisplayer extends JPanel {
             }
 
         });
-
-        add(contentPanel, BorderLayout.CENTER);
-        add(valuePanel, BorderLayout.SOUTH);
-
-        updateCards();
     }
 
     public void setHand(Hand hand)
     {
         this.hand = hand;
+        updateListener();
         updateCards();
     }
 

@@ -63,8 +63,8 @@ public class PlayPage extends JPanel {
         card2();
         gameBox.setPlaying(true);
 
+        // todo importantissimo, ad un certo punto si bugga tutto
 
-        // todo la madonna fa il valore sbagliato
         gameBox.addIsPlayingListener(evt -> {
             boolean newValue = (boolean) evt.getNewValue();
             if (!newValue) {
