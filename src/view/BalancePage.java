@@ -7,7 +7,7 @@ import model.balance.Balance;
 import javax.swing.*;
 import java.awt.*;
 
-import static view.Colours.getTableColor;
+import static model.game.Constants.TABLE_COLOR;
 
 public class BalancePage extends JPanel {
     private final Controller controller;
@@ -20,7 +20,7 @@ public class BalancePage extends JPanel {
     {
         this.controller = controller;
         this.playerBalance = playerBalance;
-        setBackground(getTableColor());
+        setBackground(TABLE_COLOR);
 
         this.setupBalanceText();
         this.setupInput();
