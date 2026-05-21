@@ -28,7 +28,7 @@ public class Dealer extends Entities{
     {
         if (this.hand.getValue() <= 16)
         {
-            Card c = deck.getCard();
+            Card c = deck.drawCard();
             this.hand.addCard(c);
         }
 

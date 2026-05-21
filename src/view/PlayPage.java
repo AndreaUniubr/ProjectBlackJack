@@ -125,7 +125,7 @@ public class PlayPage extends JPanel {
 
     public void iniGame()
     {
-        if (deck.getDim() < 35) deck.restore();
+        if (deck.getSize() < 35) deck.restore();
         gameBox.setPlaying(false);
         dealerBox.newHand();
         gameBox.newHand();

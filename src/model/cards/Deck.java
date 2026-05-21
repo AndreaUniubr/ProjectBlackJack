@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Deck {
     // we use a List instead of a queue to allow shuffle by Collections
     private final ArrayList<Card> cards;
-    private static final int N_MAZZI = 4;
+    private static final int DECK_COUNT = 4;
 
     public Deck ()
     {
@@ -17,25 +17,25 @@ public class Deck {
         restore();
     }
 
-    public int getDim()
+    public int getSize()
     {
         return this.cards.size();
     }
 
-    public Card getCard()
+    public Card drawCard()
     {
-        if (getDim() == 0) this.restore();
-        return this.cards.removeFirst();
+        if (getSize() == 0) this.restore();
+        return this.cards.removeFirst();    // valid, because from java 21 removeFirst is implemented in arraylists
     }
 
     public void restore()
     {
         this.cards.clear();
 
-        for (int i = 0; i < N_MAZZI; i++)
-            for (Suit seme : Suit.values())
-                for (Rank val : Rank.values())
-                    this.cards.add(new Card(seme, val));
+        for (int i = 0; i < DECK_COUNT; i++)
+            for (Suit suit : Suit.values())
+                for (Rank rank : Rank.values())
+                    this.cards.add(new Card(suit, rank));
 
         Collections.shuffle(this.cards);
     }
