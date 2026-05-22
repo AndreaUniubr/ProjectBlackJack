@@ -7,7 +7,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-import static view.Colours.getTableColor;
+import static model.game.Constants.TABLE_COLOR;
+
 
 public class HomePage extends JPanel {
 
@@ -15,7 +16,7 @@ public class HomePage extends JPanel {
 
         setLayout(new BorderLayout());
 
-        setBackground(getTableColor());
+        setBackground(TABLE_COLOR);
 
         JLabel label = new JLabel("BLACKJACK");
         label.setForeground(new Color(218, 165, 32));

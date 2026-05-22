@@ -11,7 +11,8 @@ import model.game.DealerBox;
 import javax.swing.*;
 import java.awt.*;
 
-import static view.Colours.getTableColor;
+import static model.game.Constants.TABLE_COLOR;
+
 
 public class PlayPage extends JPanel {
     private final Controller controller;
@@ -36,7 +37,7 @@ public class PlayPage extends JPanel {
         // per ora nPartecipanti inutilizzato
 
         setLayout(new BorderLayout());
-        setBackground(getTableColor());
+        setBackground(TABLE_COLOR);
 
         add(createTop(), BorderLayout.NORTH);
         add(createCenter(), BorderLayout.CENTER);
@@ -131,7 +132,7 @@ public class PlayPage extends JPanel {
 
     public void iniGame()
     {
-        if (deck.getDim() < 35) deck.restore();
+        if (deck.getSize() < 35) deck.restore();
         gameBox.setPlaying(false);
         dealerBox.newHand();
         gameBox.newHand();

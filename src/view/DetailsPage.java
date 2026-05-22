@@ -7,7 +7,7 @@ import fancygraphic.FancyNames;
 import javax.swing.*;
 import java.awt.*;
 
-import static view.Colours.getTableColor;
+import static model.game.Constants.TABLE_COLOR;
 
 public class DetailsPage extends JPanel {
 
@@ -15,7 +15,7 @@ public class DetailsPage extends JPanel {
 
         setLayout(new BorderLayout());
 
-        setBackground(getTableColor());
+        setBackground(TABLE_COLOR);
 
         String[] names = {
                 "Ideated and Implementated By",

@@ -39,10 +39,14 @@ public class Controller {
     *   - controller
     *   - fancygraphic
     *   - view
+    *       - BalancePage
+    *       - DetailPage
+    *       - HomePage
+    *       - MainPage
+    *       - PlayPage
+    *       - state
     *   - main
     *   - balance
-    *   - cards
-    *       - Deck
     *   - entities
     *   - game
     * */
