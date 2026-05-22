@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import fancygraphic.FancyFichesButton;
 import fancygraphic.FancyGenButton;
 import model.game.GameBox;
 import model.balance.Balance;
@@ -18,8 +19,13 @@ public class PlayPage extends JPanel {
     private final DealerBox dealerBox;
     private final GameBox gameBox;
     private FancyGenButton backButton;
-
-
+    private FancyFichesButton fichesButtonTen;
+    private FancyFichesButton fichesButtonTwenty;
+    private FancyFichesButton fichesButtonFifty;
+    private FancyFichesButton fichesButtonHundred;
+    private FancyFichesButton fichesButtonTwoHundred;
+    private FancyFichesButton fichesButtonFiveHundred;
+    private FancyFichesButton fichesButtonThousand;
 
     public PlayPage(Controller controller, int nPartecipanti, Balance balance)
     {
@@ -161,37 +167,54 @@ public class PlayPage extends JPanel {
 
         // STATUS BAR
         JPanel statusBar = new JPanel(new BorderLayout());
-        statusBar.setBackground(Color.BLACK);
+        statusBar.setOpaque(false);
         statusBar.setPreferredSize(new Dimension(0, 60));
+        // STATUS BAR LEFT
         JPanel leftBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftBar.setOpaque(false);
 
-        // BACK
         backButton = new FancyGenButton("Back");
-
-        // AZIONE (qui hai il controller)
         backButton.addActionListener(e ->
                  controller.setState(State.HOME)
         );
-
         leftBar.add(backButton);
-
         statusBar.add(leftBar, BorderLayout.WEST);
-
-
-
-        JLabel amountLabel = new JLabel(
-                "Amount: " + gameBox.getPlayer().getBalance().getSaldo()
-        );
-        amountLabel.setForeground(Color.WHITE);
-
+        // STATUS BAR CENTER
         JPanel centerBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+
+        fichesButtonTen = new FancyFichesButton(107, 422, 160, 154);
+        fichesButtonTwenty = new FancyFichesButton(289, 423, 160, 154);
+        fichesButtonFifty = new FancyFichesButton(469, 422, 160, 154);
+        fichesButtonHundred = new FancyFichesButton(642, 423, 160, 154);
+        fichesButtonTwoHundred = new FancyFichesButton(814, 423, 160, 154);
+        fichesButtonFiveHundred = new FancyFichesButton(986, 422, 160, 154);
+        fichesButtonThousand = new FancyFichesButton(1162, 422, 160, 154);
+
+
+
+
         centerBar.setOpaque(false);
-
-        //centerBar.add(amountLabel);
-
+        //centerBar.setPreferredSize(new Dimension(600, 60));
+        //centerBar.setMaximumSize(new Dimension(600, 60));
+        //centerBar.setMinimumSize(new Dimension(600, 60));
+        centerBar.add(fichesButtonTen);
+        centerBar.add(fichesButtonTwenty);
+        centerBar.add(fichesButtonFifty);
+        centerBar.add(fichesButtonHundred);
+        centerBar.add(fichesButtonTwoHundred);
+        centerBar.add(fichesButtonFiveHundred);
+        centerBar.add(fichesButtonThousand);
         statusBar.add(centerBar, BorderLayout.CENTER);
 
+        // STATUS BAR RIGHT
+        JPanel rightBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightBar.setOpaque(false);
+        JLabel amountLabel = new JLabel("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
+        amountLabel.setForeground(Color.WHITE);
+        amountLabel.setFont(getFont().deriveFont(40f));
+        rightBar.add(amountLabel);
+        statusBar.add(rightBar, BorderLayout.EAST);
         wrapper.add(statusBar, BorderLayout.SOUTH);
 
         return wrapper;
