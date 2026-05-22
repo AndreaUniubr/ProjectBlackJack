@@ -10,6 +10,8 @@ import model.game.DealerBox;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static model.game.Constants.TABLE_COLOR;
 
@@ -172,6 +174,8 @@ public class PlayPage extends JPanel {
         statusBar.setPreferredSize(new Dimension(0, 60));
         // STATUS BAR LEFT
         JPanel leftBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        leftBar.setPreferredSize(new Dimension(600, 60));
+        leftBar.setMinimumSize(new Dimension(600, 60));
         leftBar.setOpaque(false);
 
         backButton = new FancyGenButton("Back");
@@ -185,6 +189,12 @@ public class PlayPage extends JPanel {
 
 
         fichesButtonTen = new FancyFichesButton(107, 422, 160, 154);
+        fichesButtonTen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(10);
+            }
+        });
         fichesButtonTwenty = new FancyFichesButton(289, 423, 160, 154);
         fichesButtonFifty = new FancyFichesButton(469, 422, 160, 154);
         fichesButtonHundred = new FancyFichesButton(642, 423, 160, 154);
@@ -196,9 +206,8 @@ public class PlayPage extends JPanel {
 
 
         centerBar.setOpaque(false);
-        //centerBar.setPreferredSize(new Dimension(600, 60));
-        //centerBar.setMaximumSize(new Dimension(600, 60));
-        //centerBar.setMinimumSize(new Dimension(600, 60));
+        centerBar.setPreferredSize(new Dimension(600, 60));
+        centerBar.setMinimumSize(new Dimension(600, 60));
         centerBar.add(fichesButtonTen);
         centerBar.add(fichesButtonTwenty);
         centerBar.add(fichesButtonFifty);
@@ -210,11 +219,17 @@ public class PlayPage extends JPanel {
 
         // STATUS BAR RIGHT
         JPanel rightBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightBar.setPreferredSize(new Dimension(600, 60));
+        rightBar.setMinimumSize(new Dimension(600, 60));
         rightBar.setOpaque(false);
         JLabel amountLabel = new JLabel("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
+        JLabel betLabel = new JLabel("Bet: " + gameBox.getBet());
         amountLabel.setForeground(Color.WHITE);
         amountLabel.setFont(getFont().deriveFont(40f));
+        betLabel.setForeground(Color.WHITE);
+        betLabel.setFont(getFont().deriveFont(40f));
         rightBar.add(amountLabel);
+        rightBar.add(betLabel);
         statusBar.add(rightBar, BorderLayout.EAST);
         wrapper.add(statusBar, BorderLayout.SOUTH);
 
