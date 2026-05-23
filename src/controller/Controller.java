@@ -39,12 +39,12 @@ public class Controller {
     *   - controller
     *   - fancygraphic
     *       - CardDisplayer
+    *       - FancyFichesButton
     *       - FancyCard
     *       - FancyGenButton
     *       - FancyPlayButton
     *   - view
     *       - BalancePage
-    *       - DetailPage
     *       - HomePage
     *       - MainPage
     *       - PlayPage
