@@ -14,7 +14,6 @@ public class DetailsPage extends JPanel {
     public DetailsPage(Controller controller) {
 
         setLayout(new BorderLayout());
-
         setBackground(TABLE_COLOR);
 
         String[] names = {
@@ -28,23 +27,26 @@ public class DetailsPage extends JPanel {
         FancyNames fancyNames = new FancyNames(names);
         FancyGenButton fancyButton = new FancyGenButton("Back");
 
-        fancyButton.addActionListener( e ->
-            controller.setState(State.HOME)
-        );
+        fancyButton.addActionListener(e -> controller.setState(State.HOME));
 
-        // pannello centrale per centrare bene tutto
-        JPanel centerPanel = new JPanel();
+        // vertical centration
+        JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+
+        // internal vertical container
+        JPanel content = new JPanel();
+        content.setOpaque(false);
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
         fancyNames.setAlignmentX(Component.CENTER_ALIGNMENT);
         fancyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        centerPanel.add(Box.createVerticalGlue());
-        centerPanel.add(fancyNames);
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        centerPanel.add(fancyButton);
-        centerPanel.add(Box.createVerticalGlue());
+        // internal spacing
+        content.add(fancyNames);
+        content.add(Box.createVerticalStrut(30));
+        content.add(fancyButton);
+
+        centerPanel.add(content);
 
         add(centerPanel, BorderLayout.CENTER);
     }
