@@ -18,7 +18,7 @@ public class DetailsPage extends JPanel {
         setBackground(TABLE_COLOR);
 
         String[] names = {
-                "Ideated and Implementated By",
+                "Designed and Developed By",
                 "Andrea Spadoni",
                 "Aurora Mazzone",
                 "Francesco Pio Venturi",

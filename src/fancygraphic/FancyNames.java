@@ -3,27 +3,30 @@ package fancygraphic;
 import javax.swing.*;
 import java.awt.*;
 
+// Class to show in an elegant way the names on the screen
 public class FancyNames extends JPanel {
+    private static final Font NAME_FONT = new Font("Serif", Font.BOLD | Font.ITALIC, 36);
 
     public FancyNames(String[] names) {
-
-        setOpaque(false); // così si vede il verde della pagina dietro
+        setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        // Spazio sopra per centrare verticalmente meglio
+        // Empty space Up for a better positioning
         add(Box.createVerticalGlue());
 
-        for (String name : names) {
-            JLabel label = new JLabel(name);
+        JLabel label;
+        for (String name : names)
+        {
+            label = new JLabel(name);
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
             label.setForeground(Color.WHITE);
-            label.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 36));
+            label.setFont(NAME_FONT);
 
             add(label);
-            add(Box.createRigidArea(new Dimension(0, 20))); // spazio tra i nomi
+            label.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         }
 
-        // Spazio sotto
+        // Empty space Under for a better positioning
         add(Box.createVerticalGlue());
     }
 }

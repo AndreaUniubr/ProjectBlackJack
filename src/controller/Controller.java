@@ -38,13 +38,17 @@ public class Controller {
     *  file/cartelle da fare (se non specificato si intende tutto)
     *   - controller
     *   - fancygraphic
+    *       - CardDisplayer
+    *       - FancyCard
+    *       - FancyGenButton
+    *       - FancyNames
+    *       - FancyPlayButton
     *   - view
     *       - BalancePage
     *       - DetailPage
     *       - HomePage
     *       - MainPage
     *       - PlayPage
-    *       - state
     *   - main
     *   - balance
     *   - entities
