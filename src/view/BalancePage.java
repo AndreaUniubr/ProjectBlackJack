@@ -59,7 +59,7 @@ public class BalancePage extends JPanel {
         input = new JPanel(new FlowLayout(FlowLayout.LEFT));
         input.setOpaque(false);
 
-        JLabel text = new JLabel("Add ammount");
+        JLabel text = new JLabel("Add amount");
         text.setForeground(Color.WHITE);
         text.setFont(new Font("Serif", Font.PLAIN, 16));
 
@@ -67,26 +67,26 @@ public class BalancePage extends JPanel {
         i.setFont(new Font("Arial", Font.PLAIN, 20));
         i.setPreferredSize(new Dimension(200, 40));
 
-        FancyGenButton add = getAdd(i);
+        FancyGenButton add = getAddButton(i);
 
         input.add(text);
         input.add(i);
         input.add(add);
     }
 
-    private FancyGenButton getAdd(JTextField i)
+    private FancyGenButton getAddButton(JTextField i)
     {
         FancyGenButton add = new FancyGenButton("Add");
         add.addActionListener( e ->
                 {
                     try
                     {
-                        int ammount = Integer.parseInt(i.getText());
-                        if (ammount > 0) {
+                        int amount = Integer.parseInt(i.getText());
+                        if (amount > 0) {
                             i.setText("");
-                            playerBalance.aggiungiSoldi(ammount);
+                            playerBalance.aggiungiSoldi(amount);
                         }
-                    } catch (Exception ex) {
+                    } catch (NumberFormatException ex) {
                         i.setText("");
                     }
                 }
@@ -98,10 +98,9 @@ public class BalancePage extends JPanel {
     {
         balanceText = new JLabel("Your balance is : " + playerBalance.getSaldo() + "$");
 
-        // controlla ogni 200ms possibili cambi di saldo
-        new javax.swing.Timer(200, e -> {
+        playerBalance.addBalanceListener( e -> {
             balanceText.setText("Your balance is : " + playerBalance.getSaldo() + "$");
-        }).start();
+        });
 
         balanceText.setForeground(new Color(212, 175, 55));
         balanceText.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 46));
