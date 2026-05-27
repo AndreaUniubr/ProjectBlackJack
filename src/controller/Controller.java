@@ -1,5 +1,6 @@
 package controller;
 
+import model.balance.Balance;
 import view.State;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,17 @@ public class Controller {
     private int turno;
     private int nPartecipanti;
     private boolean giveCards;
+    Balance balance;
 
     public Controller()
     {
+        balance = new Balance(1000);
         this.nPartecipanti = 1; // todo possibile modificarlo
         this.turno = 0;
         this.giveCards = true;
     }
+
+
 
 
     /*todo (macroargomenti basandosi su logica MVC in qui il controller gestisce ogni azione):
@@ -30,7 +35,7 @@ public class Controller {
         -usare stream e lambda
     * */
 
-    // todo deve salvare i dati tipo balance?
+    // todo deve salvare i dati tipo balance? in caso qui
 
 
     /*
@@ -44,13 +49,17 @@ public class Controller {
     *       - FancyPlayButton
     *   - view
     *       - HomePage
-    *       - MainPage
     *       - PlayPage
     *   - main
     *   - balance
     *   - entities
     *   - game
     * */
+
+    public Balance getBalance()
+    {
+        return this.balance;
+    }
 
     public int getnPartecipanti()
     {
