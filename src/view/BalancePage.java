@@ -10,6 +10,11 @@ import java.awt.*;
 import static model.game.Constants.TABLE_COLOR;
 
 public class BalancePage extends JPanel {
+    public static final Font BALANCE_TEXT_FONT = new Font("Serif", Font.BOLD | Font.ITALIC, 46);
+    public static final Color BALANCE_TEXT_COLOR = new Color(212, 175, 55);
+    public static final Font AMOUNT_LABEL_FONT = new Font("Serif", Font.PLAIN, 16);
+    public static final Font AMOUNT_FIELD_FONT = new Font("Arial", Font.PLAIN, 20);
+
     private final Controller controller;
     private final Balance playerBalance;
     private JLabel balanceText;
@@ -56,38 +61,44 @@ public class BalancePage extends JPanel {
 
     private void setupInput()
     {
-        input = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        input = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 0));
         input.setOpaque(false);
 
-        JLabel text = new JLabel("Add amount");
-        text.setForeground(Color.WHITE);
-        text.setFont(new Font("Serif", Font.PLAIN, 16));
+        JLabel amountLabel = new JLabel("Add amount");
+        amountLabel.setForeground(Color.WHITE);
+        amountLabel.setFont(AMOUNT_LABEL_FONT);
 
-        JTextField i = new JTextField(10);
-        i.setFont(new Font("Arial", Font.PLAIN, 20));
-        i.setPreferredSize(new Dimension(200, 40));
+        JTextField amountField = new JTextField(10);
+        amountField.setFont(AMOUNT_FIELD_FONT);
+        amountField.setPreferredSize(new Dimension(200, 40));
 
-        FancyGenButton add = getAddButton(i);
+        amountField.setHorizontalAlignment(JTextField.CENTER);
+        amountField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
-        input.add(text);
-        input.add(i);
+        FancyGenButton add = getAddButton(amountField);
+
+        // Pressing ENTER triggers the add button action
+        amountField.addActionListener(e -> add.doClick());
+
+        input.add(amountLabel);
+        input.add(amountField);
         input.add(add);
     }
 
-    private FancyGenButton getAddButton(JTextField i)
+    private FancyGenButton getAddButton(JTextField amountField)
     {
         FancyGenButton add = new FancyGenButton("Add");
         add.addActionListener( e ->
                 {
                     try
                     {
-                        int amount = Integer.parseInt(i.getText());
+                        int amount = Integer.parseInt(amountField.getText());
                         if (amount > 0) {
-                            i.setText("");
+                            amountField.setText("");
                             playerBalance.aggiungiSoldi(amount);
                         }
                     } catch (NumberFormatException ex) {
-                        i.setText("");
+                        amountField.setText("");
                     }
                 }
         );
@@ -96,13 +107,21 @@ public class BalancePage extends JPanel {
 
     private void setupBalanceText()
     {
-        balanceText = new JLabel("Your balance is : " + playerBalance.getSaldo() + "$");
+        balanceText = new JLabel();
+        updateBalanceText();
 
-        playerBalance.addBalanceListener( e -> {
-            balanceText.setText("Your balance is : " + playerBalance.getSaldo() + "$");
-        });
+        // Automatically updates the displayed balance
+        // whenever the model balance changes
+        playerBalance.addBalanceListener( e -> {updateBalanceText();});
 
-        balanceText.setForeground(new Color(212, 175, 55));
-        balanceText.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 46));
+        balanceText.setForeground(BALANCE_TEXT_COLOR);
+        balanceText.setFont(BALANCE_TEXT_FONT);
+    }
+
+    private void updateBalanceText()
+    {
+        balanceText.setText(
+                "Your balance is: " + playerBalance.getSaldo() + "$"
+        );
     }
 }
