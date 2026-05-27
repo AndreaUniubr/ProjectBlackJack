@@ -83,8 +83,7 @@ public class Player extends Entities{
         {
             this.getBalance().togliSoldi(bet);
             return true;
-        }
-        return false;
+        }else  return false;
     }
 
     public void pagaWin (int win)

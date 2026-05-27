@@ -170,6 +170,8 @@ public class PlayPage extends JPanel {
 
         // STATUS BAR
         JPanel statusBar = new JPanel(new BorderLayout());
+        JLabel amountLabel = new JLabel("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
+        JLabel betLabel = new JLabel("Bet: " + gameBox.getBet());
         statusBar.setOpaque(false);
         statusBar.setPreferredSize(new Dimension(0, 60));
         // STATUS BAR LEFT
@@ -193,14 +195,58 @@ public class PlayPage extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameBox.setBet(10);
+                updateBalanceAndBet(amountLabel, betLabel);
+
             }
         });
         fichesButtonTwenty = new FancyFichesButton(289, 423, 160, 154);
+        fichesButtonTwenty.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(20);
+                updateBalanceAndBet(amountLabel, betLabel);
+            }
+        });
         fichesButtonFifty = new FancyFichesButton(469, 422, 160, 154);
+        fichesButtonFifty.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(50);
+                updateBalanceAndBet(amountLabel, betLabel);
+            }
+        });
         fichesButtonHundred = new FancyFichesButton(642, 423, 160, 154);
+        fichesButtonHundred.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(100);
+                updateBalanceAndBet(amountLabel, betLabel);
+            }
+        });
         fichesButtonTwoHundred = new FancyFichesButton(814, 423, 160, 154);
+        fichesButtonTwoHundred.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(200);
+                updateBalanceAndBet(amountLabel, betLabel);
+            }
+        });
         fichesButtonFiveHundred = new FancyFichesButton(986, 422, 160, 154);
+        fichesButtonFiveHundred.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(500);
+                updateBalanceAndBet(amountLabel, betLabel);
+            }
+        });
         fichesButtonThousand = new FancyFichesButton(1162, 422, 160, 154);
+        fichesButtonThousand.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameBox.setBet(1000);
+                updateBalanceAndBet(amountLabel, betLabel);
+            }
+        });
 
 
 
@@ -222,8 +268,7 @@ public class PlayPage extends JPanel {
         rightBar.setPreferredSize(new Dimension(600, 60));
         rightBar.setMinimumSize(new Dimension(600, 60));
         rightBar.setOpaque(false);
-        JLabel amountLabel = new JLabel("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
-        JLabel betLabel = new JLabel("Bet: " + gameBox.getBet());
+
         amountLabel.setForeground(Color.WHITE);
         amountLabel.setFont(getFont().deriveFont(40f));
         betLabel.setForeground(Color.WHITE);
@@ -234,5 +279,11 @@ public class PlayPage extends JPanel {
         wrapper.add(statusBar, BorderLayout.SOUTH);
 
         return wrapper;
+    }
+
+    public void updateBalanceAndBet(JLabel amountLabel, JLabel betLabel)
+    {
+        amountLabel.setText("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
+        betLabel.setText("Bet: " + gameBox.getBet());
     }
 }

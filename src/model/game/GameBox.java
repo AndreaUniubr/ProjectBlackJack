@@ -26,6 +26,7 @@ public class GameBox extends Box {
     public FancyGenButton fOk = new FancyGenButton("OK");
     private final Player player;
     private int bet;
+    private int totBet;
 
     protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
 
@@ -88,6 +89,7 @@ public class GameBox extends Box {
         if (player.playsBet(amount))
         {
             bet = amount;
+            totBet = totBet + amount;
             return true;
         }
         else
@@ -98,7 +100,7 @@ public class GameBox extends Box {
 
     public int getBet()
     {
-        return bet;
+        return totBet;
     }
 
     public boolean isPagable(int sum)
