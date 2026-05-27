@@ -22,6 +22,8 @@ public class PlayPage extends JPanel {
     private final DealerBox dealerBox;
     private final GameBox gameBox;
     private FancyGenButton backButton;
+    private JLabel amountLabel;
+    private JLabel betLabel;
     private FancyFichesButton fichesButtonTen;
     private FancyFichesButton fichesButtonTwenty;
     private FancyFichesButton fichesButtonFifty;
@@ -34,6 +36,8 @@ public class PlayPage extends JPanel {
     {
         dealerBox = new DealerBox(deck);
         gameBox = new GameBox(deck, balance);
+        amountLabel = new JLabel("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
+        betLabel = new JLabel("Bet: " + gameBox.getBet());
         this.controller = controller;
 
         // per ora nPartecipanti inutilizzato
@@ -82,6 +86,8 @@ public class PlayPage extends JPanel {
                     checkWin();
 // no va bene ini qui listeber
                     gameBox.fOk.addActionListener(evt2 -> {
+                        gameBox.resetTotalBet();
+                        updateBalanceAndBet(amountLabel, betLabel);
                         gameStart();
                         gameBox.fOk.setVisible(false);
                     });
@@ -170,10 +176,10 @@ public class PlayPage extends JPanel {
 
         // STATUS BAR
         JPanel statusBar = new JPanel(new BorderLayout());
-        JLabel amountLabel = new JLabel("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
-        JLabel betLabel = new JLabel("Bet: " + gameBox.getBet());
+
         statusBar.setOpaque(false);
         statusBar.setPreferredSize(new Dimension(0, 60));
+
         // STATUS BAR LEFT
         JPanel leftBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftBar.setPreferredSize(new Dimension(600, 60));
