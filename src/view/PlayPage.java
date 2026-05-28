@@ -71,6 +71,8 @@ public class PlayPage extends JPanel {
         // todo porco dio mi fa giocare senza puntate,....
         // perchè mi mette a 2k la vincita se perdo? e scommettere mentre si gioca...
 
+        // ok non puo comparire subito
+
 
         // todo no timer quiiiiiiii
         iniGame();

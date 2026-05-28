@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class CardDisplayer extends JPanel {
+    private static final Color TABLE_COLOR_2 = new Color(10, 90, 50);
+    private static final Color BORDER_COLOR = new Color(212,175,55);
+    private static final Font VALUE_FONT = new Font("Serif", Font.BOLD, 28);
 
     private Hand hand;
     private final JLabel valuePanel;
@@ -24,13 +27,13 @@ public class CardDisplayer extends JPanel {
 
         // bordo oro
         setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(212,175,55), 3),
+                BorderFactory.createLineBorder(BORDER_COLOR , 3),
                 new EmptyBorder(8,8,8,8)
         ));
 
         // valore mano
         valuePanel = new JLabel( (hand.getValue() <= 21) ? ""+hand.getValue() : "BUST");
-        valuePanel.setFont(new Font("Serif", Font.BOLD, 28));
+        valuePanel.setFont(VALUE_FONT);
         valuePanel.setForeground(Color.WHITE);
         valuePanel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -98,29 +101,22 @@ public class CardDisplayer extends JPanel {
         
     }
 
-    public JPanel getContentPanel()
+    public int getValue ()
     {
-        return contentPanel;
+        return this.hand.getValue();
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
-
-
 
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // verde tavolo blackjack
-        g2.setColor(new Color(10, 90, 50));
+        g2.setColor(TABLE_COLOR_2);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
 
         g2.dispose();
-    }
-
-    public int getValue ()
-    {
-        return this.hand.getValue();
     }
 }
