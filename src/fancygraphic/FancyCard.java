@@ -5,21 +5,24 @@ import model.cards.Card;
 import javax.swing.*;
 import java.awt.*;
 
-public class FancyCard extends JPanel{
-    private static Image sprite;
+public class FancyCard extends JPanel {
+    private static final Image sprite;
 
     private static final int NUM_COLS = 14;
     private static final int NUM_ROWS = 4;
+    private static final int BACK_COL = 13;
+    private static final int BACK_ROW = 3;
 
-    private static int cardWidth;
-    private static int cardHeight;
+    private static final int CARD_WIDTH;
+    private static final int CARD_HEIGHT;
 
     private Card card;
 
-    private final int widthCorrector = 13;
-    private final int heightCorrector = 12;
+    // Scale divisors chosen to preserve the card aspect ratio
+    private static final int WIDTH_SCALE_DIVISOR = 13;
+    private static final int HEIGHT_SCALE_DIVISOR = 12;
 
-    // Caricamento statico della sprite (una sola volta)
+    // Loads the whole card deck sprite sheet once for all card instances
     static {
         try {
             sprite = new ImageIcon(
@@ -29,59 +32,52 @@ public class FancyCard extends JPanel{
             int spriteWidth = sprite.getWidth(null);
             int spriteHeight = sprite.getHeight(null);
 
-            cardWidth = spriteWidth / NUM_COLS;
-            cardHeight = spriteHeight / NUM_ROWS;
+            CARD_WIDTH = spriteWidth / NUM_COLS;
+            CARD_HEIGHT = spriteHeight / NUM_ROWS;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load card sprite", e);
         }
     }
 
-    public FancyCard(Card card) {
+    public FancyCard (Card card)
+    {
         this.card = card;
-        setPreferredSize(new Dimension(cardWidth, cardHeight));
+        setPreferredSize(new Dimension(CARD_WIDTH, CARD_HEIGHT));
         setOpaque(false);
     }
 
-    public void setCard(Card card) {
+    public void setCard(Card card)
+    {
         this.card = card;
         repaint();
     }
 
+    // Draws either the card face or the back sprite depending on visibility
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
 
         if (card == null) return;
 
-        if (!card.isFaceUp()) {
-            drawBack(g);
-            return;
-        }
+        int col = card.isFaceUp()
+                ? card.getRank().getPosition()
+                : BACK_COL;
 
-        int col = card.getRank().getPosition();
-        int row = card.getSuit().getPosition();
+        int row = card.isFaceUp()
+                ? card.getSuit().getPosition()
+                : BACK_ROW;
 
-        int sx = col * cardWidth;
-        int sy = row * cardHeight;
+        int sx = col * CARD_WIDTH;
+        int sy = row * CARD_HEIGHT;
 
-        g.drawImage(sprite,
-                0, 0, getWidth() / widthCorrector, getHeight() / heightCorrector,
-                sx, sy, sx + cardWidth, sy + cardHeight,
-                this);
-    }
-
-    private void drawBack(Graphics g) {
-        // posizione dietro della carta
-        int backRow = 3;
-        int backColumn = 13;
-
-        int sx = backColumn * cardWidth;
-        int sy = backRow * cardHeight;
-
-        g.drawImage(sprite,
-                0, 0, getWidth() / widthCorrector, getHeight() / heightCorrector,
-                sx, sy, sx + cardWidth, sy + cardHeight,
+        g.drawImage(
+                sprite,
+                0, 0,
+                getWidth() / WIDTH_SCALE_DIVISOR, getHeight() / HEIGHT_SCALE_DIVISOR,
+                sx, sy,
+                sx + CARD_WIDTH, sy + CARD_HEIGHT,
                 this);
     }
 }

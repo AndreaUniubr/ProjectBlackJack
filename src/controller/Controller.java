@@ -42,10 +42,11 @@ public class Controller {
     * todo finale, ellimina ogni cosa inutile, commenta, perfeziona e usa stream e lambda se utili/possibile
     *  file/cartelle da fare (se non specificato si intende tutto)
     *   - controller
+    *       - Controller
+    *       - StateObserver
     *   - fancygraphic
     *       - CardDisplayer
     *       - FancyFichesButton
-    *       - FancyCard
     *       - FancyPlayButton
     *   - view
     *       - PlayPage
