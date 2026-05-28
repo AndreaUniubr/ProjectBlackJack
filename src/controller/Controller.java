@@ -48,7 +48,6 @@ public class Controller {
     *       - FancyCard
     *       - FancyPlayButton
     *   - view
-    *       - HomePage
     *       - PlayPage
     *   - main
     *   - balance

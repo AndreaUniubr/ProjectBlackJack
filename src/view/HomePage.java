@@ -6,59 +6,69 @@ import fancygraphic.FancyPlayButton;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.Arrays;
 
 import static model.game.Constants.TABLE_COLOR;
 
-
+/**
+ * Main menu panel of the project.
+ * Displays navigation buttons for the different sections.
+ */
 public class HomePage extends JPanel {
+    private static final Color FG_COLOR = new Color(218, 165, 32);
+    private static final Font FONT = new Font("Playfair Display", Font.BOLD, 48);
+    private static final int BUTTON_DIAMETER = 120;
+    private static final Dimension DISTANCE_BETWEEN_BUTTONS = new Dimension(0, 20);
+
+    private final Controller controller;
+    private final JPanel centerPanel;
 
     public HomePage(Controller controller) {
+        this.controller = controller;
 
         setLayout(new BorderLayout());
-
         setBackground(TABLE_COLOR);
 
         JLabel label = new JLabel("BLACKJACK");
-        label.setForeground(new Color(218, 165, 32));
+        label.setForeground(FG_COLOR);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setBorder(new EmptyBorder(60, 0, 0, 0));
-        label.setFont(new Font("Playfair Display", Font.BOLD, 48));
+        label.setFont(FONT);
 
         add(label, BorderLayout.NORTH);
 
-        FancyPlayButton playButton = new FancyPlayButton("▶", 120);
-        FancyPlayButton detailsButton = new FancyPlayButton("≡", 120);
-        FancyPlayButton balanceButton = new FancyPlayButton("$", 120);
 
-        playButton.addActionListener(e ->
-                controller.setState(State.PLAY)
-        );
+        centerPanel = new JPanel();
 
-        detailsButton.addActionListener(e ->
-                controller.setState(State.DETAILS)
-        );
-
-        balanceButton.addActionListener( e ->
-                controller.setState(State.BALANCE)
-        );
-
-        // 🔥 pannello centrale per i bottoni
-        JPanel centerPanel = new JPanel();
         centerPanel.setOpaque(false);
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-        playButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        detailsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        balanceButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         centerPanel.add(Box.createVerticalGlue());
-        centerPanel.add(playButton);
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        centerPanel.add(detailsButton);
-        centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        centerPanel.add(balanceButton);
+        initializeButtons();
         centerPanel.add(Box.createVerticalGlue());
 
         add(centerPanel, BorderLayout.CENTER);
+    }
+
+    // Creates and adds navigation buttons to the center panel.
+    private void initializeButtons()
+    {
+        FancyPlayButton playButton = new FancyPlayButton("▶", BUTTON_DIAMETER);
+        FancyPlayButton detailsButton = new FancyPlayButton("≡", BUTTON_DIAMETER);
+        FancyPlayButton balanceButton = new FancyPlayButton("$", BUTTON_DIAMETER);
+
+        playButton.addActionListener(e -> controller.setState(State.PLAY));
+        detailsButton.addActionListener(e -> controller.setState(State.DETAILS));
+        balanceButton.addActionListener( e -> controller.setState(State.BALANCE));
+
+        Arrays.asList(playButton, detailsButton, balanceButton)
+                .forEach(button -> {
+                    button.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+                    centerPanel.add(button);
+                    centerPanel.add(
+                            Box.createRigidArea(DISTANCE_BETWEEN_BUTTONS)
+                    );
+                });
     }
 }

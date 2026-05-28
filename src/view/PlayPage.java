@@ -68,6 +68,8 @@ public class PlayPage extends JPanel {
         // todo qui vannno implementate le puntate
         // todo aggiungi var puntata nelle mani
         // ricordati split usa cashhhhh
+        // todo porco dio mi fa giocare senza puntate,....
+        // perchè mi mette a 2k la vincita se perdo? e scommettere mentre si gioca...
 
 
         // todo no timer quiiiiiiii
