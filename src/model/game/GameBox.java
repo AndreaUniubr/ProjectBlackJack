@@ -5,6 +5,7 @@ import fancygraphic.FancyGenButton;
 import model.cards.Deck;
 import model.balance.Balance;
 import model.entities.Player;
+import view.PlayPage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -201,12 +202,14 @@ public class GameBox extends Box {
             public void actionPerformed(ActionEvent e) {
                 addCard();
                 splitButton.setVisible(false);
+                PlayPage.removeFichesButton();
             }
         });
         standButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 actionOnStand();
+                PlayPage.removeFichesButton();
             }
         });
         splitButton.addActionListener(new ActionListener() {

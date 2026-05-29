@@ -24,13 +24,13 @@ public class PlayPage extends JPanel {
     private FancyGenButton backButton;
     private JLabel amountLabel;
     private JLabel betLabel;
-    private FancyFichesButton fichesButtonTen;
-    private FancyFichesButton fichesButtonTwenty;
-    private FancyFichesButton fichesButtonFifty;
-    private FancyFichesButton fichesButtonHundred;
-    private FancyFichesButton fichesButtonTwoHundred;
-    private FancyFichesButton fichesButtonFiveHundred;
-    private FancyFichesButton fichesButtonThousand;
+    private static FancyFichesButton fichesButtonTen;
+    private static FancyFichesButton fichesButtonTwenty;
+    private static FancyFichesButton fichesButtonFifty;
+    private static FancyFichesButton fichesButtonHundred;
+    private static FancyFichesButton fichesButtonTwoHundred;
+    private static FancyFichesButton fichesButtonFiveHundred;
+    private static FancyFichesButton fichesButtonThousand;
 
     public PlayPage(Controller controller, int nPartecipanti, Balance balance)
     {
@@ -92,6 +92,7 @@ public class PlayPage extends JPanel {
                     gameBox.fOk.addActionListener(evt2 -> {
                         gameBox.resetTotalBet();
                         updateBalanceAndBet(amountLabel, betLabel);
+                        addFichesButton();
                         gameStart();
                         gameBox.fOk.setVisible(false);
                     });
@@ -295,5 +296,27 @@ public class PlayPage extends JPanel {
     {
         amountLabel.setText("Amount: " + gameBox.getPlayer().getBalance().getSaldo());
         betLabel.setText("Bet: " + gameBox.getBet());
+    }
+
+    public static void removeFichesButton()
+    {
+        fichesButtonTen.setVisible(false);
+        fichesButtonTwenty.setVisible(false);
+        fichesButtonFifty.setVisible(false);
+        fichesButtonHundred.setVisible(false);
+        fichesButtonTwoHundred.setVisible(false);
+        fichesButtonFiveHundred.setVisible(false);
+        fichesButtonThousand.setVisible(false);
+    }
+
+    public static void addFichesButton()
+    {
+        fichesButtonTen.setVisible(true);
+        fichesButtonTwenty.setVisible(true);
+        fichesButtonFifty.setVisible(true);
+        fichesButtonHundred.setVisible(true);
+        fichesButtonTwoHundred.setVisible(true);
+        fichesButtonFiveHundred.setVisible(true);
+        fichesButtonThousand.setVisible(true);
     }
 }
