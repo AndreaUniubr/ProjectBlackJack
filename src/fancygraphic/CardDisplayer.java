@@ -6,6 +6,7 @@ import model.game.Hand;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.beans.PropertyChangeListener;
 
 public class CardDisplayer extends JPanel {
     private static final Color TABLE_COLOR_2 = new Color(10, 90, 50);
@@ -15,6 +16,8 @@ public class CardDisplayer extends JPanel {
     private Hand hand;
     private final JLabel valuePanel;
     private final JPanel contentPanel;
+
+    private PropertyChangeListener handListener;
 
     public CardDisplayer(Hand hand)
     {
@@ -43,7 +46,7 @@ public class CardDisplayer extends JPanel {
         contentPanel.setLayout(null);
 
         // listener aggiornamenti
-        updateListener();
+        addHandListener();
 
         add(contentPanel, BorderLayout.CENTER);
         add(valuePanel, BorderLayout.SOUTH);
@@ -51,28 +54,37 @@ public class CardDisplayer extends JPanel {
         updateCards();
     }
 
-    public void updateListener()
+    private void addHandListener()
     {
-        hand.addPropertyChangeListener(evt -> {
+        handListener = evt -> {
 
-            if(evt.getPropertyName().equals("value"))
+            if("value".equals(evt.getPropertyName()))
             {
                 int nuovoValore = (int) evt.getNewValue();
-                valuePanel.setText("" + ((nuovoValore <= 21)?nuovoValore:"BUST"));
+                valuePanel.setText(
+                        (nuovoValore <= 21)
+                                ? String.valueOf(nuovoValore)
+                                : "BUST"
+                );
             }
 
-            if(evt.getPropertyName().equals("cards"))
+            if("cards".equals(evt.getPropertyName()))
             {
                 updateCards();
             }
 
-        });
+        };
+
+        hand.addPropertyChangeListener(handListener);
     }
 
     public void setHand(Hand hand)
     {
+        if(this.hand != null)
+            handListener.removePropertyChangeListener(handListener);
+
         this.hand = hand;
-        updateListener();
+        addHandListener();
         updateCards();
     }
 
