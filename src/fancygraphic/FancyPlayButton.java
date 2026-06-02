@@ -1,21 +1,52 @@
 package fancygraphic;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class FancyPlayButton extends JButton {
-
-    private boolean hover = false;
-    private boolean pressed = false;
     private final int diameter;
 
-    public FancyPlayButton(String text, int diameter) {
-        super(text);
+
+    public FancyPlayButton(int diameter, int type)
+    {
         this.diameter = diameter;
+
+
+        BufferedImage spriteFiches = null;
+        try {
+            spriteFiches = ImageIO.read(new File("resources/cards/assets/personalized_fiches.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BufferedImage iconaRitagliata = ritagliaImmagine(spriteFiches,  107, 422, diameter);
+        Image iconaRidimensionata = iconaRitagliata.getScaledInstance(50, 48, Image.SCALE_SMOOTH);
+        setIcon(new ImageIcon(iconaRidimensionata));
+        setBorderPainted(false);
+        setContentAreaFilled(false);
+        setFocusPainted(false);
+        setPreferredSize(new Dimension(50, 48));
+
+
+    }
+
+
+    public BufferedImage ritagliaImmagine(BufferedImage source, int x, int y, int diameter)
+    {
+        return source.getSubimage(x, y, diameter, diameter);
+    }
+    /*
+    private boolean hover = false;
+    private boolean pressed = false;
+
+    public FancyPlayButton(String text, int diameter) {
 
         setContentAreaFilled(false);
         setBorderPainted(false);
@@ -53,7 +84,7 @@ public class FancyPlayButton extends JButton {
 
     /* =========================
        DIMENSIONI CORRETTE
-       ========================= */
+       =========================
 
     @Override
     public Dimension getPreferredSize() {
@@ -72,7 +103,7 @@ public class FancyPlayButton extends JButton {
 
     /* =========================
        DISEGNO
-       ========================= */
+       =========================
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -92,14 +123,14 @@ public class FancyPlayButton extends JButton {
         int x = (w - size) / 2;
         int y = (h - size) / 2;
 
-        /* ===== Ombra ===== */
+        /* ===== Ombra =====
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, 0.4f));
         g2.setColor(Color.BLACK);
         g2.fillOval(x + 4, y + 4, size - 8, size - 8);
         g2.setComposite(AlphaComposite.SrcOver);
 
-        /* ===== Corpo principale ===== */
+        /* ===== Corpo principale =====
         Color base = new Color(220, 0, 0);
 
         if (pressed) base = base.darker();
@@ -117,12 +148,12 @@ public class FancyPlayButton extends JButton {
         g2.setPaint(gradient);
         g2.fillOval(x, y, size, size);
 
-        /* ===== Bordo esterno ===== */
+        /* ===== Bordo esterno =====
         g2.setStroke(new BasicStroke(size / 10f));
         g2.setColor(Color.WHITE);
         g2.drawOval(x, y, size, size);
 
-        /* ===== Testo ===== */
+        /* ===== Testo =====
 
         FontMetrics fm = g2.getFontMetrics(getFont());
         String text = getText();
@@ -146,7 +177,7 @@ public class FancyPlayButton extends JButton {
 
     /* =========================
        CLICK SOLO NEL CERCHIO
-       ========================= */
+       =========================
 
     @Override
     public boolean contains(int x, int y) {
@@ -160,5 +191,5 @@ public class FancyPlayButton extends JButton {
 
         Ellipse2D circle = new Ellipse2D.Float(cx, cy, size, size);
         return circle.contains(x, y);
-    }
+    }*/
 }

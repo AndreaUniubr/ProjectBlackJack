@@ -43,7 +43,6 @@ public class Controller {
     *  file/cartelle da fare (se non specificato si intende tutto)
     *   - controller
     *       - Controller
-    *       - StateObserver
     *   - fancygraphic
     *       - CardDisplayer
     *       - FancyFichesButton
