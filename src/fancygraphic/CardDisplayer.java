@@ -80,8 +80,8 @@ public class CardDisplayer extends JPanel {
 
     public void setHand(Hand hand)
     {
-        if(this.hand != null)
-            handListener.removePropertyChangeListener(handListener);
+        //if(this.hand != null)
+          //  handListener.removePropertyChangeListener(handListener);
 
         this.hand = hand;
         addHandListener();
