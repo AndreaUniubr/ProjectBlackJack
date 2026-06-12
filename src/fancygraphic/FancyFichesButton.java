@@ -46,24 +46,24 @@ public class FancyFichesButton extends JButton
         switch(type)
         {
             case 1: // verde
-                x = 458;
-                y = 415;
-                width = 178;
-                height = 162;
+                x = 457;
+                y = 413;
+                width = 175;
+                height = 167;
                 break;
 
             case 2: // blu
-                x = 280;
-                y = 412;
-                width = 178;
-                height = 166;
+                x = 278;
+                y = 413;
+                width = 175;
+                height = 167;
                 break;
 
             default: // rossa
-                x = 103;
-                y = 415;
-                width = 171;
-                height = 162;
+                x = 101;
+                y = 413;
+                width = 175;
+                height = 167;
         }
 
         BufferedImage croppedIcon = cropImage(spriteFiches, x, y, width, height);
