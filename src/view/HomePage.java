@@ -53,9 +53,9 @@ public class HomePage extends JPanel {
     // Creates and adds navigation buttons to the center panel.
     private void initializeButtons()
     {
-        FancyFichesButton playButton = new FancyFichesButton(BUTTON_DIAMETER, 0);
-        FancyFichesButton detailsButton = new FancyFichesButton( BUTTON_DIAMETER, 2);
-        FancyFichesButton balanceButton = new FancyFichesButton(BUTTON_DIAMETER, 1);
+        FancyFichesButton playButton = new FancyFichesButton(0);
+        FancyFichesButton detailsButton = new FancyFichesButton(2);
+        FancyFichesButton balanceButton = new FancyFichesButton(1);
 
         playButton.addActionListener(e -> controller.setState(State.PLAY));
         detailsButton.addActionListener(e -> controller.setState(State.DETAILS));

@@ -14,8 +14,8 @@ public class FancyFichesButton extends JButton
     private static final String SPRITE_PATH_2 = "resources/cards/assets/personalized_fiches.png";
     private static final int ICON_WIDTH_1 = 50;
     private static final int ICON_HEIGHT_1 = 48;
-    private static final int ICON_WIDTH_2 = 50;
-    private static final int ICON_HEIGHT_2 = 48;
+    private static final int ICON_WIDTH_2 = 110;
+    private static final int ICON_HEIGHT_2 = 104;
 
     private final Image resizedIcon;
 
@@ -34,19 +34,39 @@ public class FancyFichesButton extends JButton
         setPreferredSize(new Dimension(ICON_WIDTH_1, ICON_HEIGHT_1));
     }
 
-    public FancyFichesButton (int diameter, int type)
+    public FancyFichesButton (int type)
     {
         BufferedImage spriteFiches = loadSprite(SPRITE_PATH_2);
 
         int x;
-        int y = 422;
-        x = switch (type) {
-            case 1 -> 289;
-            case 2 -> 462;
-            default -> 107; // 0
-        };
+        int y;
+        int width;
+        int height;
 
-        BufferedImage croppedIcon = cropImage(spriteFiches, x, y, diameter, diameter);
+        switch(type)
+        {
+            case 1: // verde
+                x = 458;
+                y = 415;
+                width = 178;
+                height = 162;
+                break;
+
+            case 2: // blu
+                x = 280;
+                y = 412;
+                width = 178;
+                height = 166;
+                break;
+
+            default: // rossa
+                x = 103;
+                y = 415;
+                width = 171;
+                height = 162;
+        }
+
+        BufferedImage croppedIcon = cropImage(spriteFiches, x, y, width, height);
 
         resizedIcon = croppedIcon.getScaledInstance(
                 ICON_WIDTH_2,
@@ -76,7 +96,7 @@ public class FancyFichesButton extends JButton
         }
     }
 
-    public BufferedImage cropImage(BufferedImage source, int x, int y, int width, int height)
+    private BufferedImage cropImage(BufferedImage source, int x, int y, int width, int height)
     {
         return source.getSubimage(x, y, width, height);
     }

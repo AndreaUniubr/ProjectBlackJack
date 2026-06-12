@@ -33,6 +33,7 @@ public class Controller {
         - ca,biare tipo carte?
         - controllo finale, elliminazione metodi inutili, aggiunta di commenti, perfezionamento delle implementazioni
         -usare stream e lambda
+        - se rimpicciolisco si ropmpe tutto grafica fiches
     * */
 
     // todo deve salvare i dati tipo balance? in caso qui
