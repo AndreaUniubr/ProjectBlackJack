@@ -45,21 +45,21 @@ public class FancyFichesButton extends JButton
 
         switch(type)
         {
-            case 1: // verde
+            case 1: // green
                 x = 457;
                 y = 413;
                 width = 175;
                 height = 167;
                 break;
 
-            case 2: // blu
+            case 2: // blue
                 x = 278;
                 y = 413;
                 width = 175;
                 height = 167;
                 break;
 
-            default: // rossa
+            default: // red
                 x = 101;
                 y = 413;
                 width = 175;
