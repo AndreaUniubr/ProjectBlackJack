@@ -17,7 +17,6 @@ import static model.game.Constants.TABLE_COLOR;
 public class HomePage extends JPanel {
     private static final Color FG_COLOR = new Color(218, 165, 32);
     private static final Font FONT = new Font("Playfair Display", Font.BOLD, 48);
-    private static final int BUTTON_DIAMETER = 120;
     private static final Dimension DISTANCE_BETWEEN_BUTTONS = new Dimension(0, 20);
 
     private final Controller controller;

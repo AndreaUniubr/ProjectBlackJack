@@ -46,7 +46,6 @@ public class Controller {
     *       - Controller
     *   - fancygraphic
     *       - CardDisplayer
-    *       - FancyFichesButton
     *   - view
     *       - PlayPage
     *       - HomePage se si rompoe adesso(??????)
