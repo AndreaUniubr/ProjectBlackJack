@@ -5,29 +5,28 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class Balance {
-    // Attributi
     private int saldo;
+    // Notifies listeners whenever the balance changes.
+    private final PropertyChangeSupport pcs =
+            new PropertyChangeSupport(this);
 
-    protected final PropertyChangeSupport pcs2 = new PropertyChangeSupport(this);
-
-    //Costruttore
     public Balance (int saldo)
     {
         this.saldo = saldo;
     }
 
-    // Aumento saldo
+    // Add money
     public void aggiungiSoldi (int importo)
     {
-        this.setSaldo(this.saldo + importo);
+        setSaldo(saldo + importo);
     }
 
-    // Prelevare soldi
+    // Remove money
     public boolean togliSoldi (int importo)
     {
         if (saldo >= importo)
         {
-            this.setSaldo(this.saldo - importo);
+            setSaldo(saldo - importo);
             return true;
         }
         else return false;
@@ -35,20 +34,19 @@ public class Balance {
 
     public void addBalanceListener(PropertyChangeListener l)
     {
-        pcs2.addPropertyChangeListener("balance", l);
+        pcs.addPropertyChangeListener("balance", l);
     }
 
-    // Getter saldo
     public int getSaldo()
     {
         return saldo;
     }
 
-    // Resettiamo saldo
+    // Updates the balance and notifies listeners.
     public void setSaldo(int saldo)
     {
         int old = this.saldo;
         this.saldo = saldo;
-        pcs2.firePropertyChange("balance", old, saldo);
+        pcs.firePropertyChange("balance", old, saldo);
     }
 }

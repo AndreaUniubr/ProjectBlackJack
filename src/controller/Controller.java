@@ -50,6 +50,7 @@ public class Controller {
     *       - PlayPage
     *   - main
     *   - balance
+    *       - Bet
     *   - entities
     *   - game
     * */
