@@ -48,7 +48,6 @@ public class Controller {
     *       - CardDisplayer
     *   - view
     *       - PlayPage
-    *       - HomePage se si rompoe adesso(??????)
     *   - main
     *   - balance
     *   - entities
