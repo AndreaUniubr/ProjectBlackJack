@@ -49,8 +49,6 @@ public class Controller {
     *   - view
     *       - PlayPage
     *   - main
-    *   - balance
-    *       - Bet
     *   - entities
     *   - game
     * */

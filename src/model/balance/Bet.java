@@ -1,20 +1,23 @@
 package model.balance;
 
-public class Bet {
-    private int standard_bet;
+// Stores the betting information for a hand.
+// Can be extended in the future with additional bet types.
+public class Bet
+{
+    private int standardBet;
 
-    public Bet(int s_bet)
+    public Bet(int standardBet)
     {
-        this.setStandard_bet(s_bet);
+        this.standardBet = standardBet;
     }
 
-    public int getStandard_bet()
+    public int getStandardBet()
     {
-        return standard_bet;
+        return standardBet;
     }
 
-    public void setStandard_bet(int standard_bet)
+    public void setStandardBet(int standardBet)
     {
-        this.standard_bet = standard_bet;
+        this.standardBet = standardBet;
     }
 }
