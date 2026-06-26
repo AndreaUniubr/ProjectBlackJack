@@ -14,84 +14,87 @@ public class CardDisplayer extends JPanel {
     private static final Font VALUE_FONT = new Font("Serif", Font.BOLD, 28);
 
     private Hand hand;
-    private final JLabel valuePanel;
-    private final JPanel contentPanel;
-
+    // Listener used to update the UI when the hand changes.
     private PropertyChangeListener handListener;
+
+    private JLabel handValuePanel;
+    private JPanel cardDisplayerPanel;
 
     public CardDisplayer(Hand hand)
     {
-        this.hand = hand;
+        init();
 
-        setOpaque(false);
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(250,200));
-        setMaximumSize(new Dimension(250,200));
+        add(cardDisplayerPanel, BorderLayout.CENTER);
+        add(handValuePanel, BorderLayout.SOUTH);
 
-        // bordo oro
-        setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(BORDER_COLOR , 3),
-                new EmptyBorder(8,8,8,8)
-        ));
-
-        // valore mano
-        valuePanel = new JLabel( (hand.getValue() <= 21) ? ""+hand.getValue() : "BUST");
-        valuePanel.setFont(VALUE_FONT);
-        valuePanel.setForeground(Color.WHITE);
-        valuePanel.setHorizontalAlignment(SwingConstants.CENTER);
-
-        // pannello carte
-        contentPanel = new JPanel();
-        contentPanel.setOpaque(false);
-        contentPanel.setLayout(null);
-
-        // listener aggiornamenti
-        addHandListener();
-
-        add(contentPanel, BorderLayout.CENTER);
-        add(valuePanel, BorderLayout.SOUTH);
-
-        updateCards();
+        onHandChange(hand);
     }
 
     private void addHandListener()
     {
+        if (hand == null) return;
+
         handListener = evt -> {
 
             if("value".equals(evt.getPropertyName()))
-            {
-                int nuovoValore = (int) evt.getNewValue();
-                valuePanel.setText(
-                        (nuovoValore <= 21)
-                                ? String.valueOf(nuovoValore)
-                                : "BUST"
-                );
-            }
+                updateHandValue();
 
             if("cards".equals(evt.getPropertyName()))
-            {
                 updateCards();
-            }
 
         };
 
         hand.addPropertyChangeListener(handListener);
     }
 
-    public void setHand(Hand hand)
+    // Removes the listener from the previous hand to avoid duplicated updates.
+    private void removeHandListener()
     {
-        //if(this.hand != null)
-          //  handListener.removePropertyChangeListener(handListener);
+        if (hand != null && handListener != null)
+        {
+            hand.removePropertyChangeListener(handListener);
+            handListener = null;
+        }
+    }
 
-        this.hand = hand;
+    private void onHandChange(Hand newHand)
+    {
+        removeHandListener();
+
+        this.hand = newHand;
+
         addHandListener();
+
+        updateHandValue();
         updateCards();
     }
 
+    // Updates the displayed hand value and shows BUST if the value exceeds 21.
+    private void updateHandValue()
+    {
+        if (hand == null) return;
+
+        int value = hand.getValue();
+
+        handValuePanel.setText(
+                (value <= 21)
+                        ? String.valueOf(value)
+                        : "BUST"
+        );
+    }
+
+    // Rebuilds the card panel every time the hand receives or removes cards.
     public void updateCards()
     {
 
-        contentPanel.removeAll();
+        cardDisplayerPanel.removeAll();
+
+        if (hand == null)
+        {
+            cardDisplayerPanel.revalidate();
+            cardDisplayerPanel.repaint();
+            return;
+        }
 
         int x = 10;
         int overlap = 35;
@@ -100,22 +103,46 @@ public class CardDisplayer extends JPanel {
         {
             FancyCard fc = new FancyCard(c);
             fc.setBounds(x, 10, 1200, 1200);
-            contentPanel.add(fc);
-            contentPanel.setComponentZOrder(fc, 0);
+            cardDisplayerPanel.add(fc);
+            cardDisplayerPanel.setComponentZOrder(fc, 0);
 
             x += overlap;
         }
 
-        contentPanel.setPreferredSize(new Dimension(x + 30, 110));
+        cardDisplayerPanel.setPreferredSize(new Dimension(x + 30, 110));
 
-        contentPanel.revalidate();
-        contentPanel.repaint();
-        
+        cardDisplayerPanel.revalidate();
+        cardDisplayerPanel.repaint();
     }
 
-    public int getValue ()
+    private void init()
     {
-        return this.hand.getValue();
+        setOpaque(false);
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(250,200));
+        setMaximumSize(new Dimension(250,200));
+
+        // gold border
+        setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(BORDER_COLOR , 3),
+                new EmptyBorder(8,8,8,8)
+        ));
+
+        // initialization on HandValuePanel
+        handValuePanel = new JLabel();
+        handValuePanel.setFont(VALUE_FONT);
+        handValuePanel.setForeground(Color.WHITE);
+        handValuePanel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // initialization on cardDisplayerPanel
+        cardDisplayerPanel = new JPanel();
+        cardDisplayerPanel.setOpaque(false);
+        cardDisplayerPanel.setLayout(null);
+    }
+
+    public void setHand(Hand hand)
+    {
+        onHandChange(hand);
     }
 
     @Override
@@ -130,5 +157,10 @@ public class CardDisplayer extends JPanel {
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
 
         g2.dispose();
+    }
+
+    public int getValue ()
+    {
+        return hand != null ? hand.getValue() : 0;
     }
 }

@@ -61,6 +61,13 @@ public class Hand {
         support.addPropertyChangeListener(listener);
     }
 
+    public void removePropertyChangeListener(PropertyChangeListener listener)
+    {
+        support.removePropertyChangeListener(listener);
+    }
+
+
+
     public void revealCards()
     {
         for (Card c : this.getCards())
