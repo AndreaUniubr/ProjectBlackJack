@@ -45,14 +45,14 @@ public class FancyFichesButton extends JButton
 
         switch(type)
         {
-            case 1: // green
+            case 2: // green
                 x = 457;
                 y = 413;
                 width = 175;
                 height = 167;
                 break;
 
-            case 2: // blue
+            case 1: // blue
                 x = 278;
                 y = 413;
                 width = 175;
