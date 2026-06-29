@@ -4,7 +4,7 @@ import model.cards.Card;
 import model.game.Hand;
 import model.cards.Deck;
 
-public class Dealer extends Entities{
+public class Dealer extends GameEntity {
     private Hand hand;
 
     public Dealer(Deck deck)

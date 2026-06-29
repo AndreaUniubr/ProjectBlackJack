@@ -1,15 +1,12 @@
 package model.entities;
 
 import model.balance.Balance;
-import model.cards.Card;
 import model.cards.Deck;
 import model.game.Hand;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-public class Player extends Entities{
+public class Player extends GameEntity {
     private final Balance balance;
     private boolean isStand;
 

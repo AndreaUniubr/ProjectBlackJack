@@ -1,7 +1,6 @@
 package model.game;
 
 import fancygraphic.CardDisplayer;
-import model.entities.Entities;
 
 import javax.swing.*;
 import java.beans.PropertyChangeListener;

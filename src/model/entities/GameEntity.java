@@ -4,16 +4,17 @@ import model.cards.Card;
 import model.cards.Deck;
 import model.game.Hand;
 
-public abstract class Entities {
-    private static int id_gen = 0;
+// Base class for all game entities, such as players and dealers.
+public abstract class GameEntity {
+    private static int nextId = 0;
     private final int id;
     private final String name;
     protected Deck deck;
 
-    public Entities(String name, Deck deck)
+    public GameEntity(String name, Deck deck)
     {
-        this.id = id_gen;
-        id_gen++;
+        this.id = nextId;
+        nextId++;
         this.name = name;
         this.deck = deck;
     }
@@ -27,6 +28,7 @@ public abstract class Entities {
 
     public abstract Hand getHand();
 
+    // Returns true if the entity has a natural blackjack.
     public boolean isBJ()
     {
         return getHand().getValue() == 21 && getHand().getCards().size() == 2;
