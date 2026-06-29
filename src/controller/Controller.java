@@ -47,7 +47,6 @@ public class Controller {
     *       - PlayPage
     *   - main
     *   - entities
-    *       - Dealer
     *       - Player
     *   - game
     * */

@@ -12,30 +12,29 @@ public class Dealer extends GameEntity {
         super("Dealer",deck);
     }
 
-    // distribuzione prime due carte fisse
+    // Deals the dealer's first hidden card.
     public void card1() { dealCard(false); }
+    // Deals the dealer's second visible card.
     public void card2() { dealCard(true); }
 
-    // mostra tutte le carte prima di iniziare a giocare
+    // Reveals all dealer cards before playing.
     public void prePlay()
     {
-        this.hand.revealCards();
+        hand.revealCards();
     }
 
-    // false continua a giocare
-    // true ha finito
+    // Returns true when the dealer has finished playing.
     public boolean play()
     {
-        if (this.hand.getValue() <= 16)
+        if (hand.getValue() <= 16)
         {
-            Card c = deck.drawCard();
-            this.hand.addCard(c);
+            dealCard(true);
         }
 
-        return this.hand.getValue() > 16;
+        return hand.getValue() > 16;
     }
 
-    // restore a new hand
+    // Assigns a new hand to the dealer.
     public void setHand(Hand hand)
     {
         this.hand = hand;
