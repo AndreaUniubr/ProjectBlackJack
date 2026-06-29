@@ -115,7 +115,7 @@ public class PlayPage extends JPanel {
 
     public void checkWin()
     {
-        int d = dealerBox.getCd();
+        int d = dealerBox.getHandValue();
         int win = gameBox.calcolaWin(d,dealerBox.isBJ());
 
         // todo mostra questo valore

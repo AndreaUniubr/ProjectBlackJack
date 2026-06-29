@@ -9,6 +9,7 @@ import java.beans.PropertyChangeSupport;
 public abstract class Box extends JPanel {
     protected CardDisplayer cd;
 
+    // Manages listeners interested in the playing state of the box.
     protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     protected boolean isPlaying;
 
@@ -23,7 +24,12 @@ public abstract class Box extends JPanel {
         pcs.addPropertyChangeListener("isPlaying", l);
     }
 
-    public int getCd()
+    public void removeIsPlayingListener(PropertyChangeListener l)
+    {
+        pcs.removePropertyChangeListener("isPlaying", l);
+    }
+
+    public int getHandValue()
     {
         return this.cd.getValue();
     }

@@ -49,6 +49,9 @@ public class Controller {
     *   - entities
     *       - Player
     *   - game
+    *       - DealerBox
+    *       - GameBox
+    *       - Hand
     * */
 
     public Balance getBalance()
