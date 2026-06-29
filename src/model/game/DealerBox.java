@@ -17,6 +17,7 @@ public class DealerBox extends Box {
         dealer = new Dealer(deck);
     }
 
+    @Override
     protected void graphicInit()
     {
         setOpaque(false);
@@ -24,7 +25,7 @@ public class DealerBox extends Box {
         setPreferredSize(new Dimension(250,200));
         setMaximumSize(new Dimension(250,200));
 
-        // bordo oro
+        // gold border
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(212,175,55), 3),
                 new EmptyBorder(8,8,8,8)
@@ -43,6 +44,7 @@ public class DealerBox extends Box {
         cd.updateCards();
     }
 
+    @Override
     public void newHand ()
     {
         isPlaying = false;
@@ -59,30 +61,36 @@ public class DealerBox extends Box {
 
     public void play()
     {
-        isPlaying = (true);
+        setPlaying(true);
+
         dealer.prePlay();
         cd.updateCards();
 
-        Timer timer = new Timer(500, null); // 0.5 secondi
+        Timer timer = new Timer(500, null);
 
         timer.addActionListener(e -> {
-            if (!dealer.play()) {
-                cd.updateCards();
-            } else {
-                cd.updateCards();
+            boolean finished = dealer.play();
+
+            cd.updateCards();
+
+            if (finished)
+            {
                 timer.stop();
+                setPlaying(false);
             }
         });
 
+        timer.setInitialDelay(500);
         timer.start();
-        setPlaying(false);
     }
 
+    @Override
     public boolean isBJ()
     {
         return dealer.isBJ();
     }
 
+    @Override
     public void setPlaying(boolean value)
     {
         boolean old = this.isPlaying;
