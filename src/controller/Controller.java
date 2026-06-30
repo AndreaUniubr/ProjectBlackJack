@@ -50,7 +50,6 @@ public class Controller {
     *       - Player
     *   - game
     *       - GameBox
-    *       - Hand
     * */
 
     public Balance getBalance()

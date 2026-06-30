@@ -1,7 +1,6 @@
 package model.game;
 
 import model.cards.Card;
-import model.cards.Rank;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -12,8 +11,6 @@ public class Hand {
     private int value;
     private final PropertyChangeSupport support;
 
-    private int app = 0;
-
     public Hand()
     {
         this.cards = new ArrayList<>();
@@ -23,33 +20,34 @@ public class Hand {
     public void addCard(Card c)
     {
         this.cards.add(c);
-        this.calcola();
+        this.calculateValue();
     }
 
-    private void calcola()
+    private void calculateValue()
     {
-        int totale = 0;
-        int assi = 0;
+        int total = 0;
+        int aces = 0;
 
         for (Card c : cards)
         {
             if (c.isFaceUp())
             {
-                totale += c.getRank().getMinValue();
+                total += c.getRank().getMinValue();
                 if (c.getRank().isAce())
-                    assi++;
+                    aces++;
             }
         }
 
-        while (assi > 0 && totale + 10 <= 21)
+        while (aces > 0 && total + 10 <= 21)
         {
-            totale += 10;
-            assi--;
+            total += 10;
+            aces--;
         }
-        this.setValore(totale);
+        this.setValue(total);
     }
 
-    public void setValore(int nuovoValore)
+    // Updates the hand value and notifies listeners.
+    public void setValue(int nuovoValore)
     {
         int vecchioValore = this.value;
         this.value = nuovoValore;
@@ -66,20 +64,17 @@ public class Hand {
         support.removePropertyChangeListener(listener);
     }
 
-
-
     public void revealCards()
     {
         for (Card c : this.getCards())
         {
             c.reveal();
         }
-        calcola();
+        calculateValue();
     }
 
     public int getValue()
     {
-        this.calcola();
         return this.value;
     }
 

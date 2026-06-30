@@ -59,6 +59,7 @@ public class Player extends GameEntity {
 
     public void addHand(Hand hand)
     {
+        // qui deve rimuovere vecchio listsner....
         this.hands.addLast(hand);
     }
 
