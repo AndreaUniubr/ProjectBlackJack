@@ -20,4 +20,9 @@ public class Bet
     {
         this.standardBet = standardBet;
     }
+
+    public void incrementBet(int value)
+    {
+        this.standardBet += value;
+    }
 }

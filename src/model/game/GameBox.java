@@ -12,15 +12,22 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 
 import static model.game.Constants.BLACKJACK;
 import static model.game.Constants.WIN;
 
 public class GameBox extends Box {
     public JPanel buttonPanel;
+
+
+
+
+
+
+
+
+
     private FancyGenButton hitButton;
     private FancyGenButton standButton;
     private FancyGenButton splitButton;
@@ -42,19 +49,7 @@ public class GameBox extends Box {
         iniButtons();
     }
 
-    protected void graphicInit ()
-    {
-        setOpaque(false);
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(600, 250));
-        setMaximumSize(new Dimension(600, 250));
-        setMinimumSize(new Dimension(600, 250));
 
-        setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(212,175,55), 3),
-                new EmptyBorder(8,8,8,8)
-        ));
-    }
 
     private void nextHand()
     {
@@ -154,17 +149,11 @@ public class GameBox extends Box {
         cd.updateCards();
     }
 
-    private void addCard()
-    {
-        player.addCard();
-        cd.updateCards();
-        if (player.getHand().getValue() > 21) actionOnStand();
-    }
 
-    public Player getPlayer()
-    {
-        return this.player;
-    }
+
+
+// todo i bottoni sono invisibili se la puntata è = 0... e va messo pulsante reset puntate....
+    // todo magari gestiscilo a fasi....
 
     private void updateButtons() {
         standButton.setVisible(isPlaying);
@@ -182,10 +171,7 @@ public class GameBox extends Box {
         }
     }
 
-    public boolean isBJ()
-    {
-        return player.isBJ();
-    }
+
 
     // initialization of all the buttons needed
     public void iniButtons ()
@@ -248,5 +234,43 @@ public class GameBox extends Box {
         this.isPlaying = false;
         pcs.firePropertyChange("isPlaying", true, false);
         pcs2.firePropertyChange("isPlaying", true, false);
+    }
+
+
+
+
+
+
+
+
+
+
+    private void addCard()
+    {
+        player.addCard();
+        cd.updateCards();
+        if (player.getHand().getValue() > 21) actionOnStand();
+    }
+
+    public boolean isBJ()
+    {
+        return player.isBJ();
+    }
+
+    public Player getPlayer() { return this.player; }
+
+    @Override
+    protected void graphicInit ()
+    {
+        setOpaque(false);
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(600, 250));
+        setMaximumSize(new Dimension(600, 250));
+        setMinimumSize(new Dimension(600, 250));
+
+        setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(212,175,55), 3),
+                new EmptyBorder(8,8,8,8)
+        ));
     }
 }
